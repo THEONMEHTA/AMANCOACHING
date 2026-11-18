@@ -137,3 +137,10 @@ All timestamps are UTC (GMT on 18 November 2026). Entries describe completed act
 - **Files created/modified:** README.md, docs/RELEASE_STATUS.md, evidence/deployment-verification.json, evidence/commit-history.*
 - **Verification:** Deployed 0d443b8 to Preview as dpl_8kP1zN8JEaSdJGL5VxtJik9awWy8 (Ready). The authenticated smoke test passed at 2026-11-18T14:08:12.861Z across all routes, both private submission types, retries, rejected anonymous reads and analytics. Removed 2 synthetic records. All four badge images returned 200, and the homepage HTML contained the 2,000+, 97% and EMCC figures. Anonymous preview access redirected to Vercel authentication (302).
 - **Pending / limitations:** Vercel Deployment Protection is still on, so committee members without Vercel access cannot open the preview. The GitHub repository and evidence remain public.
+
+## 2026-11-18T14:10:29.138Z — Preview opened to the public for the hackathon committee
+
+- **Requested:** Keep everything public so the hackathon committee can review the site.
+- **Files created/modified:** Vercel project setting (Deployment Protection), README.md, docs/RELEASE_STATUS.md, docs/DEPLOYMENT.md
+- **Verification:** Turned off Vercel Authentication (ssoProtection) for project aman-coaching-snapshot-20261118 through the Vercel API. Anonymous requests to /, /leadership-quiz, /book, /privacy and a badge asset on the ihesfftp1 preview all returned 200. X-Robots-Tag and the page meta still send noindex, nofollow. The GitHub repository and evidence remain public.
+- **Pending / limitations:** Anyone with the link can now submit the quiz and call-request forms. Submissions go to private Blob storage. Re-enable protection after judging if wanted.

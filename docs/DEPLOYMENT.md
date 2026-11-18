@@ -1,6 +1,6 @@
 # Vercel preview and private storage
 
-The existing project is `aman-coaching-snapshot-20261118` under `0013s-projects`. Its London private Blob store, `aman-coaching-preview-leads`, is attached to Preview and Development. Deployment Protection and noindex remain enabled. Use the release status for the tested deployment.
+The existing project is `aman-coaching-snapshot-20261118` under `0013s-projects`. Its London private Blob store, `aman-coaching-preview-leads`, is attached to Preview and Development. Deployment Protection was turned off on 18 November 2026 so the hackathon committee can view previews. Noindex headers remain enabled, and lead storage stays private. To restore it, enable Vercel Authentication under Project Settings → Deployment Protection. Use the release status for the tested deployment.
 
 ## Local checks and preview deployment
 

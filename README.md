@@ -6,7 +6,7 @@ Initial website audit and implementation plan · 18 November 2026
 
 **Current release.** Aman Davegun’s executive coaching site includes a Kora-style homepage with her original walkway photograph as a fullscreen hero, a fifteen-statement Leadership Snapshot, a discovery-call route and a privacy notice. Visitors see their five scores, choose or receive one weekly action, and download a PDF without supplying details. Optional report and call requests go to the private Vercel store. Email delivery is disabled in preview. The confirmed direct business address is **achieve@amancoaching.com**.
 
-[Open the redesigned Vercel preview](https://aman-coaching-snapshot-20261118-ihesfftp1-0013s-projects.vercel.app) (Vercel access required). [Release verification](docs/RELEASE_STATUS.md) · [QA results](docs/QA_REPORT.md) · [Editing and analytics guide](docs/CLIENT_HANDOVER.md).
+[Open the redesigned Vercel preview](https://aman-coaching-snapshot-20261118-ihesfftp1-0013s-projects.vercel.app) (public link; not indexed by search engines). [Release verification](docs/RELEASE_STATUS.md) · [QA results](docs/QA_REPORT.md) · [Editing and analytics guide](docs/CLIENT_HANDOVER.md).
 
 ## Run the current build
 

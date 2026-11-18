@@ -1,6 +1,6 @@
 {
-  "exportedAt": "2026-11-18T14:08:33.574Z",
-  "head": "0d443b81d197d8472d28792f6e2079971c5e8cfa",
+  "exportedAt": "2026-11-18T14:10:29.421Z",
+  "head": "1a59ed37cc313781e6a6cc551e52c781297cae11",
   "commits": [
     {
       "sha": "9d92a1dda2d5b598b0b634bd91a4f292573dc294",
@@ -121,6 +121,12 @@
       "authoredAt": "2026-11-18T14:07:17Z",
       "committedAt": "2026-11-18T14:07:17Z",
       "subject": "feat: add original credential badges and published figures"
+    },
+    {
+      "sha": "1a59ed37cc313781e6a6cc551e52c781297cae11",
+      "authoredAt": "2026-11-18T14:08:33Z",
+      "committedAt": "2026-11-18T14:08:33Z",
+      "subject": "docs: record credentials preview deployment and audit evidence"
     }
   ]
 }
