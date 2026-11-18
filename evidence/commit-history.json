@@ -1,6 +1,6 @@
 {
-  "exportedAt": "2026-11-18T11:25:39.541Z",
-  "head": "c0d74c3d86a9806885cf475f12caf089a9ec3075",
+  "exportedAt": "2026-11-18T13:56:01.240Z",
+  "head": "94c7956292335fcf99e01663dd026dce2781f5d0",
   "commits": [
     {
       "sha": "9d92a1dda2d5b598b0b634bd91a4f292573dc294",
@@ -97,6 +97,18 @@
       "authoredAt": "2026-11-18T11:25:39Z",
       "committedAt": "2026-11-18T11:25:39Z",
       "subject": "docs: deliver verified redesign preview and timestamped QA handover"
+    },
+    {
+      "sha": "9e9c8d36952608dc21202b5a62a75aaaeaf433d7",
+      "authoredAt": "2026-11-18T11:27:45Z",
+      "committedAt": "2026-11-18T11:27:45Z",
+      "subject": "docs: add timestamped commit and deployment evidence"
+    },
+    {
+      "sha": "94c7956292335fcf99e01663dd026dce2781f5d0",
+      "authoredAt": "2026-11-18T13:54:22Z",
+      "committedAt": "2026-11-18T13:54:22Z",
+      "subject": "feat: redesign homepage in Kora style with fullscreen hero"
     }
   ]
 }

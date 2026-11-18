@@ -116,3 +116,10 @@ All timestamps are UTC (GMT on 18 November 2026). Entries describe completed act
 - **Files created/modified:** index.html, pages/layout.html, src/kora.css (new), src/style.css, src/main.js, scripts/build.mjs, public/images/ (hero, avatar, courtyard and service artwork WebP), public/licenses/manrope-OFL.txt, docs/ASSET_SOURCES.md, two browser tests, package.json (Manrope replaces Lora and Nunito Sans; earlier requested awwwards-mcp install)
 - **Verification:** Built and verified all four routes and anchors. 14 unit/API tests and 11 Playwright scenarios passed, including axe checks on all routes, 320–1440px layouts, keyboard and reduced motion. Compared desktop and mobile screenshots against kora.framer.media section by section. No Kora copy, imagery, logos or figures were reused.
 - **Pending / limitations:** No unverified testimonials, ratings, prices or credential badges were added. EMCC, CMI and RCOT badges and the old site's counters need Aman's confirmation. Publication rights for her photos and artwork need approval.
+
+## 2026-11-18T13:56:00.998Z — Kora redesign deployed to Vercel Preview
+
+- **Requested:** Commit the redesign, push a new Vercel preview and keep the timestamped audit trail current.
+- **Files created/modified:** README.md, docs/RELEASE_STATUS.md, evidence/deployment-verification.json, evidence/commit-history.*
+- **Verification:** Deployed 94c7956 to Preview as dpl_2JPzsNKgKUUagkCoUEvPJ7TkVcii, which reported Ready. Authenticated smoke test passed at 2026-11-18T13:55:35.789Z: all four routes, both private submission types, idempotent retries, rejection of anonymous reads and analytics receipt. Removed 2 synthetic records and the test event. The new hero, artwork and stylesheet returned 200. Anonymous access redirected to Vercel authentication (302).
+- **Pending / limitations:** Production launch still needs Aman to approve the calendar, photos, artwork and credential claims, plus the privacy review. Email delivery remains disabled.

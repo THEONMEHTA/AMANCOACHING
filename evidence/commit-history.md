@@ -1,6 +1,6 @@
 # Commit history
 
-Generated 2026-11-18T11:25:39.542Z. Git records author and commit timestamps with timezone offsets. These timestamps are repository evidence, not payment or delivery receipts. Regenerate after every subsequent commit.
+Generated 2026-11-18T13:56:01.242Z. Git records author and commit timestamps with timezone offsets. These timestamps are repository evidence, not payment or delivery receipts. Regenerate after every subsequent commit.
 
 | Commit | Authored | Committed | Milestone |
 | --- | --- | --- | --- |
@@ -20,3 +20,5 @@ Generated 2026-11-18T11:25:39.542Z. Git records author and commit timestamps wit
 | d7ea2c90319897ec0751a9e85d30fd51e3c5227a | 2026-11-18T11:19:49Z | 2026-11-18T11:19:49Z | fix: refine accessible report presentation and verify preview analytics |
 | 32fd4904b0470589bcc4d3166d90cb047ebfa8cb | 2026-11-18T11:22:57Z | 2026-11-18T11:22:57Z | fix: improve mobile tap targets and coaching report contrast |
 | c0d74c3d86a9806885cf475f12caf089a9ec3075 | 2026-11-18T11:25:39Z | 2026-11-18T11:25:39Z | docs: deliver verified redesign preview and timestamped QA handover |
+| 9e9c8d36952608dc21202b5a62a75aaaeaf433d7 | 2026-11-18T11:27:45Z | 2026-11-18T11:27:45Z | docs: add timestamped commit and deployment evidence |
+| 94c7956292335fcf99e01663dd026dce2781f5d0 | 2026-11-18T13:54:22Z | 2026-11-18T13:54:22Z | feat: redesign homepage in Kora style with fullscreen hero |
