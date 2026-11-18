@@ -1,17 +1,8 @@
-service — Aman Coaching, individual leadership coaching for mid-to-senior leaders.
-Deal: oxblood-grey (stone and oxblood provide an editorial professional identity); Lora / Nunito Sans; photo hero, calm right; nav-centre; footer-columns; close-type; space rhythm; solid buttons; wordmark. Word-highlight in the report section gives the report's central reflection emphasis. No shaders, invented proof, stock faces or third-party logos.
+Service — Aman Davegun, executive and transformational leadership coaching for mid-to-senior leaders.
+Ivory, moss and ink from the client brief. Lora roman/italic and Nunito Sans. A paired arch in the identity and the portrait frame echoes two perspectives on one decision. Mobile hero leads with the immediately visible invitation and both actions.
 
-Voice: practical and reflective, based on the current site's coaching language. You for the reader, Aman for the coach. Specific leadership situations, plain explanations, no promises of measurable results. An invitation rather than a performance rating.
+The homepage introduces Aman through a portrait, verified-by-brief professional background, three recognisable situations, a sample report, her first-person biography, a three-stage journey, FAQs and booking. Real scores appear only in the quiz. Staggered headline movement, portrait entrance and a single pass of the sample bars all respect reduced motion. No testimonials or credential logos.
 
-Facts: business name Aman Coaching; individual executive and leadership coaching; mid-to-senior leaders in complex organisations. Hero photo is the existing site's client business asset; source recorded in ASSET_SOURCES.md. No testimonials, statistics, accreditation claims or customer logos are republished without further verification.
+Reviewed the existing Aman site, Ballast and MindEdge in a browser. Ballast's compact situation-led structure and MindEdge's dominant portrait inform the hierarchy. The supplied Helena Marsh direction informs the proximity of background to claims. No reference assets, claims or copy reused. LinkedIn gated the profile, so use the supplied background conservatively pending approval. The number of sessions, accreditation, numerical claims, portraits, scheduling URL and privacy wording require sign-off before public launch. The existing site contains one identifiable Aman photograph; use two crops pending a distinct approved second portrait.
 
-Screens:
-- top: photo hero, one screen; real client photo, portrait on the left and text on solid ground on the right. Mobile photo above text. Main action Start the quiz.
-- report: what the visitor receives, one screen; word-highlight statement and live HTML report excerpt, labelled Example report. Report content is an illustration, never client proof.
-- quiz: six-question interactive funnel and results; one screen for the introductory/question states, natural growth for report/form states to preserve accessibility. Four reflection questions plus role and preferred focus. No forced scroll or auto-advance.
-- coaching: one screen; coaching approach and six substantive FAQs. Open and close answers with native details. Natural growth at text zoom/small heights rather than clipping.
-- contact: footer/close-type; discovery-call request form, privacy links and legal row. One screen normally, natural growth for form errors and accessibility.
-
-Client brief overrides skill's draft contacts on .example, modal prohibition for legal information, strict fixed screen heights where they would clip live forms/results, and example-report labelling: production form handling, truthful content and accessibility take precedence. Use native dialog for privacy, with keyboard focus and escape support. No made-up contacts.
-
-Deployment revision: Vercel preview with a same-origin API and private Blob records. The user explicitly deferred email and production. No email notifications or marketing jobs. A noindex preview disclosure is visible and no real credential is placed in the frontend.
+The Leadership Snapshot uses fifteen statements across five areas. All questions and interpretation are editable in public/content. Scores stay in memory. The report form is optional, after results. Preview stores requests privately and sends no email.

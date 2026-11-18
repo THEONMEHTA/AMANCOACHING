@@ -53,3 +53,10 @@ All timestamps are UTC (GMT on 18 November 2026). Entries describe completed act
 - **Files created/modified:** docs/RELEASE_STATUS.md and QA_REPORT.md; README.md; deployment guide; browser CSP test; generated commit/deployment evidence exports.
 - **Verification:** Preview https://aman-coaching-snapshot-20261118-h70on16s8-0013s-projects.vercel.app reached READY from source 76f6b78455586d72571d3084f1b4e3775739de2a. Live checks completed at 2026-11-18T09:59:05.090Z: both forms returned 201, private authenticated reads succeeded, anonymous record reads returned 403, retries returned 201, and both synthetic QA records were deleted. Cross-origin writes returned 403 and public API listing returned 405. No email integration exists. Unauthenticated site access redirects to Vercel sign-in. Fourteen unit/API tests and fourteen browser tests pass; zero dependency vulnerabilities; design gate PASS with four documented exceptions; copy lint zero failures/warnings; local performance zero failures and three documented warnings.
 - **Pending / limitations:** Vercel CLI refused automatic deletion of the unused first setup deployment with confirmation_required; explicit human approval was requested and remains pending. No deletion confirmation was fabricated or bypassed. Working preview and private storage are complete. Client payment, client acceptance, production launch and organiser submissions remain unverified.
+
+## 2026-11-18T11:04:55.708Z — Executive coaching redesign brief and source review
+
+- **Requested:** Redesign the site and replace the six-question funnel with an ungated fifteen-question reflection.
+- **Files created/modified:** docs/DESIGN_PLAN.md
+- **Verification:** Reviewed current site, public counters, source photograph, Ballast and MindEdge in the browser. LinkedIn required sign-in.
+- **Pending / limitations:** Obtain client approval before public launch.
