@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.env
+.env.*
+!.env.example
+.taste-skill/chrome-*/
+.taste-skill/*profile*/
+.taste-skill/screenshots/
+playwright-report/
+test-results/
+.DS_Store
+.netlify/

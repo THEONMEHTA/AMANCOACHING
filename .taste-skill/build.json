@@ -1,0 +1,11 @@
+{
+ "page": "dist/index.html",
+ "url": null,
+ "root": "dist",
+ "kind": "service",
+ "category": "leadership coaching",
+ "primary": "Start the quiz",
+ "rounds": 3,
+ "start": "2026-11-18T09:18:13.727Z",
+ "by": "gate.mjs --start"
+}
