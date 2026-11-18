@@ -3,7 +3,11 @@ import { site } from './site.js';
 export function track(event, properties = {}) {
   if (site.leadCapture !== 'vercel') return;
   fetch('/api/events', {
-    method:'POST', headers:{'Content-Type':'application/json'}, credentials:'same-origin',
-    referrerPolicy:'no-referrer', keepalive:true, body:JSON.stringify({ event, ...properties }),
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    credentials: 'same-origin',
+    referrerPolicy: 'no-referrer',
+    keepalive: true,
+    body: JSON.stringify({ event, ...properties }),
   }).catch(() => {});
 }

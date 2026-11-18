@@ -6,10 +6,11 @@ export const site = {
 export async function loadContent(key) {
   // Vercel can serve owner-published copy immediately. Local builds use bundled defaults.
   if (site.leadCapture === 'vercel') {
-    const response = await fetch('/api/content?key=' + key, {cache:'no-store'}).catch(() => null);
-    if (response?.ok && response.headers.get('content-type')?.includes('application/json')) return response.json();
+    const response = await fetch('/api/content?key=' + key, { cache: 'no-store' }).catch(() => null);
+    if (response?.ok && response.headers.get('content-type')?.includes('application/json'))
+      return response.json();
   }
-  const response = await fetch('/content/' + key + '.json', {cache:'no-cache'});
+  const response = await fetch('/content/' + key + '.json', { cache: 'no-cache' });
   if (!response.ok) throw new Error('Content unavailable.');
   return response.json();
 }

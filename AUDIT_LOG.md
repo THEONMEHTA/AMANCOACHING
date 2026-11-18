@@ -81,3 +81,17 @@ All timestamps are UTC (GMT on 18 November 2026). Entries describe completed act
 - **Files created/modified:** HTML shell, styles, PDF report, analytics transport, export and live smoke scripts
 - **Verification:** First redesign deployment passed protected route, live private capture, retry and anonymous access checks. Two test submissions removed. Re-ran 14 unit/API and 11 browser checks. Rendered all-low, all-high and mixed PDFs as complete A4 pages. Strengthened keyboard focus and added authenticated analytics receipt verification.
 - **Pending / limitations:** Final preview redeploy includes transport and report refinements. Email remains disabled.
+
+## 2026-11-18T11:21:45.522Z — Verified redesigned Vercel preview and evidence
+
+- **Requested:** Retain deployment evidence and timestamped handover.
+- **Files created/modified:** README.md, docs/RELEASE_STATUS.md and generated deployment verification
+- **Verification:** Deployed d7ea2c9 to Vercel Preview. At 11:20:58 UTC all four live routes, both private submission types, idempotent retries and analytics receipt passed. Anonymous private reads returned 403. Deleted both synthetic submissions and the anonymous test event.
+- **Pending / limitations:** Production approvals and payment evidence are outstanding.
+
+## 2026-11-18T11:22:57.085Z — Final accessibility and handover polish
+
+- **Requested:** Check contrast and touch targets on the editorial build.
+- **Files created/modified:** src/style.css, frontend and server modules, build scripts, smoke checks
+- **Verification:** Darkened secondary text on sage, expanded phone tap targets, formatted the editable implementation, and repeated 14 unit/API tests, 11 browser scenarios and route checks. Built output contained no configured server credential values.
+- **Pending / limitations:** Deploy these last changes as the reviewed preview.
