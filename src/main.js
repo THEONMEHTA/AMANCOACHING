@@ -169,7 +169,7 @@ contact.addEventListener('submit', async event => {
     status.textContent = 'Your request has been received. Aman can follow up by email to arrange a conversation. A call is not yet booked.';
     contact.reset();
   } catch (error) {
-    status.textContent = site.leadCapture === 'unconfigured' ? 'Your request has not been sent. This preview is not connected to lead capture yet.' : (error.message || 'We could not send your request. Please try again.');
+    status.textContent = site.leadCapture === 'unconfigured' ? 'Your request could not be sent. Please email achieve@amancoaching.com directly.' : (error.message || 'We could not send your request. Please try again.');
     status.classList.add('error');
   } finally { contact.dataset.submitting = 'false'; button.disabled = false; }
 });

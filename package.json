@@ -20,6 +20,7 @@
     "jspdf": "^4.2.1"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.14.0",
     "@playwright/test": "^1.65.1",
     "esbuild": "^0.28.2"
   }

@@ -2,7 +2,7 @@ import { site } from './site.js';
 
 export async function submitLead(formName, fields) {
   if (site.leadCapture !== 'netlify') {
-    throw new Error('Your details have not been sent. This preview is not connected to lead capture. You can still view and download your report.');
+    throw new Error('Your details have not been sent. You can still view and download your report, or email achieve@amancoaching.com.');
   }
   const body = new URLSearchParams({ 'form-name': formName, ...fields });
   const controller = new AbortController();

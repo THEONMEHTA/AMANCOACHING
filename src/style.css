@@ -19,14 +19,14 @@ a { color: inherit; }
 .nav .wordmark { font-size: 38px; }
 .nav { border-bottom: 1px solid #7d0c141b; }
 .nav__bar { justify-content: space-between; }
-.nav__links { gap: 32px; }
+.nav__links { gap: 32px; align-items: center; }
 .nav__toggle { min-height: 44px; }
 .nav .btn { gap: 32px; }
 .btn { min-height: 48px; padding: 12px 24px; font-size: 15px; font-weight: 600; letter-spacing: 0; gap: 28px; }
 .btn:disabled { opacity: .55; cursor: not-allowed; }
 .btn span { font-size: 21px; line-height: 1; }
 .hero.hero--photo .hero__text { padding: 40px; }
-.hero.hero--photo .hero__text h1 { font-size: clamp(48px,4.9vw,72px); line-height: 1.06; max-width: 11ch; letter-spacing: -.045em; }
+.hero.hero--photo .hero__text h1 { font-size: clamp(48px,4.9vw,72px); line-height: 1.06; max-width: 100%; letter-spacing: -.045em; }
 .hero .hero__bg { object-position: 38% 58%; }
 .hero .hero__lead { max-width: 34ch; margin-top: 24px; font-size: 18px; line-height: 1.55; }
 .eyebrow, .section-index, .quiz-tag { font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
@@ -233,3 +233,20 @@ dialog p { font-size: 14px; line-height: 1.7; margin-top: 14px; }
  .action-cards { display: block; }
  .action-cards li { break-inside: avoid; margin: 20px 0; }
 }
+
+.contact-email { display: block; margin-top: 24px; font-size: 16px; width: fit-content; padding: 8px 0; }
+
+/* Keep the scroll emphasis readable before words reach their active state. */
+.mo-wh .mo-w:not(.is-on) { color: var(--p-muted); }
+
+/* Shared column edges and minimum touch targets across the funnel. */
+.report-layout, .coaching-layout, .contact-layout { gap: 24px; }
+.quiz-shell { grid-template-columns: 1fr 1fr; gap: 24px; }
+.report-copy > p:not(.mo-wh__text), .coaching-copy p, .questions details p { color: var(--p-ink); }
+.hero-secondary, .contact-email { min-height: 44px; align-items: center; }
+.contact-email { display: flex; }
+.nav__toggle { width: auto; display: none; align-items: center; gap: 8px; white-space: nowrap; }
+.quiz-aside-bottom > span { font-size: 32px; }
+footer.closing { padding-bottom: 72px; }
+@media (max-width: 1023px) { .quiz-shell { grid-template-columns: 1fr; } .nav__toggle { display: flex; } }
+@media (max-width: 639px) { .report-layout, .coaching-layout, .contact-layout { gap: 40px; } }

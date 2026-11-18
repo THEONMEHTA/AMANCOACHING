@@ -18,3 +18,10 @@ All timestamps are UTC (GMT on 18 November 2026). Entries describe completed act
 - **Files created/modified:** index.html; src/style.css, main.js, quiz.js, leads.js, report.js, site.js; public client portrait, kit assets and legal/error pages; build/verification scripts; design and asset provenance docs; package files.
 - **Verification:** Seven unit tests pass, covering 1,024 scoring/preference combinations, tie handling, complete report content, invalid inputs and email validation. Static build and link/asset/form-definition checks pass. Dependency audit has no vulnerabilities after replacing Vite with a minimal esbuild toolchain. Initial screenshot attempt found no system Chrome; installed headless Chromium for QA.
 - **Pending / limitations:** Browser/layout QA and PDF verification in progress. Native form storage and email delivery require an actual Netlify deploy; no deployment or client payment claimed.
+
+## 2026-11-18T09:41:20.760Z — Quiz verification, client email and accessibility
+
+- **Requested:** Deliver leads to achieve@amancoaching.com and maintain all commit timestamps under the hackathon rules.
+- **Files created/modified:** Quiz/report modules, index.html, responsive styles, browser test configuration and suites, dependency lockfile; licence copies and client asset provenance.
+- **Verification:** Seven unit tests and thirteen browser tests passed in the preceding complete run, including 320–1440px flows, lead payloads, failed submissions, consent default, PDF download, mobile menu and automated WCAG A/AA checks. All four PDF variants rendered to three pages and passed text/bounds checks; representative three-page report inspected visually. Adjusted column edges, touch targets and entrance progressively afterwards; final verification pending.
+- **Pending / limitations:** No live form or mailbox test yet. Intended recipient is confirmed by the user; account-level Netlify notifications and recipient confirmation remain required. All automated submissions are intercepted locally. Payment and live delivery remain unverified.
