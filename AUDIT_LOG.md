@@ -11,3 +11,10 @@ All timestamps are UTC (GMT on 18 November 2026). Entries describe completed act
 - **Verification:** working tree was clean before setup; Node 22+ is available; no application existed. Public Google Doc export returned HTTP 200. No live deployment or payment has been verified.
 - **Pending client inputs:** verified business contact/calendar link, destination/account for lead notifications, deployment access and any applicable live GBP payment link. Requested these in the conversation. Until supplied, use a functioning native discovery-call request form, not guessed contact details.
 - **Integrity:** no fabricated testimonials, customer logos, results or credentials. No scraped personal data. Do not record secrets or personal lead submissions in Git. Never represent an unpaid/undelivered project as completed revenue.
+
+## 2026-11-18T09:31:07.890Z — Landing page and initial quiz implementation
+
+- **Requested:** Build an original responsive Aman Coaching launch page and a six-question leadership reflection using the Taste Skill.
+- **Files created/modified:** index.html; src/style.css, main.js, quiz.js, leads.js, report.js, site.js; public client portrait, kit assets and legal/error pages; build/verification scripts; design and asset provenance docs; package files.
+- **Verification:** Seven unit tests pass, covering 1,024 scoring/preference combinations, tie handling, complete report content, invalid inputs and email validation. Static build and link/asset/form-definition checks pass. Dependency audit has no vulnerabilities after replacing Vite with a minimal esbuild toolchain. Initial screenshot attempt found no system Chrome; installed headless Chromium for QA.
+- **Pending / limitations:** Browser/layout QA and PDF verification in progress. Native form storage and email delivery require an actual Netlify deploy; no deployment or client payment claimed.

@@ -1,0 +1,11 @@
+import assert from 'node:assert/strict';
+import { readFile, access } from 'node:fs/promises';
+const html = await readFile('dist/index.html', 'utf8');
+for (const file of ['dist/assets/main.js','dist/assets/main.css','dist/images/aman-london.jpg','dist/images/aman-portrait.jpg','dist/thank-you.html','dist/accessibility.html','dist/404.html']) await access(file);
+assert(!/\[FILL IN\]|support@franco|framer\.link|href="#"|\.example\b/i.test(html), 'Unresolved placeholder or broken destination');
+for (const form of ['leadership-snapshot','discovery-request']) assert(html.includes(`name="${form}"`), `Missing static form: ${form}`);
+const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map(m => m[1]);
+assert.equal(new Set(ids).size, ids.length, 'Duplicate element IDs');
+for (const match of html.matchAll(/href="#([^"]+)"/g)) assert(ids.includes(match[1]), `Broken anchor: ${match[1]}`);
+for (const match of html.matchAll(/(?:src|href)="(\/(?:kit|images|assets)\/[^"#]+|\/favicon\.svg)"/g)) await access(`dist${match[1]}`);
+console.log('Build checks passed: assets, form definitions, links and placeholder scan.');
