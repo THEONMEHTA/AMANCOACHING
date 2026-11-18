@@ -60,3 +60,10 @@ All timestamps are UTC (GMT on 18 November 2026). Entries describe completed act
 - **Files created/modified:** docs/DESIGN_PLAN.md
 - **Verification:** Reviewed current site, public counters, source photograph, Ballast and MindEdge in the browser. LinkedIn required sign-in.
 - **Pending / limitations:** Obtain client approval before public launch.
+
+## 2026-11-18T11:08:44.856Z — Editorial homepage and four route layouts
+
+- **Requested:** Build the ivory and moss site with two immediate calls to action and recognisable leadership situations.
+- **Files created/modified:** index.html, pages/, public/images/, public/content/site.json, public/favicon.svg, src/style.css, scripts/build.mjs, scripts/verify-build.mjs
+- **Verification:** Confirmed the new WebP portrait files exist and the four page sources contain distinct content.
+- **Pending / limitations:** Browser and deployed route verification follow after quiz integration.

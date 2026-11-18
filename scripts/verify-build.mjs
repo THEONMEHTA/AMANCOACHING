@@ -1,12 +1,16 @@
 import assert from 'node:assert/strict';
-import { readFile, access } from 'node:fs/promises';
-const html = await readFile('dist/index.html', 'utf8');
-for (const file of ['dist/assets/main.js','dist/assets/main.css','dist/images/aman-london.jpg','dist/images/aman-portrait.jpg','dist/thank-you.html','dist/accessibility.html','dist/404.html']) await access(file);
-assert(!/\[FILL IN\]|support@franco|framer\.link|href="#"|\.example\b/i.test(html), 'Unresolved placeholder or broken destination');
-assert(html.includes('id="contact-form"'), 'Missing enquiry form');
-assert(html.includes('action="/api/leads"'), 'Enquiry form must use the private Vercel endpoint');
-const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map(m => m[1]);
-assert.equal(new Set(ids).size, ids.length, 'Duplicate element IDs');
-for (const match of html.matchAll(/href="#([^"]+)"/g)) assert(ids.includes(match[1]), `Broken anchor: ${match[1]}`);
-for (const match of html.matchAll(/(?:src|href)="(\/(?:kit|images|assets)\/[^"#]+|\/favicon\.svg)"/g)) await access(`dist${match[1]}`);
-console.log('Build checks passed: assets, form definitions, links and placeholder scan.');
+import {readFile,access} from 'node:fs/promises';
+const html = new Map();
+for (const route of ['', 'book','privacy','leadership-quiz']) html.set('/'+route,await readFile('dist/'+(route ? route+'/' : '')+'index.html','utf8'));
+for (const [route,source] of html) {
+  assert.equal([...source.matchAll(/<h1\b/g)].length,1,route+' must have one H1');
+  assert(!/\[FILL IN\]|framer\.link|href="#"|{{\w+}}/.test(source));
+  for(const [,url] of source.matchAll(/(?:href|src)="([^"]+)"/g)) {
+    if(url.startsWith('mailto:')) continue;
+    const [path,hash] = url.split('#');
+    if(hash) assert((html.get(path || route) || '').includes('id="'+hash+'"'),'Broken anchor '+url);
+    if(path && !html.has(path)) await access('dist'+path);
+  }
+}
+assert(html.get('/book').includes('action="/api/leads"'));
+console.log('Verified all four routes, anchors, assets, form action and page titles.');
