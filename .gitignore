@@ -14,3 +14,8 @@ test-results/
 evidence/
 output/
 .taste-skill/pdf-qa/
+.vercel/
+private/
+.taste-skill/gate/
+.vercel
+.env*

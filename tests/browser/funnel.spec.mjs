@@ -10,7 +10,7 @@ async function completeQuiz(page, indexes = [2, 2, 1, 2, 3, 0]) {
   }
 }
 async function stubForms(page, handler) {
-  await page.route('http://127.0.0.1:5173/', route => route.request().method() === 'POST' ? handler(route) : route.continue());
+  await page.route('http://127.0.0.1:5173/api/leads', route => route.request().method() === 'POST' ? handler(route) : route.continue());
 }
 
 test('six questions, no-email report, PDF download and retake work end to end', async ({ page }) => {
@@ -32,13 +32,13 @@ test('six questions, no-email report, PDF download and retake work end to end', 
 
 test('lead submission is explicit, optional marketing defaults off and payload is correct', async ({ page }) => {
   const submissions = [];
-  await stubForms(page, route => { submissions.push(new URLSearchParams(route.request().postData())); return route.fulfill({ status: 200, contentType: 'text/plain', body: 'Accepted by test fixture' }); });
+  await stubForms(page, route => { submissions.push(new URLSearchParams(JSON.parse(route.request().postData()))); return route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ok:true,emailSent:false}) }); });
   await page.goto('/'); await completeQuiz(page);
   await expect(page.getByRole('checkbox')).not.toBeChecked();
   await page.getByLabel('Your name', { exact: true }).first().fill('QA Visitor');
   await page.getByLabel('Email address', { exact: true }).first().fill('qa@visitor.invalid');
   await page.getByRole('button', { name: 'Get my report', exact: false }).click();
-  await expect(page.getByText('Your details have been received.', { exact: false })).toBeVisible();
+  await expect(page.getByText('Your details have been saved privately.', { exact: false })).toBeVisible();
   expect(submissions).toHaveLength(1);
   expect(submissions[0].get('form-name')).toBe('leadership-snapshot');
   expect(submissions[0].get('email')).toBe('qa@visitor.invalid');
@@ -71,12 +71,12 @@ test('back navigation retains responses and privacy dialog supports escape', asy
 
 test('discovery request posts correct form and confirms request without claiming a booking', async ({ page }) => {
   let payload;
-  await stubForms(page, route => { payload = new URLSearchParams(route.request().postData()); return route.fulfill({ status: 200, body: 'Accepted by test fixture' }); });
+  await stubForms(page, route => { payload = new URLSearchParams(JSON.parse(route.request().postData())); return route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ok:true,emailSent:false}) }); });
   await page.goto('/#contact');
   await page.locator('#contact-name').fill('QA Visitor'); await page.locator('#contact-email').fill('qa@visitor.invalid');
   await page.locator('#contact-message').fill('A test enquiry for the automated test fixture only.');
   await page.locator('#contact-form button[type="submit"]').click();
-  await expect(page.locator('#contact-status')).toContainText('A call is not yet booked');
+  await expect(page.locator('#contact-status')).toContainText('call is not yet booked');
   expect(payload.get('form-name')).toBe('discovery-request');
 });
 
@@ -85,6 +85,8 @@ for (const width of [320, 390, 768, 820, 1024, 1440]) {
     await page.setViewportSize({ width, height: width > 1000 ? 900 : 1024 });
     await page.goto('/'); await page.evaluate(() => document.fonts.ready);
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+    const menu = page.locator('.nav__toggle');
+    if (await menu.isVisible()) { const box = await menu.boundingBox(); expect(box.x + box.width).toBeLessThanOrEqual(width); }
     const images = await page.locator('main img').evaluateAll(images => images.map(img => ({ complete: img.complete, width: img.naturalWidth })));
     expect(images.every(i => i.complete && i.width > 0)).toBe(true);
     await completeQuiz(page); await page.getByRole('button', { name: 'View without sharing details' }).click();

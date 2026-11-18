@@ -49,13 +49,13 @@ function showQuestion() {
 function showLeadForm() {
   app.innerHTML = `
     <span class="quiz-tag">YOUR REFLECTION IS COMPLETE</span><h3 style="margin-top:18px">Your next step is ready.</h3>
-    <p class="lead-intro">Share your details so Aman can follow up about your snapshot. Your full report and PDF will be available here immediately.</p>
+    <p class="lead-intro">Save an enquiry with your details, or view your report without submitting. Your full report and PDF are available here. This preview sends no emails.</p>
     <form id="lead-form" class="lead-form" novalidate>
       <div class="field"><label for="lead-name">Your name</label><input id="lead-name" name="name" autocomplete="name" required maxlength="100" value="${escape(state.name)}"></div>
       <div class="field"><label for="lead-email">Email address</label><input id="lead-email" name="email" type="email" autocomplete="email" required maxlength="254" aria-describedby="lead-privacy"></div>
       <div class="honeypot" aria-hidden="true"><label>Leave empty <input name="company-website" tabindex="-1" autocomplete="off"></label></div>
-      <label class="checkbox-row"><input type="checkbox" name="marketing-consent" value="yes"><span>I would also like occasional coaching tips and offers from Aman Coaching. This is optional, and I can withdraw permission.</span></label>
-      <p class="form-note" id="lead-privacy">Your details and answers will be shared with Aman Coaching. <button type="button" class="inline-button privacy-open">Read the privacy notice</button>. Your report is not automatically emailed.</p>
+      <label class="checkbox-row"><input type="checkbox" name="marketing-consent" value="yes"><span>Once the site launches, I would also like occasional coaching tips and offers from Aman Coaching. This is optional, and I can withdraw permission.</span></label>
+      <p class="form-note" id="lead-privacy">Your details and answers will be saved privately for project review. <button type="button" class="inline-button privacy-open">Read the privacy notice</button>. Your report is not automatically emailed.</p>
       <button class="btn btn--primary" type="submit">Get my report <span aria-hidden="true">→</span></button>
       <p class="form-status" id="lead-status" role="status"></p>
     </form>
@@ -112,7 +112,7 @@ function showReport(submitted) {
     ? `Your responses also suggest attention to ${result.focusAreas.filter(id => id !== result.focus).map(id => LABELS[id].toLowerCase()).join(' and ')}. Start with one change rather than tackling every area at once.` : '';
   app.innerHTML = `
     <div class="result-header"><div><span class="quiz-tag">${state.name ? `${escape(state.name.toUpperCase())} / ` : ''}YOUR LEADERSHIP SNAPSHOT</span><h3>${result.guidance.title}</h3></div><button class="back-button" id="retake" type="button">Retake the quiz ↺</button></div>
-    ${submitted ? '<p class="form-note" role="status">Your details have been received. Your report is ready below.</p>' : '<p class="form-note">Your details have not been submitted. You can keep a copy of this report.</p>'}
+    ${submitted ? '<p class="form-note" role="status">Your details have been saved privately. No email has been sent. Your report is ready below.</p>' : '<p class="form-note">Your details have not been submitted. You can keep a copy of this report.</p>'}
     <p class="result-lede">${intro} ${tied}</p>
     <div class="result-grid"><div><h4>Your responses</h4>${result.responses.map(r => `<div class="response-row"><strong>${r.label}</strong><p>${r.answer}</p></div>`).join('')}</div>
     <div><h4>${result.balanced ? 'Your starting point' : 'An area to draw on'}</h4><p class="strength-copy">${result.balanced ? 'Similar responses do not mean every area feels the same. Your chosen focus gives this plan a direction; change the order of the actions if a different starting point would help.' : result.strengths.map(id => GUIDANCE[id].strength).join(' ')}</p><div class="reflection-prompts"><strong>Two questions to take away</strong>${result.guidance.prompts.map(p => `<p>${p}</p>`).join('')}</div></div></div>
@@ -166,10 +166,10 @@ contact.addEventListener('submit', async event => {
   status.textContent = 'Sending your request…'; status.classList.remove('error');
   try {
     await submitLead('discovery-request', { name, email, message: data.get('message').trim(), 'consent-version': site.consentVersion, 'company-website': '' });
-    status.textContent = 'Your request has been received. Aman can follow up by email to arrange a conversation. A call is not yet booked.';
+    status.textContent = 'Your request has been saved privately for review. No email has been sent, and a call is not yet booked.';
     contact.reset();
   } catch (error) {
-    status.textContent = site.leadCapture === 'unconfigured' ? 'Your request could not be sent. Please email achieve@amancoaching.com directly.' : (error.message || 'We could not send your request. Please try again.');
+    status.textContent = site.leadCapture === 'unconfigured' ? 'Your request could not be saved. Please try again later.' : (error.message || 'We could not send your request. Please try again.');
     status.classList.add('error');
   } finally { contact.dataset.submitting = 'false'; button.disabled = false; }
 });

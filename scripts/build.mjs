@@ -7,20 +7,23 @@ const destination = resolve('dist');
 await rm(destination, { recursive: true, force: true });
 await mkdir(destination, { recursive: true });
 await cp('public', destination, { recursive: true });
-const configuredCapture = process.env.NETLIFY === 'true' ? 'netlify' : (process.env.VITE_LEAD_CAPTURE || 'unconfigured');
-if (!['netlify', 'unconfigured'].includes(configuredCapture)) throw new Error('Unsupported VITE_LEAD_CAPTURE value.');
+const configuredCapture = process.env.VERCEL === '1' ? 'vercel' : (process.env.VITE_LEAD_CAPTURE || 'unconfigured');
+if (!['vercel', 'unconfigured'].includes(configuredCapture)) throw new Error('Unsupported VITE_LEAD_CAPTURE value.');
 const booking = process.env.VITE_BOOKING_URL || '';
 if (booking && !/^https:\/\//i.test(booking)) throw new Error('Booking URL must use HTTPS.');
 let html = await readFile('index.html', 'utf8');
 html = html.replace('/src/main.js', '/assets/main.js').replace('</head>', '<link rel="stylesheet" href="/assets/main.css">\n</head>');
-const origin = process.env.URL || process.env.SITE_URL || '';
-if (origin) {
+const origin = process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : (process.env.SITE_URL || '');
+const preview = process.env.SITE_MODE !== 'production';
+if (preview) html = html.replace('</head>', '<meta name="robots" content="noindex, nofollow">\n</head>');
+if (origin && !preview) {
   const base = new URL(origin).origin;
   html = html.replace('content="/images/share.jpg"', `content="${base}/images/share.jpg"`);
   html = html.replace('</head>', `<link rel="canonical" href="${base}/"><meta property="og:url" content="${base}/">\n</head>`);
   await writeFile('dist/robots.txt', `User-agent: *\nAllow: /\nDisallow: /thank-you.html\nSitemap: ${base}/sitemap.xml\n`);
   await writeFile('dist/sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>${base}/</loc></url><url><loc>${base}/accessibility.html</loc></url></urlset>`);
 }
+if (preview) await writeFile('dist/robots.txt', 'User-agent: *\nDisallow: /\n');
 await writeFile('dist/index.html', html);
 const options = {
   absWorkingDir: root, entryPoints: ['src/main.js'], bundle: true, outdir: 'dist/assets',

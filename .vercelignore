@@ -1,0 +1,11 @@
+.git
+.agents
+.taste-skill
+node_modules
+dist
+output
+evidence
+test-results
+playwright-report
+private
+.env*

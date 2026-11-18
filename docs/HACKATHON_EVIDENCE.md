@@ -23,7 +23,7 @@ Rule source supplied by the user: [Make Me Money participant guide](https://docs
 | Buyer eligibility | Evidence the payer is a real customer who qualifies under the guide; existing clients, friends and other participants are excluded by the supplied rules. | Not verified in this session. |
 | Agreed scope and price | Client agreement, invoice and agreed deliverables. | Not supplied. |
 | Payment | Live-mode GBP Stripe payment record with transaction ID, paid-at timestamp, amount, fees and refund state; if another payment platform, organiser approval and required reports. | No payment verified. |
-| Delivery | Actual live URL, deployed source SHA, deployment time, lead-delivery check and client handover message/acknowledgement. | No live delivery verified. |
+| Delivery | Actual live URL, deployed source SHA, deployment time, private lead-storage check and client handover message/acknowledgement. | Preview deployment status is tracked in RELEASE_STATUS.md; client acceptance is not yet verified. |
 | Human intervention | Team-channel `/touch` entries for human prompts, changes and customer interactions, following the guide's one-sitting/day ruling. | Repository notes do not submit Discord touches. |
 | Spending | `/spend` entries and receipts for applicable costs within the shared £100 cap; retain all costs/fees and apply the guide's definitions and rulings. | No purchase made by this session; account charges and prior spending not assessed. |
 | Full agent history | Conversation export and generation/tool logs, including failed attempts and later corrections. | This file and the audit log are summaries, not a full export. |
@@ -38,6 +38,6 @@ If taking payment through Stripe, use a live payment link in GBP in the same acc
 
 1. Regenerate commit history after the last source commit and retain the full repository/history (not only a source ZIP).
 2. Export the conversation and retain the source agreement, invoice, payment record and receipts privately.
-3. Record the verified live URL, deployed SHA, form/mailbox test and client acceptance timestamps.
+3. Record the verified live URL, deployed SHA, private form-storage test and client acceptance timestamps.
 4. Confirm `/touch`, `/spend`, Stripe connection or any approved non-Stripe daily/final reporting have been completed in the team channel.
 5. Submit the organiser's evidence pack by 19 November, 18:00 GMT. No submission to organisers has been made by this session.

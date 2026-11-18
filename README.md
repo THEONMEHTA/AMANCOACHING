@@ -4,7 +4,7 @@ Initial website audit and implementation plan · 18 November 2026
 
 **Objective:** turn website visitors into qualified coaching enquiries through a useful leadership self-reflection quiz, a personalised report and an optional discovery call.
 
-**Current status:** the launch website and six-question quiz are implemented in this repository. The initial 12-question proposal below is retained as planning history; the hackathon build uses four reflection questions plus role and preferred focus. Reports are available immediately as HTML and a three-page PDF. The business email is **achieve@amancoaching.com**. Native Netlify form storage and email notifications need live deployment verification before claiming delivery.
+**Current status:** the launch website and six-question quiz are implemented in this repository. The initial 12-question proposal below is retained as planning history; the hackathon build uses four reflection questions plus role and preferred focus. Reports are available immediately as HTML and a three-page PDF. The business email is **achieve@amancoaching.com**. The current release targets a Vercel preview with private Blob storage. No email is sent to the client or respondents.
 
 ## Run the current build
 
@@ -20,9 +20,9 @@ npm run build
 npm run audit:commits
 ```
 
-Install browser dependencies once with `npx playwright install chromium` before browser tests. Development forms deliberately do not submit leads. A Netlify build enables the two native forms; configure notifications to **achieve@amancoaching.com** in the account.
+Install browser dependencies once with `npx playwright install chromium` before browser tests. The static local preview deliberately does not submit leads. A Vercel build enables `/api/leads`, which saves validated submissions privately. Review them in the project’s Storage dashboard; her email credentials are not required.
 
-- [Deployment and email setup](docs/DEPLOYMENT.md)
+- [Vercel deployment and private lead review](docs/DEPLOYMENT.md)
 - [Client handover](docs/CLIENT_HANDOVER.md)
 - [Hackathon evidence and deadlines](docs/HACKATHON_EVIDENCE.md)
 - [Timestamped audit log](AUDIT_LOG.md)

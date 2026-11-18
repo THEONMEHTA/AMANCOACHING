@@ -4,19 +4,21 @@
   "private": true,
   "type": "module",
   "engines": {
-    "node": ">=22"
+    "node": "22.x"
   },
   "scripts": {
     "dev": "node scripts/build.mjs --serve",
     "build": "node scripts/build.mjs && node scripts/verify-build.mjs",
     "preview": "node scripts/build.mjs --serve",
-    "test": "node --test tests/quiz.test.mjs",
+    "test": "node --test tests/*.test.mjs",
     "test:e2e": "playwright test",
-    "audit:commits": "node scripts/export-commits.mjs"
+    "audit:commits": "node scripts/export-commits.mjs",
+    "export:leads": "node scripts/export-leads.mjs"
   },
   "dependencies": {
     "@fontsource/lora": "^5.3.0",
     "@fontsource/nunito-sans": "^5.3.0",
+    "@vercel/blob": "^2.4.0",
     "jspdf": "^4.2.1"
   },
   "devDependencies": {

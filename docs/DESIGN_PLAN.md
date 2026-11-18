@@ -13,3 +13,5 @@ Screens:
 - contact: footer/close-type; discovery-call request form, privacy links and legal row. One screen normally, natural growth for form errors and accessibility.
 
 Client brief overrides skill's draft contacts on .example, modal prohibition for legal information, strict fixed screen heights where they would clip live forms/results, and example-report labelling: production form handling, truthful content and accessibility take precedence. Use native dialog for privacy, with keyboard focus and escape support. No made-up contacts.
+
+Deployment revision: Vercel preview with a same-origin API and private Blob records. The user explicitly deferred email and production. No email notifications or marketing jobs. A noindex preview disclosure is visible and no real credential is placed in the frontend.

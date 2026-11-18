@@ -1,25 +1,19 @@
 import { site } from './site.js';
 
 export async function submitLead(formName, fields) {
-  if (site.leadCapture !== 'netlify') {
-    throw new Error('Your details have not been sent. You can still view and download your report, or email achieve@amancoaching.com.');
-  }
-  const body = new URLSearchParams({ 'form-name': formName, ...fields });
+  if (site.leadCapture !== 'vercel') throw new Error('Your details have not been sent. You can still view and download your report.');
   const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), 12000);
+  const timeout = setTimeout(() => controller.abort(), 15000);
   try {
-    const response = await fetch('/', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: body.toString(),
-      signal: controller.signal,
-      credentials: 'same-origin',
+    const response = await fetch('/api/leads', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ 'form-name': formName, ...fields }),
+      signal: controller.signal, credentials: 'same-origin',
     });
-    if (!response.ok) throw new Error('We could not save your details. Please try again, or view your report without submitting.');
+    const data = await response.json().catch(() => null);
+    if (!response.ok || data?.ok !== true) throw new Error(data?.error || 'We could not save your details. Please try again, or view your report without submitting.');
   } catch (error) {
     if (error.name === 'AbortError') throw new Error('The request took too long. Please try again. Your report is still available without submitting.');
     throw error;
-  } finally {
-    clearTimeout(timeout);
-  }
+  } finally { clearTimeout(timeout); }
 }

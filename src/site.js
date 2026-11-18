@@ -2,7 +2,7 @@ export const site = {
   name: 'Aman Coaching',
   reportVersion: 'leadership-snapshot-1.0',
   consentVersion: '2026-11-18',
-  // Native request form is the default. Supply a verified HTTPS calendar URL to replace it.
+  // Private enquiry storage is the default. Supply a verified HTTPS calendar URL to replace it.
   bookingUrl: import.meta.env.VITE_BOOKING_URL || '',
   leadCapture: import.meta.env.VITE_LEAD_CAPTURE || 'unconfigured',
 };
