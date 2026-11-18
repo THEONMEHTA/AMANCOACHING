@@ -123,3 +123,10 @@ All timestamps are UTC (GMT on 18 November 2026). Entries describe completed act
 - **Files created/modified:** README.md, docs/RELEASE_STATUS.md, evidence/deployment-verification.json, evidence/commit-history.*
 - **Verification:** Deployed 94c7956 to Preview as dpl_2JPzsNKgKUUagkCoUEvPJ7TkVcii, which reported Ready. Authenticated smoke test passed at 2026-11-18T13:55:35.789Z: all four routes, both private submission types, idempotent retries, rejection of anonymous reads and analytics receipt. Removed 2 synthetic records and the test event. The new hero, artwork and stylesheet returned 200. Anonymous access redirected to Vercel authentication (302).
 - **Pending / limitations:** Production launch still needs Aman to approve the calendar, photos, artwork and credential claims, plus the privacy review. Email delivery remains disabled.
+
+## 2026-11-18T14:07:17.883Z — Original credentials and figures restored
+
+- **Requested:** Use every credential badge and figure from the original amanachieve.framer.website in the new design. Keep the repository and evidence public for the hackathon committee.
+- **Files created/modified:** index.html, src/kora.css, public/images/badge-{emcc,nhs,cmi,rcot}.webp, docs/ASSET_SOURCES.md, docs/CLIENT_HANDOVER.md
+- **Verification:** Captured the original site after its counters had finished animating: four displayed badges (EMCC EIA Foundation, NHS, CMI CMgr FCMI, RCOT) and the figures 2,000+ hours, 97% satisfaction and 10+ years. Added them to the hero badge marquee and proof line, the services intro, six Meet Aman rows, the approach card (97%) and the stats row. Scroll reveals now slide without fading so contrast checks are stable. 14 unit/API tests passed, and three consecutive runs of the 11 Playwright scenarios passed, including axe at all routes and widths 320–1440px.
+- **Pending / limitations:** The template FRANCO logo was excluded because it was not displayed on the original site. Figures are reproduced as published there, at the owner's instruction.
