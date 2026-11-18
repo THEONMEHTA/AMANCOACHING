@@ -69,6 +69,7 @@ const options = {
   minify: true,
   target: ['es2022'],
   loader: { '.woff2': 'file', '.woff': 'file' },
+  external: ['/images/*'],
   define: {
     'import.meta.env.VITE_BOOKING_URL': JSON.stringify(process.env.VITE_BOOKING_URL || ''),
     'import.meta.env.VITE_LEAD_CAPTURE': JSON.stringify(configuredCapture),

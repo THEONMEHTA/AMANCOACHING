@@ -38,7 +38,7 @@ test('all high lets the visitor choose the action',async({page})=>{
  await finish(page,Array(15).fill(5));await expect(page.getByText(/refine one of them/)).toBeVisible();await page.getByRole('combobox').selectOption('delegation');await expect(page.getByText(/Give someone ownership/)).toBeVisible();
 });
 test('working email fallback, private enquiry and configured calendar without result parameters',async({page})=>{
- await page.goto('/book');await expect(page.getByRole('link',{name:/achieve@/})).toHaveAttribute('href','mailto:achieve@amancoaching.com');
+ await page.goto('/book');await expect(page.locator('main').getByRole('link',{name:/achieve@/})).toHaveAttribute('href','mailto:achieve@amancoaching.com');
  await page.route('**/api/leads',route=>route.fulfill({status:201,json:{ok:true,emailSent:false}}));await page.getByLabel('Your name').fill('QA');await page.getByLabel('Email address').fill('qa@visitor.invalid');await page.getByRole('button',{name:/Save my call request/}).click();await expect(page.getByText(/No appointment has been booked/)).toBeVisible();
  await page.route('**/api/content?key=site',route=>route.fulfill({json:{credentials:[],bookingUrl:'https://calendar.invalid/aman',sessions:null,reportEmailEnabled:false}}));await page.reload();await expect(page.getByRole('link',{name:/Open Aman/})).toHaveAttribute('href','https://calendar.invalid/aman');
 });

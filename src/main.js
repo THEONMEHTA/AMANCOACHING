@@ -1,4 +1,5 @@
 import './style.css';
+import './kora.css';
 import { calculate, disclaimer, questionsFor } from './quiz.js';
 import { loadContent, loadSite, site } from './site.js';
 import { submitLead } from './leads.js';
@@ -107,17 +108,89 @@ function bindRequest(form, kind, extra, onSuccess) {
     }
   });
 }
-if (byId('contact-form')) {
-  const form = byId('contact-form');
+for (const form of document.querySelectorAll('#contact-form, #home-contact-form')) {
   bindRequest(
     form,
     'discovery-request',
-    () => ({}),
+    () => {
+      // The homepage form folds its interest choice into the stored message field.
+      const interest = form.querySelector('input[name=interest]:checked')?.value;
+      const message = form.querySelector('textarea[name=message]')?.value.trim() || '';
+      return interest ? { message: ('Interested in: ' + interest + '. ' + message).trim() } : {};
+    },
     () => {
       form.querySelector('[role=status]').textContent =
         'Your call request was saved privately. No appointment has been booked.';
     }
   );
+}
+initialiseHome();
+
+function initialiseHome() {
+  if (document.body.dataset.page !== 'home') return;
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.documentElement.classList.add('k-js');
+  // Reveal headings and cards as they enter the viewport.
+  const revealed = document.querySelectorAll('[data-reveal]');
+  if ('IntersectionObserver' in window && !reduced) {
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries)
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-in');
+            io.unobserve(entry.target);
+          }
+      },
+      { threshold: 0.15, rootMargin: '0px 0px -8% 0px' }
+    );
+    revealed.forEach((el) => io.observe(el));
+  } else revealed.forEach((el) => el.classList.add('is-in'));
+
+  // Word-by-word statement that brightens while scrolling.
+  const words = document.querySelector('.k-words');
+  if (words && !reduced) {
+    const label = words.textContent;
+    words.setAttribute('aria-label', label);
+    words.innerHTML = label
+      .split(' ')
+      .map((word) => '<span class="w" aria-hidden="true">' + esc(word) + '</span>')
+      .join(' ');
+    const spans = [...words.children];
+    const update = () => {
+      const box = words.getBoundingClientRect();
+      const progress = Math.min(1, Math.max(0, (innerHeight - box.top) / (innerHeight * 0.75)));
+      spans.forEach((span, index) =>
+        span.style.setProperty(
+          '--o',
+          String(Math.min(1, Math.max(0.18, progress * spans.length * 1.1 - index)))
+        )
+      );
+    };
+    addEventListener('scroll', update, { passive: true });
+    update();
+  }
+
+  // Process steps: one expanded panel at a time.
+  const phases = document.querySelectorAll('.k-phase');
+  phases.forEach((phase) =>
+    phase.querySelector('button').addEventListener('click', () => {
+      phases.forEach((other) => {
+        const open = other === phase;
+        other.classList.toggle('is-open', open);
+        other.querySelector('button').setAttribute('aria-expanded', String(open));
+      });
+    })
+  );
+
+  // FAQ filter pills.
+  const tabs = document.querySelectorAll('.k-tabs button');
+  const items = document.querySelectorAll('.k-faq details');
+  const show = (group) => {
+    tabs.forEach((tab) => tab.setAttribute('aria-pressed', String(tab.dataset.faq === group)));
+    items.forEach((item) => (item.hidden = item.dataset.faq !== group));
+  };
+  tabs.forEach((tab) => tab.addEventListener('click', () => show(tab.dataset.faq)));
+  if (tabs.length) show('coaching');
 }
 
 async function initialiseQuiz() {

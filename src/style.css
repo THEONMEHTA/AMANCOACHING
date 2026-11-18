@@ -1,21 +1,21 @@
-@import '@fontsource/lora/latin-400.css';
-@import '@fontsource/lora/latin-400-italic.css';
-@import '@fontsource/nunito-sans/latin-400.css';
-@import '@fontsource/nunito-sans/latin-700.css';
+@import '@fontsource-variable/manrope/wght.css';
 
 :root {
-  --ivory: #f6f3ec;
-  --ink: #182622;
-  --moss: #3d5c4b;
-  --muted: #3d4c42;
-  --line: #c7c9ba;
-  --sage: #e4e8da;
-  --dark: #233c31;
-  --serif: Lora, Georgia, serif;
-  --sans: 'Nunito Sans', Arial, sans-serif;
+  --ivory: #fbfbf6;
+  --cream: #f4f4e7;
+  --ink: #242424;
+  --moss: #1f7a55;
+  --mint: #5bc59a;
+  --muted: #5e5e5e;
+  --line: #e3e3d6;
+  --sage: #eef0e2;
+  --dark: #242424;
+  --serif: 'Manrope Variable', 'Helvetica Neue', Arial, sans-serif;
+  --sans: 'Manrope Variable', 'Helvetica Neue', Arial, sans-serif;
   color: var(--ink);
   background: var(--ivory);
-  font: 17px/1.65 var(--sans);
+  font: 500 16px/1.6 var(--sans);
+  letter-spacing: -0.02em;
 }
 * {
   box-sizing: border-box;

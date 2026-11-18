@@ -16,9 +16,9 @@
     "export:leads": "node scripts/export-leads.mjs"
   },
   "dependencies": {
-    "@fontsource/lora": "^5.3.0",
-    "@fontsource/nunito-sans": "^5.3.0",
+    "@fontsource-variable/manrope": "^5.3.0",
     "@vercel/blob": "^2.4.0",
+    "awwwards-mcp": "^1.20.0",
     "jspdf": "^4.2.1"
   },
   "devDependencies": {

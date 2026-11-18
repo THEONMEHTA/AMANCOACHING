@@ -109,3 +109,10 @@ All timestamps are UTC (GMT on 18 November 2026). Entries describe completed act
 - **Files created/modified:** AUDIT_LOG.md and selected deployment and commit-history records under evidence/
 - **Verification:** Reviewed the 2,014 historical Git objects against common credential patterns and configured local credential values. No matches. The timestamp ledger covers the 16 commits preceding this evidence commit.
 - **Pending / limitations:** The configured GitHub repository is public. Publication is pending a decision on repository visibility or redaction of the private preview and operational details from the published history.
+
+## 2026-11-18T13:54:21.808Z — Kora-style homepage redesign
+
+- **Requested:** Match the Kora reference layout closely, use Aman's previous hero image full screen, and fill each section with content from her brief and existing site.
+- **Files created/modified:** index.html, pages/layout.html, src/kora.css (new), src/style.css, src/main.js, scripts/build.mjs, public/images/ (hero, avatar, courtyard and service artwork WebP), public/licenses/manrope-OFL.txt, docs/ASSET_SOURCES.md, two browser tests, package.json (Manrope replaces Lora and Nunito Sans; earlier requested awwwards-mcp install)
+- **Verification:** Built and verified all four routes and anchors. 14 unit/API tests and 11 Playwright scenarios passed, including axe checks on all routes, 320–1440px layouts, keyboard and reduced motion. Compared desktop and mobile screenshots against kora.framer.media section by section. No Kora copy, imagery, logos or figures were reused.
+- **Pending / limitations:** No unverified testimonials, ratings, prices or credential badges were added. EMCC, CMI and RCOT badges and the old site's counters need Aman's confirmation. Publication rights for her photos and artwork need approval.

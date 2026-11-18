@@ -18,7 +18,7 @@ test('keyboard navigation, skip, mobile menu, reduced motion and question announ
  await page.setViewportSize({width:390,height:844});await page.emulateMedia({reducedMotion:'reduce'});await page.goto('/');
  await page.keyboard.press('Tab');await expect(page.getByRole('link',{name:'Skip to content'})).toBeFocused();
  await page.locator('.menu summary').focus();await page.keyboard.press('Enter');await expect(page.locator('.menu')).toHaveAttribute('open','');await page.keyboard.press('Escape');await expect(page.locator('.menu summary')).toBeFocused();
- expect(await page.locator('.portrait-frame').evaluate(el=>getComputedStyle(el).animationName)).toBe('none');
+ expect(await page.locator('.k-hero-media img').evaluate(el=>getComputedStyle(el).animationName)).toBe('none');
  await page.goto('/leadership-quiz');await page.getByRole('button',{name:'Start my snapshot'}).focus();await page.keyboard.press('Enter');
  await expect(page.getByRole('heading',{name:/Question 1 of 15/})).toBeFocused();await page.keyboard.press('Tab');await page.keyboard.press('Space');await page.keyboard.press('ArrowRight');await page.keyboard.press('Tab');await page.keyboard.press('Tab');await page.keyboard.press('Enter');await expect(page.getByRole('heading',{name:/Question 2 of 15/})).toBeFocused();
 });
