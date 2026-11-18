@@ -39,9 +39,12 @@ test('missing or failed storage returns an error rather than false success',asyn
  const missing=fixture({ready:()=>false});assert.equal((await missing.handler(request())).status,503);assert.equal(missing.writes.length,0);
  const failed=fixture({write:async()=>{throw new Error('test storage failure');}});assert.equal((await failed.handler(request())).status,503);
 });
-test('duplicate opaque submission id is an idempotent retry',async()=>{
- const {handler}=fixture({write:async()=>{const e=new Error();e.name='BlobPathnameAlreadyExistsError';throw e;}});
+test('duplicate opaque submission id is an idempotent retry with unchanged content',async()=>{
+ let saved;
+ const {handler}=fixture({write:async(path,body)=>{if(saved) throw new Error('already stored');saved=JSON.parse(body);},read:async()=>saved});
  assert.equal((await handler(request())).status,201);
+ assert.equal((await handler(request())).status,201);
+ assert.equal((await handler(request({...payload,name:'Different visitor'}))).status,409);
 });
 test('enquiry records save a bounded message and never opt into marketing',async()=>{
  const {handler,writes}=fixture();

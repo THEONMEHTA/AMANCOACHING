@@ -26,7 +26,7 @@ async function readBody(request) {
   return new TextDecoder().decode(bytes);
 }
 
-export function createLeadHandler({ write, ready = () => true, now = () => new Date() }) {
+export function createLeadHandler({ write, read = async () => null, ready = () => true, now = () => new Date() }) {
   return async function handle(request) {
     if (request.method !== 'POST') return new Response(null, { status: 405, headers: { ...headers, Allow: 'POST' } });
     // No CORS endpoint: the same-origin site is the only intended submitter.
@@ -67,15 +67,20 @@ export function createLeadHandler({ write, ready = () => true, now = () => new D
       record.marketingConsent = false;
     }
     if (!ready()) return fail('Submissions are temporarily unavailable. Your report is still available without submitting.', 503);
+    const pathname = `submissions/${kind}/${id}.json`;
     try {
       // The SDK refuses a mismatched public store. No public-storage fallback is allowed.
-      await write(`submissions/${kind}/${id}.json`, JSON.stringify(record), {
+      await write(pathname, JSON.stringify(record), {
         access: 'private', contentType: 'application/json', addRandomSuffix: false,
         allowOverwrite: false, cacheControlMaxAge: 60,
       });
     } catch (error) {
-      // A repeat of an already stored, unguessable submission ID is an idempotent retry.
-      if (error?.name !== 'BlobPathnameAlreadyExistsError') {
+      // Recover a timed-out write/retry by reading the exact opaque path, without overwriting.
+      const existing = await read(pathname).catch(() => null);
+      if (existing?.id === id && existing?.type === kind) {
+        const keys = ['name', 'email', 'answers', 'message', 'marketingConsent', 'consentVersion', 'reportVersion'];
+        if (!keys.every(key => JSON.stringify(existing[key]) === JSON.stringify(record[key]))) return fail('This request ID has already been used. Please refresh before submitting a new request.', 409);
+      } else {
         // Do not log request bodies, personal details or the storage token.
         console.error('Private submission storage failed.');
         return fail('Your details could not be saved. Please try again, or view your report without submitting.', 503);

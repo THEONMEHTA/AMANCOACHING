@@ -1,0 +1,392 @@
+{
+ "start": "2026-11-18T09:18:13.727Z",
+ "round": 1,
+ "idle": 0,
+ "errors": 0,
+ "status": "pass",
+ "history": [
+  {
+   "at": "2026-11-18T09:43:08.980Z",
+   "mode": "manual",
+   "status": "fail",
+   "fails": 8,
+   "round": 1,
+   "reused": false,
+   "stopHookActive": false
+  },
+  {
+   "at": "2026-11-18T09:54:47.468Z",
+   "mode": "manual",
+   "status": "pass",
+   "fails": 0,
+   "round": 1,
+   "reused": false,
+   "stopHookActive": false
+  }
+ ],
+ "max": 3,
+ "marker": {
+  "page": "dist/index.html",
+  "url": null,
+  "root": "dist",
+  "kind": "service",
+  "category": "leadership coaching",
+  "primary": "Start the quiz",
+  "rounds": 3,
+  "start": "2026-11-18T09:18:13.727Z",
+  "by": "gate.mjs --start"
+ },
+ "manual": true,
+ "roundKey": "69aaaf59d0aeff42:da39a3ee",
+ "roundFree": false,
+ "idleFree": false,
+ "blockKey": null,
+ "fp": "cfcc2abbcbc72638",
+ "page": "dist/index.html",
+ "found": {
+  "fails": [
+   {
+    "check": "nav",
+    "where": "header.nav.nav--centre > div.wrap.nav__bar > a.nav__logo.wordmark \"aman COACHING\"",
+    "msg": "nav link wraps to a second line",
+    "fix": "make the nav one bar from the content's left edge to its right edge, with every link and action inside it",
+    "widths": [
+     1440,
+     390
+    ],
+    "from": "consistency",
+    "ids": [
+     "nav"
+    ],
+    "wheres": [
+     "header.nav.nav--centre > div.wrap.nav__bar > a.nav__logo.wordmark \"aman COACHING\""
+    ]
+   },
+   {
+    "check": "no-visual",
+    "where": "section#quiz \"A little reflection. A useful next step.\"",
+    "msg": "no picture, effect or mock in this section; a feature section needs a visual",
+    "fix": "give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits",
+    "widths": [
+     1440
+    ],
+    "from": "consistency",
+    "ids": [
+     "no-visual"
+    ],
+    "wheres": [
+     "section#quiz \"A little reflection. A useful next step.\""
+    ]
+   },
+   {
+    "check": "text-only",
+    "where": "section#coaching \"Coaching for the decisions ahead.\"",
+    "msg": "the closing section is only text: no picture, icon, mock or effect in it",
+    "fix": "give the section a visual: a photograph that fits, the real icons, or a UI fragment on a ground",
+    "widths": [
+     1440,
+     390
+    ],
+    "from": "consistency",
+    "ids": [
+     "text-only"
+    ],
+    "wheres": [
+     "section#coaching \"Coaching for the decisions ahead.\""
+    ]
+   },
+   {
+    "check": "no-visual",
+    "where": "section#quiz \"A little reflection.A useful next step.\"",
+    "msg": "no picture, effect or mock in this section; a feature section needs a visual",
+    "fix": "give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits",
+    "widths": [
+     390
+    ],
+    "from": "consistency",
+    "ids": [
+     "no-visual"
+    ],
+    "wheres": [
+     "section#quiz \"A little reflection.A useful next step.\""
+    ]
+   }
+  ],
+  "warns": [
+   {
+    "check": "scroll-reveal",
+    "where": "div.wrap > div.report-layout > div.report-copy > h3.mo-wh__text \"Make room for the leadership work that n\"",
+    "msg": "starts \"color\" (0.2 s) the moment it is scrolled into view (an IntersectionObserver) on span.mo-w:nth-of-type(1) (inside a dealt moment's section, [data-moment]: an enter moment is expected on every kind; its still is judged under reduced motion)",
+    "fix": "show it at rest: no fade, rise or unmask when it is scrolled into view",
+    "widths": [
+     1440,
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "copy-actions",
+    "where": "(the page)",
+    "msg": "the main action \"Start the quiz\" does not read word for word the same in the closing section",
+    "fix": "few actions, one wording: at most 2 in the hero, the main action word for word in nav, hero and close",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "section-gaps",
+    "where": "section#quiz / section#coaching",
+    "msg": "uneven space at the edge of a band: 126px outside its edge, 270px inside it (the space on either side of a change of ground reads as one gap only when the two match)",
+    "fix": "use one gap between sections (all within 25% of each other)",
+    "widths": [
+     1440,
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "links",
+    "where": "header.nav.nav--centre > div.wrap.nav__bar > nav.nav__links > a.nav__link:nth-of-type(3) \"Get in touch\"",
+    "msg": "\"Get in touch\" goes to #contact, in the footer",
+    "fix": "point every link at a real section, page or file",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "links",
+    "where": "div.wrap > div.report-layout > div.report-copy > a.text-link \"Get your snapshot ↗\"",
+    "msg": "\"Get your snapshot ↗\" only scrolls to #quiz, where nothing completes it",
+    "fix": "point every link at a real section, page or file",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "links",
+    "where": "div.wrap > div.coaching-layout > div.coaching-copy > a.text-link.booking-link \"Request a discovery call ↗\"",
+    "msg": "\"Request a discovery call ↗\" goes to #contact, in the footer",
+    "fix": "point every link at a real section, page or file",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "nav-labels",
+    "where": "header.nav.nav--centre > a.skip-link \"Skip to content\"",
+    "msg": "\"Skip to content\" opens a section headed \"Leadership coaching for senior leaders.\"",
+    "fix": "name each nav link after the heading of the section it opens",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "nav-labels",
+    "where": "header.nav.nav--centre > div.wrap.nav__bar > nav.nav__links > a.nav__link:nth-of-type(1) \"Your report\"",
+    "msg": "\"Your report\" opens a section headed \"Your leadership, in perspective.\"",
+    "fix": "name each nav link after the heading of the section it opens",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "nav-labels",
+    "where": "header.nav.nav--centre > div.wrap.nav__bar > nav.nav__links > a.nav__link:nth-of-type(3) \"Get in touch\"",
+    "msg": "\"Get in touch\" opens a section headed \"Bring your next leadership question.\"",
+    "fix": "name each nav link after the heading of the section it opens",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "link-styles",
+    "where": "footer#contact > div.wrap > div.footer-bottom > a.inline-button \"Accessibility\"",
+    "msg": "text links in 3 looks: no line, regular (2, like \"See the coaching →\"); no line, bold (3, like \"Get your snapshot ↗\"); underline, regular (1, like \"Accessibility\")",
+    "fix": "give text links one look wherever they sit: one underline, one weight",
+    "widths": [
+     1440,
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "nav-current",
+    "where": "header.nav.nav--centre",
+    "msg": "the nav stays on screen with 3 links to the page's sections, but never marks the one you are in (no link changes as the page scrolls)",
+    "fix": "mark the link of the section on screen (a colour, a weight or a line under it) as the visitor scrolls",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "grounds",
+    "where": "section#top \"AMAN COACHING · WEBSITE PREVIEW Leadersh\"",
+    "msg": "4 flat grounds across the page (#1b1b1b section, #e2e2e2 section x2, #d6d6d6 section, #7d0c14 footer): three at most (the base, a surface, an inverse)",
+    "fix": "three flat grounds at most (the base, one surface, one inverse): lay the other bands on one of them",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "action-repeat",
+    "where": "header.nav.nav--centre > div.wrap.nav__bar > div.nav__actions > a.btn.btn--primary \"start the quiz\"",
+    "msg": "\"start the quiz\" shows 2 times on the first screen at 1440px (nav, hero): the nav's button and the hero's; nothing else on the screen may repeat it",
+    "fix": "show the action once a screen besides the nav's button: the hero's, the close's or the phone bar's, never all at once",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "nav",
+    "where": "header.nav.nav--centre > div.wrap.nav__bar > button.nav__toggle \"Menu ＋\"",
+    "msg": "the nav is lopsided: its last item ends 7px inside the content's edge (366px), while its first starts on the other edge",
+    "fix": "start the nav's first item and end its last on the content's two edges",
+    "widths": [
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "tap-size",
+    "where": "p#contact-note > button.inline-button.privacy-open \"Read the privacy notice\"",
+    "msg": "a 125x19px tap target: under the 44px a phone needs",
+    "fix": "make every link and control outside running text 44px tall on a phone: display: inline-flex; align-items: center; min-height: 44px (a footer list then needs no gap), a 44px small button, or a transparent ::before laid past the box",
+    "widths": [
+     390,
+     320
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "body-size",
+    "where": "div.coaching-layout > div.questions > details:nth-of-type(1) > p \"Mid-to-senior leaders and people taking \"",
+    "msg": "5 of 8 paragraphs of running text are set under 16px (14, 15px)",
+    "fix": "set running text at 16px or more",
+    "widths": [
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "section-gaps",
+    "where": "section#coaching / footer#contact",
+    "msg": "571px between these sections, +58% against the median 361px of gaps at a change of ground",
+    "fix": "use one gap between sections (all within 25% of each other)",
+    "widths": [
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "grounds",
+    "where": "section#report > div.wrap > div.report-layout > article.report-preview \"aman / EXAMPLE REPORT YOUR LEADERSHIP SN\"",
+    "msg": "4 flat grounds across the page (#e2e2e2 section x4, #f5f1eb band, #d6d6d6 section, #7d0c14 footer): three at most (the base, a surface, an inverse)",
+    "fix": "three flat grounds at most (the base, one surface, one inverse): lay the other bands on one of them",
+    "widths": [
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "fold-cut",
+    "where": "div.hero-text > div.hero__text > div.btn-row > a.btn.btn--primary \"Start the quiz ↗\"",
+    "msg": "the hero's button \"Start the quiz ↗\" is cut by the bottom of the first screen (8px of its 48px below the fold)",
+    "fix": "size the hero so the heading ends above the fold, or starts below it",
+    "widths": [
+     320
+    ],
+    "from": "consistency"
+   }
+  ],
+  "crashed": [],
+  "seconds": {
+   "consistency": 82,
+   "layout": 3
+  }
+ },
+ "open": [],
+ "waived": [
+  {
+   "check": "nav",
+   "where": "header.nav.nav--centre > div.wrap.nav__bar > a.nav__logo.wordmark \"aman COACHING\"",
+   "msg": "nav link wraps to a second line",
+   "fix": "make the nav one bar from the content's left edge to its right edge, with every link and action inside it",
+   "widths": [
+    1440,
+    390
+   ],
+   "from": "consistency",
+   "ids": [
+    "nav"
+   ],
+   "wheres": [
+    "header.nav.nav--centre > div.wrap.nav__bar > a.nav__logo.wordmark \"aman COACHING\""
+   ],
+   "reason": "The two-line Aman / COACHING wordmark is an intentional logo lockup, not a navigation label wrapping. It stays within the header at all tested widths."
+  },
+  {
+   "check": "no-visual",
+   "where": "section#quiz \"A little reflection. A useful next step.\"",
+   "msg": "no picture, effect or mock in this section; a feature section needs a visual",
+   "fix": "give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits",
+   "widths": [
+    1440
+   ],
+   "from": "consistency",
+   "ids": [
+    "no-visual"
+   ],
+   "wheres": [
+    "section#quiz \"A little reflection. A useful next step.\""
+   ],
+   "reason": "This is the requested working quiz application, not a feature illustration. The interactive questions and report are the primary content; a decorative photograph would displace the form."
+  },
+  {
+   "check": "text-only",
+   "where": "section#coaching \"Coaching for the decisions ahead.\"",
+   "msg": "the closing section is only text: no picture, icon, mock or effect in it",
+   "fix": "give the section a visual: a photograph that fits, the real icons, or a UI fragment on a ground",
+   "widths": [
+    1440,
+    390
+   ],
+   "from": "consistency",
+   "ids": [
+    "text-only"
+   ],
+   "wheres": [
+    "section#coaching \"Coaching for the decisions ahead.\""
+   ],
+   "reason": "This section provides the coaching explanation and six substantive FAQs. The skill permits text-led FAQs; no additional stock person or unverified proof is needed."
+  },
+  {
+   "check": "no-visual",
+   "where": "section#quiz \"A little reflection.A useful next step.\"",
+   "msg": "no picture, effect or mock in this section; a feature section needs a visual",
+   "fix": "give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits",
+   "widths": [
+    390
+   ],
+   "from": "consistency",
+   "ids": [
+    "no-visual"
+   ],
+   "wheres": [
+    "section#quiz \"A little reflection.A useful next step.\""
+   ],
+   "reason": "This is the requested working quiz application, not a feature illustration. The interactive questions and report are the primary content; a decorative photograph would displace the form."
+  }
+ ],
+ "warnCount": 19,
+ "at": "2026-11-18T09:54:47.469Z"
+}

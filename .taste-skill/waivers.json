@@ -1,0 +1,22 @@
+[
+  {
+    "check": "nav",
+    "target": "header.nav.nav--centre > div.wrap.nav__bar > a.nav__logo.wordmark \"aman COACHING\"",
+    "reason": "The two-line Aman / COACHING wordmark is an intentional logo lockup, not a navigation label wrapping. It stays within the header at all tested widths."
+  },
+  {
+    "check": "no-visual",
+    "target": "section#quiz \"A little reflection. A useful next step.\"",
+    "reason": "This is the requested working quiz application, not a feature illustration. The interactive questions and report are the primary content; a decorative photograph would displace the form."
+  },
+  {
+    "check": "text-only",
+    "target": "section#coaching \"Coaching for the decisions ahead.\"",
+    "reason": "This section provides the coaching explanation and six substantive FAQs. The skill permits text-led FAQs; no additional stock person or unverified proof is needed."
+  },
+  {
+    "check": "no-visual",
+    "target": "section#quiz \"A little reflection.A useful next step.\"",
+    "reason": "This is the requested working quiz application, not a feature illustration. The interactive questions and report are the primary content; a decorative photograph would displace the form."
+  }
+]
