@@ -8,7 +8,12 @@ do {
  for(const blob of page.blobs) {
   const result=await get(blob.url,{access:'private'});
   if(result?.statusCode!==200) throw new Error('A private record could not be read.');
-  const body=await new Response(result.stream).json();records.push(body);
+  const body=await new Response(result.stream).json();
+  if(body.delivery==='email'){
+   const receipt=await get('deliveries/'+body.id+'.json',{access:'private',useCache:false});
+   body.emailSent=receipt?.statusCode===200;
+  }
+  records.push(body);
  }
  cursor=page.hasMore?page.cursor:undefined;
 } while(cursor);
@@ -16,7 +21,7 @@ const folder=resolve('private/lead-exports');await mkdir(folder,{recursive:true,
 const stamp=new Date().toISOString().replace(/[:.]/g,'-');
 const jsonPath=resolve(folder,`submissions-${stamp}.json`);
 await writeFile(jsonPath,JSON.stringify(records,null,2)+'\n',{mode:0o600});
-const columns=['id','type','receivedAt','name','email','role','preferredFocus','focus','message','marketingConsent','consentVersion','reportVersion','totals','delivery'];
+const columns=['id','type','receivedAt','name','email','role','preferredFocus','focus','message','marketingConsent','consentVersion','reportVersion','totals','delivery','emailSent'];
 const csvCell=value=>{let text=String(value??'');if(/^[=+\-@\t\r\n]/.test(text))text="'"+text;return '"'+text.replaceAll('"','""')+'"';};
 const csvPath=resolve(folder,`submissions-${stamp}.csv`);
 await writeFile(csvPath,[columns.join(','),...records.map(record=>columns.map(key=>csvCell(record[key])).join(','))].join('\r\n')+'\r\n',{mode:0o600});

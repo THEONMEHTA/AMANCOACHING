@@ -74,3 +74,10 @@ All timestamps are UTC (GMT on 18 November 2026). Entries describe completed act
 - **Files created/modified:** src/, server/, api/, public/content/, pages/, scripts/, tests/, vercel.json and client handover
 - **Verification:** 14 unit/API and 11 Playwright tests passed, including 320–1440px layouts, four route checks, keyboard interaction, scoring ties, PDF download, failed writes and idempotent email adapter simulation. Visually inspected desktop and mobile. NHS Jobs confirms the professional title.
 - **Pending / limitations:** Preview deployment smoke test and final design checks follow. No approved calendar or production sender.
+
+## 2026-11-18T11:19:49.506Z — Visual and protected-preview verification
+
+- **Requested:** Verify the redesigned experience and private storage before handover.
+- **Files created/modified:** HTML shell, styles, PDF report, analytics transport, export and live smoke scripts
+- **Verification:** First redesign deployment passed protected route, live private capture, retry and anonymous access checks. Two test submissions removed. Re-ran 14 unit/API and 11 browser checks. Rendered all-low, all-high and mixed PDFs as complete A4 pages. Strengthened keyboard focus and added authenticated analytics receipt verification.
+- **Pending / limitations:** Final preview redeploy includes transport and report refinements. Email remains disabled.

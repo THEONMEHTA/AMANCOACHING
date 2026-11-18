@@ -28,6 +28,15 @@ try {
   const response=await curl(path);assert.equal(response.status,200,path+' returned '+response.status);assert(response.body.includes(needle),path+' wrong content');
  }
  const invalidEvent=await curl('/api/events',{body:{event:'quiz_start',email:'qa@submission.invalid'}});assert.equal(invalidEvent.status,400);
+ const metric=await curl('/api/events',{body:{event:'quiz_step_completed',step:15}});
+ assert.equal(metric.status,201);
+ const {date,receipt}=JSON.parse(metric.body);
+ assert(/^\d{4}-\d{2}-\d{2}$/.test(date) && /^[a-f0-9-]{36}$/.test(receipt));
+ const metricPath='metrics/'+date+'/'+receipt+'.json';
+ try {
+  const row=await get(metricPath,{access:'private',useCache:false});
+  assert.deepEqual(await new Response(row.stream).json(),{event:'quiz_step_completed',step:15});
+ } finally { await del(metricPath); }
  const noList=await curl('/api/leads');assert.equal(noList.status,405);
  const rejected=await curl('/api/leads',{body:{},origin:'https://unrelated.invalid'});assert.equal(rejected.status,403);
  for(const kind of ['leadership-snapshot','discovery-request']) {
@@ -49,7 +58,7 @@ try {
    if(completed.at(-1)?.type===kind)completed.at(-1).removed=true;
   }
  }
- const evidence={verifiedAt:new Date().toISOString(),deploymentUrl:target.origin,sourceSHA:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),homepageStatus:200,noIndex:true,publicListStatus:405,crossOriginStatus:403,emailIntegration:false,checks:completed};
+ const evidence={verifiedAt:new Date().toISOString(),deploymentUrl:target.origin,sourceSHA:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),homepageStatus:200,noIndex:true,publicListStatus:405,crossOriginStatus:403,emailEnabled:false,analyticsWriteVerifiedAndRemoved:true,checks:completed};
  await mkdir('evidence',{recursive:true});await writeFile('evidence/deployment-verification.json',JSON.stringify(evidence,null,2)+'\n');
  console.log(`Live preview verified: page, private writes/reads, rejected anonymous reads, retries and cleanup. ${completed.length} QA records removed. No email integration.`);
 } finally {await rm(temporary,{recursive:true,force:true});}

@@ -37,7 +37,11 @@ const settings = loadSite().then(config => {
 function bindRequest(form, kind, extra, onSuccess) {
   let id = crypto.randomUUID();
   const status = form.querySelector('[role=status]');
-  form.addEventListener('input', () => {id=crypto.randomUUID();status.textContent='';});
+  form.addEventListener('input', () => {
+    id=crypto.randomUUID();status.textContent='';
+    const submitted=form.querySelector('button[hidden]');
+    if(submitted){submitted.hidden=false;submitted.disabled=false;for(const field of form.querySelectorAll('input,textarea')) field.disabled=false;}
+  });
   form.addEventListener('submit', async event => {
     event.preventDefault();
     const submit = form.querySelector('button[type=submit],button:not([type])');
@@ -93,7 +97,7 @@ async function initialiseQuiz() {
     const choice=result.balanced?'<label class="focus-select">Focus for this week<select id="pick-focus"><option value="">Choose an area</option>'+result.low.map(row=>'<option value="'+esc(row.id)+'" '+(row.id===focusId?'selected':'')+'>'+esc(row.label)+'</option>').join('')+'</select></label>':'';
     return '<h1 id="result-title" tabindex="-1">'+heading+'</h1><div class="result-focus">'+(explanation?'<p>'+esc(explanation)+'</p>':'')+choice+
       (result.allHigh?'<p>You report consistent habits across all five areas. Use this week to refine one of them.</p>':'')+
-      (area?'<p>'+(result.allHigh?'':esc(area.growth)+' ')+'<strong>Try this week</strong> · '+esc(area.action)+'</p>':'')+'</div>';
+      (area?'<p role="status">'+(result.allHigh?'':esc(area.growth)+' ')+'<strong>Try this week</strong> · '+esc(area.action)+'</p>':'')+'</div>';
   }
   function renderResult() {
     const strengths=result.high.map(row=>esc(row.label)+' ('+row.score+'/5)').join(', ');

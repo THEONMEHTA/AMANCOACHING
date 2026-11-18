@@ -11,7 +11,8 @@ export default {async fetch(request) {
   if(!validEvent(event)) return new Response(null,{status:400});
   try {
     const date=new Date().toISOString().slice(0,10);
-    await put('metrics/'+date+'/'+randomUUID()+'.json',JSON.stringify(event),{access:'private',addRandomSuffix:false,contentType:'application/json'});
-    return new Response(null,{status:204});
+    const receipt=randomUUID();
+    await put('metrics/'+date+'/'+receipt+'.json',JSON.stringify(event),{access:'private',addRandomSuffix:false,contentType:'application/json'});
+    return Response.json({date,receipt},{status:201,headers:{'Cache-Control':'no-store'}});
   } catch {return new Response(null,{status:503});}
 }};
