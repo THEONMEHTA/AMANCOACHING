@@ -1,6 +1,6 @@
 {
-  "exportedAt": "2026-11-18T13:56:01.240Z",
-  "head": "94c7956292335fcf99e01663dd026dce2781f5d0",
+  "exportedAt": "2026-11-18T14:08:33.574Z",
+  "head": "0d443b81d197d8472d28792f6e2079971c5e8cfa",
   "commits": [
     {
       "sha": "9d92a1dda2d5b598b0b634bd91a4f292573dc294",
@@ -109,6 +109,18 @@
       "authoredAt": "2026-11-18T13:54:22Z",
       "committedAt": "2026-11-18T13:54:22Z",
       "subject": "feat: redesign homepage in Kora style with fullscreen hero"
+    },
+    {
+      "sha": "cd767fbd43df8fdd6d5663df625a4e434085d6b1",
+      "authoredAt": "2026-11-18T13:56:03Z",
+      "committedAt": "2026-11-18T13:56:03Z",
+      "subject": "docs: record Kora redesign preview deployment and audit evidence"
+    },
+    {
+      "sha": "0d443b81d197d8472d28792f6e2079971c5e8cfa",
+      "authoredAt": "2026-11-18T14:07:17Z",
+      "committedAt": "2026-11-18T14:07:17Z",
+      "subject": "feat: add original credential badges and published figures"
     }
   ]
 }

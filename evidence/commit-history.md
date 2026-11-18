@@ -1,6 +1,6 @@
 # Commit history
 
-Generated 2026-11-18T13:56:01.242Z. Git records author and commit timestamps with timezone offsets. These timestamps are repository evidence, not payment or delivery receipts. Regenerate after every subsequent commit.
+Generated 2026-11-18T14:08:33.575Z. Git records author and commit timestamps with timezone offsets. These timestamps are repository evidence, not payment or delivery receipts. Regenerate after every subsequent commit.
 
 | Commit | Authored | Committed | Milestone |
 | --- | --- | --- | --- |
@@ -22,3 +22,5 @@ Generated 2026-11-18T13:56:01.242Z. Git records author and commit timestamps wit
 | c0d74c3d86a9806885cf475f12caf089a9ec3075 | 2026-11-18T11:25:39Z | 2026-11-18T11:25:39Z | docs: deliver verified redesign preview and timestamped QA handover |
 | 9e9c8d36952608dc21202b5a62a75aaaeaf433d7 | 2026-11-18T11:27:45Z | 2026-11-18T11:27:45Z | docs: add timestamped commit and deployment evidence |
 | 94c7956292335fcf99e01663dd026dce2781f5d0 | 2026-11-18T13:54:22Z | 2026-11-18T13:54:22Z | feat: redesign homepage in Kora style with fullscreen hero |
+| cd767fbd43df8fdd6d5663df625a4e434085d6b1 | 2026-11-18T13:56:03Z | 2026-11-18T13:56:03Z | docs: record Kora redesign preview deployment and audit evidence |
+| 0d443b81d197d8472d28792f6e2079971c5e8cfa | 2026-11-18T14:07:17Z | 2026-11-18T14:07:17Z | feat: add original credential badges and published figures |

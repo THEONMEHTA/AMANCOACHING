@@ -130,3 +130,10 @@ All timestamps are UTC (GMT on 18 November 2026). Entries describe completed act
 - **Files created/modified:** index.html, src/kora.css, public/images/badge-{emcc,nhs,cmi,rcot}.webp, docs/ASSET_SOURCES.md, docs/CLIENT_HANDOVER.md
 - **Verification:** Captured the original site after its counters had finished animating: four displayed badges (EMCC EIA Foundation, NHS, CMI CMgr FCMI, RCOT) and the figures 2,000+ hours, 97% satisfaction and 10+ years. Added them to the hero badge marquee and proof line, the services intro, six Meet Aman rows, the approach card (97%) and the stats row. Scroll reveals now slide without fading so contrast checks are stable. 14 unit/API tests passed, and three consecutive runs of the 11 Playwright scenarios passed, including axe at all routes and widths 320–1440px.
 - **Pending / limitations:** The template FRANCO logo was excluded because it was not displayed on the original site. Figures are reproduced as published there, at the owner's instruction.
+
+## 2026-11-18T14:08:33.290Z — Credentials preview deployed and verified
+
+- **Requested:** Deploy the badge and figures update publicly, with continued audit records.
+- **Files created/modified:** README.md, docs/RELEASE_STATUS.md, evidence/deployment-verification.json, evidence/commit-history.*
+- **Verification:** Deployed 0d443b8 to Preview as dpl_8kP1zN8JEaSdJGL5VxtJik9awWy8 (Ready). The authenticated smoke test passed at 2026-11-18T14:08:12.861Z across all routes, both private submission types, retries, rejected anonymous reads and analytics. Removed 2 synthetic records. All four badge images returned 200, and the homepage HTML contained the 2,000+, 97% and EMCC figures. Anonymous preview access redirected to Vercel authentication (302).
+- **Pending / limitations:** Vercel Deployment Protection is still on, so committee members without Vercel access cannot open the preview. The GitHub repository and evidence remain public.
