@@ -1,0 +1,27 @@
+{
+  "verifiedAt": "2026-11-18T11:24:13.172Z",
+  "deploymentUrl": "https://aman-coaching-snapshot-20261118-3vgod7v9s-0013s-projects.vercel.app",
+  "sourceSHA": "32fd4904b0470589bcc4d3166d90cb047ebfa8cb",
+  "homepageStatus": 200,
+  "noIndex": true,
+  "publicListStatus": 405,
+  "crossOriginStatus": 403,
+  "emailEnabled": false,
+  "analyticsWriteVerifiedAndRemoved": true,
+  "checks": [
+    {
+      "type": "leadership-snapshot",
+      "stored": true,
+      "anonymousReadStatus": 403,
+      "retryStatus": 201,
+      "removed": true
+    },
+    {
+      "type": "discovery-request",
+      "stored": true,
+      "anonymousReadStatus": 403,
+      "retryStatus": 201,
+      "removed": true
+    }
+  ]
+}

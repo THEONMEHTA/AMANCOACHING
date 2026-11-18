@@ -102,3 +102,10 @@ All timestamps are UTC (GMT on 18 November 2026). Entries describe completed act
 - **Files created/modified:** README, client and QA documentation, release status, Taste checker report, source archive and Git ledger
 - **Verification:** Verified source 32fd490 live at 11:24:13 UTC, both private forms, the analytics event shape and cleanup. Performance check had zero failures and one warning. Taste gate remained open with 57 findings after its three rounds. The QA report records the findings and exceptions. Full local and live checks passed.
 - **Pending / limitations:** Aman still needs to approve the calendar, portraits, format, claims and privacy for public launch. No paid delivery or client acceptance documented.
+
+## 2026-11-18T11:27:45.268Z — GitHub evidence prepared
+
+- **Requested:** Commit the redesign and logs for GitHub while keeping sensitive information private.
+- **Files created/modified:** AUDIT_LOG.md and selected deployment and commit-history records under evidence/
+- **Verification:** Reviewed the 2,014 historical Git objects against common credential patterns and configured local credential values. No matches. The timestamp ledger covers the 16 commits preceding this evidence commit.
+- **Pending / limitations:** The configured GitHub repository is public. Publication is pending a decision on repository visibility or redaction of the private preview and operational details from the published history.
