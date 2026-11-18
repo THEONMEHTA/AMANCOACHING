@@ -45,7 +45,7 @@ Browser tests use intercepted submission responses and never email anyone. API t
 
 ```sh
 npx vercel link --project aman-coaching-snapshot-20261118
-npx vercel
+npx vercel deploy --environment preview
 ```
 
 Use the existing linked project; do not create a second store or project. `vercel.json` sets the build command, `dist` output, London function region, security headers and a 30-second function limit. Vercel sets `VERCEL=1`, enabling the API transport during the build. Do not set a `VITE_` variable containing a storage token.

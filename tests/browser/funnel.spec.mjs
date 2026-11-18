@@ -94,3 +94,20 @@ for (const width of [320, 390, 768, 820, 1024, 1440]) {
     await expect(page.getByRole('button', { name: 'Download my report' })).toBeVisible();
   });
 }
+
+test('deployed content-security policy permits the quiz and PDF download', async ({ page }) => {
+  const { readFile } = await import('node:fs/promises');
+  const config = JSON.parse(await readFile('vercel.json', 'utf8'));
+  const policy = config.headers[0].headers.find(header => header.key === 'Content-Security-Policy').value;
+  await page.route('http://127.0.0.1:5173/', async route => {
+    const response = await route.fetch();
+    await route.fulfill({ response, headers: { ...response.headers(), 'Content-Security-Policy': policy } });
+  });
+  const errors = []; page.on('pageerror', error => errors.push(error.message));
+  await page.goto('/'); await completeQuiz(page);
+  await page.getByRole('button', { name: 'View without sharing details' }).click();
+  const downloaded = page.waitForEvent('download');
+  await page.getByRole('button', { name: 'Download my report' }).click();
+  expect((await downloaded).suggestedFilename()).toBe('aman-leadership-snapshot.pdf');
+  expect(errors).toEqual([]);
+});

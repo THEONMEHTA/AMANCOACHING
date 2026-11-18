@@ -6,6 +6,8 @@ Initial website audit and implementation plan · 18 November 2026
 
 **Current status:** the launch website and six-question quiz are implemented in this repository. The initial 12-question proposal below is retained as planning history; the hackathon build uses four reflection questions plus role and preferred focus. Reports are available immediately as HTML and a three-page PDF. The business email is **achieve@amancoaching.com**. The current release targets a Vercel preview with private Blob storage. No email is sent to the client or respondents.
 
+**Live preview:** https://aman-coaching-snapshot-20261118-h70on16s8-0013s-projects.vercel.app (Vercel sign-in required). Both forms have been verified against private storage; no emails are sent. See [release status](docs/RELEASE_STATUS.md) and [QA report](docs/QA_REPORT.md).
+
 ## Run the current build
 
 ```sh
