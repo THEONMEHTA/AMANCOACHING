@@ -1,45 +1,33 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { QUESTIONS, DIMENSIONS, LABELS, GUIDANCE, getResult, validateAnswers, isValidEmail } from '../src/quiz.js';
-const base = { role: 'senior', focus: 'delegation', clarity: 1, influence: 1, delegation: 3, sustainability: 0 };
-
-test('quiz has six questions and every question has four unique options', () => {
-  assert.equal(QUESTIONS.length, 6);
-  for (const q of QUESTIONS) { assert.equal(q.options.length, 4); assert.equal(new Set(q.options.map(o => o[0])).size, 4); }
+import {readFile} from 'node:fs/promises';
+import {band, calculate, questionsFor} from '../src/quiz.js';
+import {validEvent} from '../server/events.js';
+import {renderEmail} from '../server/email.js';
+const content=JSON.parse(await readFile('public/content/snapshot.json'));
+test('fifteen unique statements in three interleaved rounds',()=>{
+ const questions=questionsFor(content); assert.equal(new Set(questions.map(q=>q.statement)).size,15);
+ assert.deepEqual(questions.slice(0,5).map(q=>q.dimension),questions.slice(10).map(q=>q.dimension));
 });
-test('selects reported focus and relative strengths with deterministic actions', () => {
-  const r = getResult(base);
-  assert.equal(r.focus, 'delegation'); assert.deepEqual(r.strengths, ['sustainability']);
-  assert.equal(r.guidance.actions.length, 3); assert.equal(r.guidance.prompts.length, 2);
+test('all low and all high reflect ties; high scores refine a habit',()=>{
+ for(const value of [1,5]){
+  const r=calculate(content,Array(15).fill(value));assert.equal(r.low.length,5);assert.equal(r.high.length,5);assert(r.balanced);assert.equal(r.allHigh,value===5);
+  assert.equal(r.rows[0].score,value.toFixed(1));
+ }
 });
-test('preferred focus breaks a tie without overriding an unequal result', () => {
-  assert.equal(getResult({ ...base, sustainability: 3, focus: 'sustainability' }).focus, 'sustainability');
-  assert.equal(getResult({ ...base, focus: 'clarity' }).focus, 'delegation');
-  assert.equal(getResult({ ...base, clarity: 3, focus: 'influence' }).focus, 'clarity');
+test('mixed means, partial ties and band boundaries',()=>{
+ const r=calculate(content,[4,5,2,3,3,4,4,2,3,3,4,4,3,4,4]);
+ assert.equal(r.high[0].score,'4.3');assert.equal(r.low[0].score,'2.3');assert.equal(r.low[0].id,'strategy');
+ assert.equal(calculate(content,[1,1,2,5,5,1,1,2,5,5,1,1,2,5,5]).low.length,2);
+ assert.deepEqual([2.4,2.5,3.7,3.8].map(band),['Less consistent','Developing consistency','Developing consistency','More consistent']);
 });
-test('balanced responses use chosen focus and clearly identify equal pattern', () => {
-  for (const value of [0, 1, 2, 3]) {
-    const r = getResult({ ...base, clarity: value, influence: value, delegation: value, sustainability: value });
-    assert(r.balanced); assert.equal(r.focus, 'delegation'); assert.equal(r.allEstablished, value === 0);
-  }
+test('incomplete, sparse and invalid inputs never score',()=>{
+ for(const values of [[],Array(15),Array(14).fill(4),Array(15).fill('3'),Array(15).fill(6)]) assert.throws(()=>calculate(content,values));
 });
-test('rejects missing, out-of-range and wrong-type answers', () => {
-  for (const key of QUESTIONS.map(q => q.id)) { const a = { ...base }; delete a[key]; assert(!validateAnswers(a)); assert.throws(() => getResult(a)); }
-  for (const bad of [-1, 4, NaN, '3', null, {}, undefined]) assert(!validateAnswers({ ...base, clarity: bad }));
-  assert(!validateAnswers({ ...base, role: 'unrecognised' }));
-  assert(!validateAnswers({ ...base, focus: '<script>' }));
+test('analytics permits only event-specific fields',()=>{
+ assert(validEvent({event:'quiz_step_completed',step:15}));assert(validEvent({event:'booking_clicked',source:'results'}));
+ for(const input of [{event:'quiz_start',email:'a@b.c'},{event:'result_viewed',scores:[]},{event:'quiz_step_completed',step:0},{event:'booking_clicked',source:'calendar'}]) assert(!validEvent(input));
 });
-test('every valid scoring pattern produces complete report content', () => {
-  let count = 0;
-  for (let c = 0; c < 4; c++) for (let i = 0; i < 4; i++) for (let d = 0; d < 4; d++) for (let s = 0; s < 4; s++) for (const focus of DIMENSIONS) {
-    const r = getResult({ ...base, clarity: c, influence: i, delegation: d, sustainability: s, focus });
-    assert(DIMENSIONS.includes(r.focus)); assert(r.guidance.title.length > 0);
-    for (const action of r.guidance.actions) assert(action.every(text => typeof text === 'string' && text.length > 0));
-    assert.equal(r.responses.length, 4); count++;
-  }
-  assert.equal(count, 1024);
-});
-test('email validation accepts common addresses and rejects unsafe values', () => {
-  assert(isValidEmail('achieve@amancoaching.com')); assert(isValidEmail('person+coaching@business.co.uk'));
-  for (const value of ['', 'name', 'a@b', 'a b@c.com', '<script>@c.com', 'a\n@b.com', 'a'.repeat(255) + '@b.com']) assert(!isValidEmail(value));
+test('email contains the scored report and one action without raw answers',()=>{
+ const body=renderEmail(content,{totals:[9,13,7,8,9],focus:'strategy'});assert.match(body,/Strategic capacity — 2.3/);assert.match(body,/Block 30 minutes/);assert.doesNotMatch(body,/timely decisions even/);
 });

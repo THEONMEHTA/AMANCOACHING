@@ -1,175 +1,127 @@
-import '@fontsource/lora/latin-400.css';
-import '@fontsource/lora/latin-400-italic.css';
-import '@fontsource/nunito-sans/latin-400.css';
-import '@fontsource/nunito-sans/latin-600.css';
-import '@fontsource/nunito-sans/latin-700.css';
 import './style.css';
-import { QUESTIONS, DIMENSIONS, LABELS, GUIDANCE, getResult, isValidEmail } from './quiz.js';
-import { site } from './site.js';
+import { calculate, disclaimer, questionsFor } from './quiz.js';
+import { loadContent, loadSite, site } from './site.js';
 import { submitLead } from './leads.js';
+import { track } from './analytics.js';
 
-const app = document.querySelector('#quiz-app');
-const shell = document.querySelector('.quiz-shell');
-const section = document.querySelector('#quiz');
-const state = { step: 0, answers: {}, name: '', submissionId: crypto.randomUUID(), submitting: false };
-const escape = value => String(value).replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[char]));
+const byId = id => document.getElementById(id);
+const esc = value => String(value).replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
+if (document.body.dataset.page === 'home') {
+  const oldRoutes = {'#quiz':'/leadership-quiz','#contact':'/book','#coaching':'/#approach','#report':'/#snapshot'};
+  if (oldRoutes[location.hash]) location.replace(oldRoutes[location.hash]);
+  else track('homepage_viewed');
+}
+const menu = document.querySelector('details.menu');
+menu?.addEventListener('click', event => { if (event.target.closest('a')) menu.open = false; });
+document.addEventListener('keydown', event => { if (event.key === 'Escape' && menu?.open) {menu.open=false;menu.querySelector('summary').focus();} });
+document.addEventListener('click', event => {
+  const link = event.target.closest('a[href="/book"]');
+  if (link && (document.body.dataset.page === 'home' || byId('result-title'))) track('booking_clicked',{source:byId('result-title') ? 'results' : 'homepage'});
+});
+const sample = byId('sample-bars');
+if (sample && 'IntersectionObserver' in window) {
+  const observer = new IntersectionObserver(([entry]) => {if (entry.isIntersecting) {sample.classList.add('in-view');observer.disconnect();}}, {threshold:.25});
+  observer.observe(sample);
+}
+const settings = loadSite().then(config => {
+  if (site.emailAvailable && byId('delivery-privacy')) byId('delivery-privacy').textContent='If you request an email, Resend processes your address and report to deliver your copy.';
+  if (byId('credentials')) byId('credentials').replaceChildren(...config.credentials.map(label => Object.assign(document.createElement('li'),{textContent:label})));
+  if (Number.isInteger(config.sessions) && config.sessions > 0 && byId('session-copy')) byId('session-copy').prepend('Over '+config.sessions+' sessions, we work towards your goals. ');
+  if (site.bookingUrl && byId('calendar')) {
+    const link = Object.assign(document.createElement('a'),{href:site.bookingUrl,className:'button',textContent:'Open Aman’s calendar ↗',referrerPolicy:'no-referrer'});
+    byId('calendar').append(link);
+    byId('contact-form').querySelector('h2').textContent='Or request a call';
+  }
+}).catch(() => {}); // The static contact destination remains available.
 
-function focusStep() {
-  const target = app.querySelector('legend, h3');
-  target?.setAttribute('tabindex', '-1');
-  // Avoid jumping the entire page when a visitor advances with a keyboard.
-  target?.focus({ preventScroll: true });
-  const rect = app.getBoundingClientRect();
-  if (rect.top < 80 || rect.top > innerHeight - 120) app.scrollIntoView({ block: 'start', behavior: 'instant' });
-}
-function showQuestion() {
-  shell.classList.remove('is-result');
-  const question = QUESTIONS[state.step];
-  app.innerHTML = `
-    <div class="quiz-progress-row"><span>YOUR LEADERSHIP SNAPSHOT</span><span>Question ${state.step + 1} of ${QUESTIONS.length}</span></div>
-    <div class="quiz-progress" role="progressbar" aria-label="Quiz progress" aria-valuemin="0" aria-valuemax="6" aria-valuenow="${state.step}" aria-valuetext="Question ${state.step + 1} of 6"><span style="width:${((state.step + 1) / QUESTIONS.length) * 100}%"></span></div>
-    <fieldset class="quiz-question"><legend><h3>${question.title}</h3></legend><p class="question-help" id="question-help">${question.help}</p>
-      <div class="quiz-options" aria-describedby="question-help">${question.options.map(([value, title, detail], i) => `
-        <label class="quiz-option" for="answer-${i}"><input id="answer-${i}" name="${question.id}" type="radio" value="${value}" ${state.answers[question.id] === value ? 'checked' : ''}><span><strong>${title}</strong><small>${detail}</small></span></label>`).join('')}</div>
-    </fieldset>
-    <div class="quiz-controls"><button class="back-button" id="quiz-back" type="button">← ${state.step ? 'Back' : 'Quiz introduction'}</button><button class="btn btn--primary" id="quiz-next" type="button" ${state.answers[question.id] === undefined ? 'disabled' : ''}>${state.step === QUESTIONS.length - 1 ? 'Get my report' : 'Next question'} <span aria-hidden="true">→</span></button></div>`;
-  app.querySelectorAll('input[type="radio"]').forEach(input => input.addEventListener('change', () => {
-    state.answers[question.id] = DIMENSIONS.includes(question.id) ? Number(input.value) : input.value;
-    app.querySelector('#quiz-next').disabled = false;
-  }));
-  app.querySelector('#quiz-next').addEventListener('click', () => {
-    if (state.answers[question.id] === undefined) return;
-    if (state.step < QUESTIONS.length - 1) { state.step++; showQuestion(); } else showLeadForm();
-  });
-  app.querySelector('#quiz-back').addEventListener('click', () => {
-    if (state.step > 0) { state.step--; showQuestion(); } else { app.innerHTML = intro; attachStart(); focusStep(); }
-  });
-  focusStep();
-}
-function showLeadForm() {
-  app.innerHTML = `
-    <span class="quiz-tag">YOUR REFLECTION IS COMPLETE</span><h3 style="margin-top:18px">Your next step is ready.</h3>
-    <p class="lead-intro">Save an enquiry with your details, or view your report without submitting. Your full report and PDF are available here. This preview sends no emails.</p>
-    <form id="lead-form" class="lead-form" novalidate>
-      <div class="field"><label for="lead-name">Your name</label><input id="lead-name" name="name" autocomplete="name" required maxlength="100" value="${escape(state.name)}"></div>
-      <div class="field"><label for="lead-email">Email address</label><input id="lead-email" name="email" type="email" autocomplete="email" required maxlength="254" aria-describedby="lead-privacy"></div>
-      <div class="honeypot" aria-hidden="true"><label>Leave empty <input name="company-website" tabindex="-1" autocomplete="off"></label></div>
-      <label class="checkbox-row"><input type="checkbox" name="marketing-consent" value="yes"><span>Once the site launches, I would also like occasional coaching tips and offers from Aman Coaching. This is optional, and I can withdraw permission.</span></label>
-      <p class="form-note" id="lead-privacy">Your details and answers will be saved privately for project review. <button type="button" class="inline-button privacy-open">Read the privacy notice</button>. Your report is not automatically emailed.</p>
-      <button class="btn btn--primary" type="submit">Get my report <span aria-hidden="true">→</span></button>
-      <p class="form-status" id="lead-status" role="status"></p>
-    </form>
-    <div class="quiz-controls"><button class="back-button" id="lead-back" type="button">← Back</button><button class="inline-button" id="skip-lead" type="button">View without sharing details</button></div>`;
-  app.querySelector('#lead-form').addEventListener('submit', async event => {
+function bindRequest(form, kind, extra, onSuccess) {
+  let id = crypto.randomUUID();
+  const status = form.querySelector('[role=status]');
+  form.addEventListener('input', () => {id=crypto.randomUUID();status.textContent='';});
+  form.addEventListener('submit', async event => {
     event.preventDefault();
-    if (state.submitting) return;
-    const form = event.currentTarget;
-    if (!form.reportValidity()) return;
-    const data = new FormData(form);
-    const name = data.get('name').trim(), email = data.get('email').trim();
-    const status = app.querySelector('#lead-status');
-    if (!name || !isValidEmail(email)) { status.textContent = 'Please enter your name and a valid email address.'; status.classList.add('error'); return; }
-    if (data.get('company-website')) { status.textContent = 'We could not process this submission. Please try again.'; return; }
-    state.name = name;
-    const result = getResult(state.answers);
-    state.submitting = true;
-    form.querySelector('button[type="submit"]').disabled = true;
-    app.setAttribute('aria-busy', 'true');
-    status.textContent = 'Saving your details…';
-    status.classList.remove('error');
+    const submit = form.querySelector('button[type=submit],button:not([type])');
+    if (submit.disabled) return;
+    submit.disabled=true; status.textContent='Saving your request…';
     try {
-      await submitLead('leadership-snapshot', {
-        name, email, role: result.role, 'preferred-focus': LABELS[state.answers.focus], focus: LABELS[result.focus],
-        answers: JSON.stringify(state.answers), 'report-version': site.reportVersion,
-        'marketing-consent': data.get('marketing-consent') ? 'yes' : 'no',
-        'consent-version': site.consentVersion, 'submitted-at': new Date().toISOString(),
-        'submission-id': state.submissionId, 'company-website': '',
-      });
-      showReport(true);
+      const fields = Object.fromEntries(new FormData(form));
+      const response = await submitLead(kind,{...fields,...extra(),'submission-id':id});
+      onSuccess(response); submit.hidden=true;
+      for(const field of form.querySelectorAll('input,textarea')) field.disabled=true;
     } catch (error) {
-      status.textContent = error.message || 'We could not send your details. Please try again or view your report without submitting.';
-      status.classList.add('error');
-    } finally {
-      state.submitting = false;
-      app.setAttribute('aria-busy', 'false');
-      form.querySelector('button[type="submit"]').disabled = false;
+      status.textContent=error.message; submit.disabled=false;
     }
   });
-  app.querySelector('#lead-back').addEventListener('click', () => { if (!state.submitting) showQuestion(); });
-  app.querySelector('#skip-lead').addEventListener('click', () => { if (!state.submitting) { state.name = ''; showReport(false); } });
-  wirePrivacy(app);
-  focusStep();
 }
-function showReport(submitted) {
-  const result = getResult(state.answers);
-  shell.classList.add('is-result');
-  const intro = result.allEstablished
-    ? 'You describe established habits in all four areas. Use your chosen focus as an experiment to build on what is already working.'
-    : result.balanced
-      ? 'Your responses are balanced across the four areas. We have used your preferred focus to give you a practical starting point.'
-      : result.guidance.intro;
-  const tied = result.focusAreas.length > 1 && !result.balanced
-    ? `Your responses also suggest attention to ${result.focusAreas.filter(id => id !== result.focus).map(id => LABELS[id].toLowerCase()).join(' and ')}. Start with one change rather than tackling every area at once.` : '';
-  app.innerHTML = `
-    <div class="result-header"><div><span class="quiz-tag">${state.name ? `${escape(state.name.toUpperCase())} / ` : ''}YOUR LEADERSHIP SNAPSHOT</span><h3>${result.guidance.title}</h3></div><button class="back-button" id="retake" type="button">Retake the quiz ↺</button></div>
-    ${submitted ? '<p class="form-note" role="status">Your details have been saved privately. No email has been sent. Your report is ready below.</p>' : '<p class="form-note">Your details have not been submitted. You can keep a copy of this report.</p>'}
-    <p class="result-lede">${intro} ${tied}</p>
-    <div class="result-grid"><div><h4>Your responses</h4>${result.responses.map(r => `<div class="response-row"><strong>${r.label}</strong><p>${r.answer}</p></div>`).join('')}</div>
-    <div><h4>${result.balanced ? 'Your starting point' : 'An area to draw on'}</h4><p class="strength-copy">${result.balanced ? 'Similar responses do not mean every area feels the same. Your chosen focus gives this plan a direction; change the order of the actions if a different starting point would help.' : result.strengths.map(id => GUIDANCE[id].strength).join(' ')}</p><div class="reflection-prompts"><strong>Two questions to take away</strong>${result.guidance.prompts.map(p => `<p>${p}</p>`).join('')}</div></div></div>
-    <div class="result-actions"><h4>Your next 30 days</h4><ol class="action-cards">${result.guidance.actions.map(([when, title, body]) => `<li><small>${when}</small><h5>${title}</h5><p>${body}</p></li>`).join('')}</ol></div>
-    <div class="result-footer"><button type="button" class="btn btn--primary" id="download-report">Download my report <span aria-hidden="true">↓</span></button><a class="text-link booking-link" href="${escape(site.bookingUrl || '#contact')}">Request a discovery call <span aria-hidden="true">↗</span></a></div>
-    <p id="download-status" class="form-status" role="status"></p>
-    <p class="result-disclaimer">This snapshot reflects six self-reported answers. It is a coaching reflection, not a validated assessment or an objective measure of leadership ability. Your answers and report clear when you reload or close this page. Download a copy to keep it.</p>`;
-  app.querySelector('#retake').addEventListener('click', () => {
-    state.step = 0; state.answers = {}; state.name = ''; state.submissionId = crypto.randomUUID();
-    shell.classList.remove('is-result'); showQuestion();
-  });
-  app.querySelector('#download-report').addEventListener('click', async event => {
-    const button = event.currentTarget, status = app.querySelector('#download-status');
-    button.disabled = true; status.textContent = 'Preparing your PDF…';
-    try {
-      const { downloadReport } = await import('./report.js');
-      await downloadReport({ result, answers: state.answers, name: state.name });
-      status.textContent = 'Your PDF has been downloaded. Keep it somewhere private.';
-    } catch {
-      status.textContent = 'The PDF could not be created. Please try again, or use your browser’s print option to save this report.';
-    } finally { button.disabled = false; }
-  });
-  app.querySelectorAll('.booking-link').forEach(wireBooking);
-  focusStep();
+if (byId('contact-form')) {
+  const form=byId('contact-form');
+  bindRequest(form,'discovery-request',()=>({}),()=>{form.querySelector('[role=status]').textContent='Your call request was saved privately. No appointment has been booked.';});
 }
-const intro = app.innerHTML;
-function attachStart() { app.querySelector('#quiz-start')?.addEventListener('click', showQuestion); }
-attachStart();
 
-const privacy = document.querySelector('#privacy-dialog');
-function wirePrivacy(root = document) {
-  root.querySelectorAll('.privacy-open').forEach(button => button.addEventListener('click', () => privacy.showModal()));
+async function initialiseQuiz() {
+  const app=byId('quiz-app');
+  const content=await loadContent('snapshot');
+  const questions=questionsFor(content);
+  const answers=Array(questions.length).fill(null);
+  const tracked=new Set();
+  let step=0, result, focusId;
+  const referrer=document.referrer ? new URL(document.referrer) : null;
+  const startSource=referrer?.origin===location.origin && referrer.pathname==='/' ? 'homepage' : 'other';
+  const focusHeading = () => app.querySelector('[tabindex="-1"]')?.focus();
+  function question() {
+    const item=questions[step];
+    app.innerHTML='<div class="question-box"><div class="question-meta"><span>Question '+(step+1)+' of 15</span><span>Last four weeks</span></div><div class="track" aria-hidden="true"><i style="width:'+((step+1)/15*100)+'%"></i></div>'+
+      '<h1 class="statement" id="statement" tabindex="-1"><span class="sr">Question '+(step+1)+' of 15. </span>'+esc(item.statement)+'</h1>'+
+      '<form id="question-form"><fieldset class="choice-set" aria-labelledby="statement"><legend class="sr">How often?</legend><div class="choices">'+content.choices.map((label,i)=>'<label class="choice"><input type="radio" name="rating" required value="'+(i+1)+'" '+(answers[step]===i+1?'checked':'')+'><b>'+(i+1)+'</b><span>'+esc(label)+'</span></label>').join('')+
+      '</div></fieldset><div class="q-actions"><button class="quiet" type="button" id="back">← Back</button><button class="button" type="submit">'+(step===14?'See my results':'Continue')+' →</button></div></form></div>';
+    focusHeading();
+    byId('question-form').addEventListener('change',event=>{answers[step]=Number(event.target.value);});
+    byId('back').onclick=()=>{ if(step){step--;question();}else{app.innerHTML=intro;activateStart();byId('start').focus();} };
+    byId('question-form').onsubmit=event=>{
+      event.preventDefault(); if(!tracked.has(step)){track('quiz_step_completed',{step:step+1});tracked.add(step);}
+      if(step<14){step++;question();return;}
+      result=calculate(content,answers);
+      focusId=result.balanced ? null : result.low[0].id;
+      track('quiz_completed');renderResult();track('result_viewed');
+    };
+  }
+  function focusContent() {
+    const area=result.low.find(row=>row.id===focusId);
+    const explanation=result.balanced?'All five areas have the same score. Choose the habit you would like to practise.':
+      result.low.length>1?'These areas share your lowest score: '+result.low.map(row=>row.label).join(', ')+'. Here is one place to start.':'';
+    const heading=area ? esc(area.label) : 'Choose your focus';
+    const choice=result.balanced?'<label class="focus-select">Focus for this week<select id="pick-focus"><option value="">Choose an area</option>'+result.low.map(row=>'<option value="'+esc(row.id)+'" '+(row.id===focusId?'selected':'')+'>'+esc(row.label)+'</option>').join('')+'</select></label>':'';
+    return '<h1 id="result-title" tabindex="-1">'+heading+'</h1><div class="result-focus">'+(explanation?'<p>'+esc(explanation)+'</p>':'')+choice+
+      (result.allHigh?'<p>You report consistent habits across all five areas. Use this week to refine one of them.</p>':'')+
+      (area?'<p>'+(result.allHigh?'':esc(area.growth)+' ')+'<strong>Try this week</strong> · '+esc(area.action)+'</p>':'')+'</div>';
+  }
+  function renderResult() {
+    const strengths=result.high.map(row=>esc(row.label)+' ('+row.score+'/5)').join(', ');
+    app.innerHTML='<article class="results"><p class="eyebrow">Where to focus next</p><div id="focus-content">'+focusContent()+'</div>'+
+      '<div class="result-grid"><section class="paper"><h2>Your five areas</h2><div class="bars">'+result.rows.map(row=>'<div class="bar-row"><span>'+esc(row.label)+'</span><b>'+row.score+' / 5</b><i style="--score:'+(row.total/15*100)+'%"></i><span class="score-band">'+row.band+'</span></div>').join('')+'</div></section>'+
+      '<section class="quiz-guide"><h2>Your most consistent area</h2><p>'+(result.balanced?'All five areas are level at '+result.high[0].score+'/5.':(result.high.length>1?'Joint highest: ':'')+strengths+'. '+(result.high.length===1?esc(result.high[0].strength):'You reported these habits equally often.'))+'</p></section></div>'+
+      '<p class="fine">'+disclaimer+'</p><section class="report-next"><h2>Keep your Snapshot</h2><div class="report-actions"><button class="button" id="pdf">Download my PDF ↓</button><button class="quiet" id="request-copy" aria-expanded="false" aria-controls="copy-form">'+(site.emailAvailable?'Email me my snapshot':'Save a snapshot request')+'</button></div><p class="status" id="pdf-status" role="status"></p>'+
+      '<form class="email-form" id="copy-form" hidden><p>'+(site.emailAvailable?'Receive a copy of these five scores and your action by email.':'This preview saves your request privately. It sends no email. Download the PDF for a copy now.')+'</p><label>Email address<input name="email" type="email" maxlength="254" autocomplete="email" required></label><label class="check"><input type="checkbox" name="marketing-consent" value="yes">I would also like coaching updates from Aman.</label><p class="fine"><a href="/privacy" target="_blank" rel="noopener">How we use your details (opens a new tab)</a></p><button type="submit" class="button">'+(site.emailAvailable?'Email my snapshot':'Save my request')+'</button><p class="status" role="status"></p></form>'+
+      '<h2>Discuss my results with Aman</h2><p>Bring one real leadership challenge. We’ll talk through what you want to change and whether coaching is the right fit.</p><a class="text-link" href="/book">Book a free discovery call ↗</a></section></article>';
+    focusHeading();
+    function syncFocus() {
+      const pick=byId('pick-focus');
+      if(pick) pick.onchange=()=>{focusId=pick.value || null;byId('focus-content').innerHTML=focusContent();syncFocus();byId('pick-focus').focus();byId('copy-form').dispatchEvent(new Event('input'));};
+    }
+    syncFocus();
+    byId('pdf').onclick=async()=>{try{const {createReport}=await import('./report.js');createReport(result,focusId).save('aman-leadership-snapshot.pdf');}catch{byId('pdf-status').textContent='The PDF could not be downloaded. Your full report is still on this page.';}};
+    byId('request-copy').onclick=()=>{const form=byId('copy-form');form.hidden=!form.hidden;byId('request-copy').setAttribute('aria-expanded',String(!form.hidden));if(!form.hidden)form.elements.email.focus();};
+    bindRequest(byId('copy-form'),'leadership-snapshot',()=>({version:content.version,totals:result.rows.map(row=>row.total),focus:focusId,delivery:site.emailAvailable?'email':'store'}),response=>{
+      byId('copy-form').querySelector('[role=status]').textContent=response.emailSent?'Your snapshot was accepted for email delivery.':'Your request was saved privately. No email was sent.';
+      track('report_requested');
+    });
+  }
+  const intro=app.innerHTML;
+  let started=false;
+  function activateStart(){
+    byId('start').disabled=false;byId('start').onclick=()=>{if(!started){track('quiz_start',{source:startSource});started=true;}question();};
+  }
+  await settings;
+  activateStart();
 }
-wirePrivacy();
-privacy.querySelector('.dialog-close').addEventListener('click', () => privacy.close());
-privacy.addEventListener('click', event => { if (event.target === privacy) { const r = privacy.getBoundingClientRect(); if (event.clientX < r.left || event.clientX > r.right || event.clientY < r.top || event.clientY > r.bottom) privacy.close(); } });
-function wireBooking(link) {
-  if (site.bookingUrl) { link.href = site.bookingUrl; link.target = '_blank'; link.rel = 'noopener noreferrer'; }
-}
-document.querySelectorAll('.booking-link').forEach(wireBooking);
-const contact = document.querySelector('#contact-form');
-contact.addEventListener('submit', async event => {
-  event.preventDefault();
-  if (contact.dataset.submitting === 'true' || !contact.reportValidity()) return;
-  const data = new FormData(contact), status = document.querySelector('#contact-status');
-  if (data.get('company-website')) return;
-  const name = data.get('name').trim(), email = data.get('email').trim();
-  if (!name || !isValidEmail(email)) { status.textContent = 'Please enter your name and a valid email address.'; return; }
-  contact.dataset.submitting = 'true';
-  const button = contact.querySelector('button[type="submit"]'); button.disabled = true;
-  status.textContent = 'Sending your request…'; status.classList.remove('error');
-  try {
-    await submitLead('discovery-request', { name, email, message: data.get('message').trim(), 'consent-version': site.consentVersion, 'company-website': '' });
-    status.textContent = 'Your request has been saved privately for review. No email has been sent, and a call is not yet booked.';
-    contact.reset();
-  } catch (error) {
-    status.textContent = site.leadCapture === 'unconfigured' ? 'Your request could not be saved. Please try again later.' : (error.message || 'We could not send your request. Please try again.');
-    status.classList.add('error');
-  } finally { contact.dataset.submitting = 'false'; button.disabled = false; }
-});
+if (byId('quiz-app')) initialiseQuiz().catch(()=>{byId('load-status').textContent='The questions could not load. Refresh this page to try again.';});

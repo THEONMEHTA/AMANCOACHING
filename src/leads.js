@@ -12,6 +12,7 @@ export async function submitLead(formName, fields) {
     });
     const data = await response.json().catch(() => null);
     if (!response.ok || data?.ok !== true) throw new Error(data?.error || 'We could not save your details. Please try again, or view your report without submitting.');
+    return data;
   } catch (error) {
     if (error.name === 'AbortError') throw new Error('The request took too long. Please try again. Your report is still available without submitting.');
     throw error;

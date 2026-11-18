@@ -1,0 +1,41 @@
+{
+  "version": "leadership-snapshot-2",
+  "choices": ["Rarely", "Occasionally", "Sometimes", "Often", "Consistently"],
+  "dimensions": [
+    {
+      "id": "clarity", "label": "Clarity and judgement",
+      "statements": ["I make clear which priorities can wait.", "I make timely decisions even when I don’t have all the information.", "I explain the trade-offs behind decisions that affect others."],
+      "strength": "You give people a clear sense of what matters and explain the choices behind a decision.",
+      "growth": "When several priorities compete, it can be hard to make the trade-offs visible to the people doing the work.",
+      "action": "For one live decision, write down what you’re deciding, which trade-off you accept, and what new information would make you revisit it."
+    },
+    {
+      "id": "influence", "label": "Influence across teams",
+      "statements": ["I speak to key stakeholders before asking for a decision in a formal meeting.", "I adapt how I frame a proposal to the people affected by it.", "I surface disagreement early enough to act on it."],
+      "strength": "You make time to understand other teams’ concerns and bring people into a decision early.",
+      "growth": "A proposal may reach the meeting before you have heard what it would mean for the people affected.",
+      "action": "Before your next cross-team decision, speak to one person whose support matters. Ask what would make the proposal difficult for their team."
+    },
+    {
+      "id": "strategy", "label": "Strategic capacity",
+      "statements": ["I protect time to think beyond immediate delivery.", "I drop or defer work that no longer serves a priority.", "I tackle recurring problems rather than repeatedly resolving the latest instance."],
+      "strength": "You make room to look beyond this week’s delivery and address the causes of recurring problems.",
+      "growth": "Immediate demands can take the time you wanted to spend thinking beyond delivery.",
+      "action": "Block 30 minutes this week to identify one recurring issue you can address at the source."
+    },
+    {
+      "id": "delegation", "label": "Delegation and ownership",
+      "statements": ["I make it clear who owns a decision.", "I agree when someone should escalate without asking them to run every decision past me.", "I resist taking work back when someone else can still deliver it."],
+      "strength": "You give people room to make decisions and agree when they need to involve you.",
+      "growth": "When ownership is unclear, decisions can keep finding their way back to you.",
+      "action": "Give someone ownership of one decision this week. Agree the outcome, their decision rights, and when to check in."
+    },
+    {
+      "id": "sustainable", "label": "Sustainable leadership",
+      "statements": ["I renegotiate commitments when new work exceeds capacity.", "I notice when pressure starts to change how I lead.", "I protect time away from work when things get busy."],
+      "strength": "You notice the effect of pressure and make deliberate choices about your commitments.",
+      "growth": "In a busy week, protecting time away or renegotiating commitments can become harder.",
+      "action": "Before accepting one new commitment, name what will move, who needs to agree, and what you’ll protect."
+    }
+  ]
+}

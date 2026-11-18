@@ -24,17 +24,23 @@ async function curl(path, { body, origin = target.origin } = {}) {
 }
 try {
  const page=await curl('/');assert.equal(page.status,200);assert(page.body.includes('Aman Coaching'));assert(page.body.includes('noindex, nofollow'));
+ for(const [path,needle] of [['/leadership-quiz','How are you showing up'],['/book','Bring one real'],['/privacy','privacy'],['/api/content?key=snapshot','Clarity and judgement'],['/api/content?key=site','bookingUrl']]){
+  const response=await curl(path);assert.equal(response.status,200,path+' returned '+response.status);assert(response.body.includes(needle),path+' wrong content');
+ }
+ const invalidEvent=await curl('/api/events',{body:{event:'quiz_start',email:'qa@submission.invalid'}});assert.equal(invalidEvent.status,400);
  const noList=await curl('/api/leads');assert.equal(noList.status,405);
  const rejected=await curl('/api/leads',{body:{},origin:'https://unrelated.invalid'});assert.equal(rejected.status,403);
  for(const kind of ['leadership-snapshot','discovery-request']) {
   const id=randomUUID();const pathname=`submissions/${kind}/${id}.json`;
-  const body={'form-name':kind,name:'[QA] Automated preview check',email:'qa@submission.invalid','submission-id':id,'marketing-consent':'no',answers:{role:'senior',focus:'delegation',clarity:1,influence:2,delegation:3,sustainability:0},message:'Synthetic QA record. No email should be sent.'};
+  const body={'form-name':kind,email:'qa@submission.invalid','submission-id':id};
+  if(kind==='leadership-snapshot') Object.assign(body,{totals:[12,13,7,10,10],focus:'strategy',delivery:'store',version:'leadership-snapshot-2','marketing-consent':'no'});
+  else Object.assign(body,{name:'[QA] Automated preview check',message:'Synthetic verification. No email requested.'});
   try {
    const response=await curl('/api/leads',{body});assert.equal(response.status,201,response.body);
    assert.deepEqual(JSON.parse(response.body),{ok:true,emailSent:false});
    const saved=await get(pathname,{access:'private',useCache:false});assert.equal(saved?.statusCode,200);
    const record=await new Response(saved.stream).json();assert.equal(record.id,id);assert.equal(record.emailSent,false);assert.equal(record.marketingConsent,false);
-   if(kind==='leadership-snapshot')assert.equal(record.focus,'Delegation & ownership');
+   if(kind==='leadership-snapshot'){assert.equal(record.focus,'strategy');assert(!('answers' in record));assert(!('name' in record));}
    const anonymous=await fetch(saved.blob.url);assert.notEqual(anonymous.status,200,'Private record was publicly readable');
    const retry=await curl('/api/leads',{body});assert.equal(retry.status,201,'Idempotent repeat did not succeed');
    completed.push({type:kind,stored:true,anonymousReadStatus:anonymous.status,retryStatus:retry.status,removed:false});

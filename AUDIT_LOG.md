@@ -67,3 +67,10 @@ All timestamps are UTC (GMT on 18 November 2026). Entries describe completed act
 - **Files created/modified:** index.html, pages/, public/images/, public/content/site.json, public/favicon.svg, src/style.css, scripts/build.mjs, scripts/verify-build.mjs
 - **Verification:** Confirmed the new WebP portrait files exist and the four page sources contain distinct content.
 - **Pending / limitations:** Browser and deployed route verification follow after quiz integration.
+
+## 2026-11-18T11:16:08.059Z — Fifteen-question Snapshot, private capture and measurement
+
+- **Requested:** Ship scored, ungated results, optional report delivery, editable content and a booking fallback.
+- **Files created/modified:** src/, server/, api/, public/content/, pages/, scripts/, tests/, vercel.json and client handover
+- **Verification:** 14 unit/API and 11 Playwright tests passed, including 320–1440px layouts, four route checks, keyboard interaction, scoring ties, PDF download, failed writes and idempotent email adapter simulation. Visually inspected desktop and mobile. NHS Jobs confirms the professional title.
+- **Pending / limitations:** Preview deployment smoke test and final design checks follow. No approved calendar or production sender.
