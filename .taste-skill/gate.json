@@ -1,25 +1,34 @@
 {
- "start": "2026-11-18T09:18:13.727Z",
- "round": 1,
+ "start": "2026-11-18T11:03:17.485Z",
+ "round": 3,
  "idle": 0,
  "errors": 0,
- "status": "pass",
+ "status": "open",
  "history": [
   {
-   "at": "2026-11-18T09:43:08.980Z",
+   "at": "2026-11-18T11:18:10.588Z",
    "mode": "manual",
    "status": "fail",
-   "fails": 8,
+   "fails": 73,
    "round": 1,
    "reused": false,
    "stopHookActive": false
   },
   {
-   "at": "2026-11-18T09:54:47.468Z",
+   "at": "2026-11-18T11:21:52.359Z",
    "mode": "manual",
-   "status": "pass",
-   "fails": 0,
-   "round": 1,
+   "status": "fail",
+   "fails": 58,
+   "round": 2,
+   "reused": false,
+   "stopHookActive": false
+  },
+  {
+   "at": "2026-11-18T11:24:56.984Z",
+   "mode": "manual",
+   "status": "open",
+   "fails": 57,
+   "round": 3,
    "reused": false,
    "stopHookActive": false
   }
@@ -30,24 +39,24 @@
   "url": null,
   "root": "dist",
   "kind": "service",
-  "category": "leadership coaching",
-  "primary": "Start the quiz",
+  "category": "Executive leadership coaching",
+  "primary": "Take the leadership quiz",
   "rounds": 3,
-  "start": "2026-11-18T09:18:13.727Z",
+  "start": "2026-11-18T11:03:17.485Z",
   "by": "gate.mjs --start"
  },
  "manual": true,
- "roundKey": "69aaaf59d0aeff42:da39a3ee",
+ "roundKey": "5d615eb63987b584:50149568",
  "roundFree": false,
  "idleFree": false,
  "blockKey": null,
- "fp": "cfcc2abbcbc72638",
+ "fp": "5d615eb63987b584",
  "page": "dist/index.html",
  "found": {
   "fails": [
    {
     "check": "nav",
-    "where": "header.nav.nav--centre > div.wrap.nav__bar > a.nav__logo.wordmark \"aman COACHING\"",
+    "where": "header.mast.nav > div.wrap.mast-inner > a.brand \"Aman COACHING\"",
     "msg": "nav link wraps to a second line",
     "fix": "make the nav one bar from the content's left edge to its right edge, with every link and action inside it",
     "widths": [
@@ -59,29 +68,98 @@
      "nav"
     ],
     "wheres": [
-     "header.nav.nav--centre > div.wrap.nav__bar > a.nav__logo.wordmark \"aman COACHING\""
+     "header.mast.nav > div.wrap.mast-inner > a.brand \"Aman COACHING\""
+    ]
+   },
+   {
+    "check": "spill",
+    "where": "main#main > section.hero.wrap > div.hero-art > div.portrait-frame",
+    "msg": "runs 13px past the left edge of the panel it sits on (main#main > section.hero.wrap > div.hero-art > div.arch-line)",
+    "fix": "keep the box inside the panel it starts on: shrink it, or grow the panel to hold it",
+    "widths": [
+     1440,
+     390
+    ],
+    "from": "consistency",
+    "ids": [
+     "spill"
+    ],
+    "wheres": [
+     "main#main > section.hero.wrap > div.hero-art > div.portrait-frame"
+    ]
+   },
+   {
+    "check": "scroll-reveal",
+    "where": "div#sample-bars \"Clarity and judgement 3.7 / 5 Influence \"",
+    "msg": "starts \"draw\" (0.8 s) the moment it is scrolled into view (an IntersectionObserver) on i",
+    "fix": "show it at rest: no fade, rise or unmask when it is scrolled into view",
+    "widths": [
+     1440,
+     390
+    ],
+    "from": "consistency",
+    "ids": [
+     "scroll-reveal"
+    ],
+    "wheres": [
+     "div#sample-bars \"Clarity and judgement 3.7 / 5 Influence \""
     ]
    },
    {
     "check": "no-visual",
-    "where": "section#quiz \"A little reflection. A useful next step.\"",
+    "where": "section#situations \"When leadership gets harder.\"",
     "msg": "no picture, effect or mock in this section; a feature section needs a visual",
     "fix": "give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits",
     "widths": [
-     1440
+     1440,
+     390
     ],
     "from": "consistency",
     "ids": [
      "no-visual"
     ],
     "wheres": [
-     "section#quiz \"A little reflection. A useful next step.\""
+     "section#situations \"When leadership gets harder.\""
+    ]
+   },
+   {
+    "check": "no-visual",
+    "where": "section#snapshot \"See where you’re strong. Find what to wo\"",
+    "msg": "no picture, effect or mock in this section; a feature section needs a visual",
+    "fix": "give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits",
+    "widths": [
+     1440,
+     390
+    ],
+    "from": "consistency",
+    "ids": [
+     "no-visual"
+    ],
+    "wheres": [
+     "section#snapshot \"See where you’re strong. Find what to wo\""
+    ]
+   },
+   {
+    "check": "no-visual",
+    "where": "section#approach \"How coaching works.\"",
+    "msg": "no picture, effect or mock in this section; a feature section needs a visual",
+    "fix": "give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits",
+    "widths": [
+     1440,
+     390
+    ],
+    "from": "consistency",
+    "ids": [
+     "no-visual"
+    ],
+    "wheres": [
+     "section#approach \"How coaching works.\""
     ]
    },
    {
     "check": "text-only",
-    "where": "section#coaching \"Coaching for the decisions ahead.\"",
-    "msg": "the closing section is only text: no picture, icon, mock or effect in it",
+    "where": "main#main > section.wrap.section:nth-of-type(6) \"A few questions.\"",
+    "msg": "the section is only text: no picture, icon, mock or effect in it (2 sections like it at this width)",
     "fix": "give the section a visual: a photograph that fits, the real icons, or a UI fragment on a ground",
     "widths": [
      1440,
@@ -92,32 +170,941 @@
      "text-only"
     ],
     "wheres": [
-     "section#coaching \"Coaching for the decisions ahead.\""
+     "main#main > section.wrap.section:nth-of-type(6) \"A few questions.\""
     ]
    },
    {
-    "check": "no-visual",
-    "where": "section#quiz \"A little reflection.A useful next step.\"",
-    "msg": "no picture, effect or mock in this section; a feature section needs a visual",
-    "fix": "give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits",
+    "check": "text-only",
+    "where": "main#main > section.closing \"What’s on your mind?\"",
+    "msg": "the closing section is only text: no picture, icon, mock or effect in it (2 sections like it at this width)",
+    "fix": "give the section a visual: a photograph that fits, the real icons, or a UI fragment on a ground",
+    "widths": [
+     1440,
+     390
+    ],
+    "from": "consistency",
+    "ids": [
+     "text-only"
+    ],
+    "wheres": [
+     "main#main > section.closing \"What’s on your mind?\""
+    ]
+   },
+   {
+    "check": "button-styles",
+    "where": "(the page)",
+    "msg": "3 button styles on the page: pill, outline #3d5c4b x1 (\"Book a free call ↗\"); pill, fill #233c31 x1 (\"Take the leadership quiz →\"); pill, fill #f6f3ec x2 (\"Start my Leadership Snapshot →\")",
+    "fix": "one primary and one secondary button: one shape, one height per size, one label size",
+    "widths": [
+     1440,
+     390
+    ],
+    "from": "consistency",
+    "ids": [
+     "button-styles"
+    ],
+    "wheres": [
+     "(the page)"
+    ]
+   },
+   {
+    "check": "copy-headline",
+    "where": "h1#hero-title \"Lead with clarity. Not at your own expen\"",
+    "msg": "\"Lead with clarity. Not at your own expense.\" does not name what is sold (executive leadership coaching, executive, leadership, coaching, from flags)",
+    "fix": "put the category noun in the h1 (and who it is for, or where), in 2 to 8 words",
+    "widths": [
+     1440
+    ],
+    "from": "consistency",
+    "ids": [
+     "copy-headline"
+    ],
+    "wheres": [
+     "h1#hero-title \"Lead with clarity. Not at your own expen\""
+    ]
+   },
+   {
+    "check": "copy-fact",
+    "where": "h1#hero-title \"Lead with clarity. Not at your own expen\"",
+    "msg": "the first screen holds no number, price, date, place, platform or genre",
+    "fix": "put one hard fact from the brief on the first screen: a number, a price, a date, the place, the platforms it runs on or a game's genre; take it from the brief or remove the claim",
+    "widths": [
+     1440
+    ],
+    "from": "consistency",
+    "ids": [
+     "copy-fact"
+    ],
+    "wheres": [
+     "h1#hero-title \"Lead with clarity. Not at your own expen\""
+    ]
+   },
+   {
+    "check": "copy-headings",
+    "where": "section#situations > div.situation-grid > article:nth-of-type(1) > h3 \"Your remit got bigger. Your time didn’t.\"",
+    "msg": "\"Your remit got bigger. Your time didn’t.\" names no product, part, place or section (7 headings like it; at most one brand line per page) (and 6 more like it: \"You’re accountable for d\", \"You’re still the person \", \"See where you’re strong.\", \"Explore the fit\", ...)",
+    "fix": "name the thing in every heading: the product, a part, the place or a section noun",
+    "widths": [
+     1440
+    ],
+    "from": "consistency",
+    "ids": [
+     "copy-headings"
+    ],
+    "wheres": [
+     "section#situations > div.situation-grid > article:nth-of-type(1) > h3 \"Your remit got bigger. Your time didn’t.\""
+    ]
+   },
+   {
+    "check": "section-tile",
+    "where": "section#situations \"When leadership gets harder.\"",
+    "msg": "the section is 634px tall (0.70 screens at 1440x900), shorter than the screen: its tile (the screen from its top) shows 634px of it and 266px of the next section, its heading \"See where you’re strong. Find \" on screen",
+    "fix": "set every section after the hero to one screen or two (height: calc(var(--h,1) * 100vh)) and fit its content above --padb",
+    "widths": [
+     1440
+    ],
+    "from": "consistency",
+    "ids": [
+     "section-tile"
+    ],
+    "wheres": [
+     "section#situations \"When leadership gets harder.\""
+    ]
+   },
+   {
+    "check": "section-tile",
+    "where": "main#main > section.wrap.section:nth-of-type(6) \"A few questions.\"",
+    "msg": "the section is 477px tall (0.53 screens at 1440x900), shorter than the screen: its tile (the screen from its top) shows 477px of it and 415px of the next section, its heading \"What’s on your mind?\" on screen",
+    "fix": "set every section after the hero to one screen or two (height: calc(var(--h,1) * 100vh)) and fit its content above --padb",
+    "widths": [
+     1440,
+     390
+    ],
+    "from": "consistency",
+    "ids": [
+     "section-tile"
+    ],
+    "wheres": [
+     "main#main > section.wrap.section:nth-of-type(6) \"A few questions.\""
+    ]
+   },
+   {
+    "check": "moment-none",
+    "where": "(the page)",
+    "msg": "a service page (--type) deals no moment: every kind carries one, two on a long page (moments.md)",
+    "fix": "deal one (moments.mjs pick --page service --photo) and mount it in its own section",
+    "widths": [
+     1440
+    ],
+    "from": "consistency",
+    "ids": [
+     "moment-none"
+    ],
+    "wheres": [
+     "(the page)"
+    ]
+   },
+   {
+    "check": "section-height",
+    "where": "main#main > div.credentials \"Professional backgroundDeputy Head of Th\"",
+    "msg": "the section is 71px tall (0.1 screens), 829px short of one screen (900px): every section after the hero is one screen or two, 2px either way (SR-2)",
+    "fix": "set the section to one screen or two (height: calc(var(--h,1) * 100vh), --h 1 or 2) and cut or split its content to fit",
+    "widths": [
+     1440
+    ],
+    "from": "consistency",
+    "ids": [
+     "section-height"
+    ],
+    "wheres": [
+     "main#main > div.credentials \"Professional backgroundDeputy Head of Th\"",
+     "main#main > section.closing \"A conversation with AmanWhat’s on your m\""
+    ]
+   },
+   {
+    "check": "section-height",
+    "where": "footer.site-foot \"Aman CoachingExecutive & transformationa\"",
+    "msg": "the section is 101px tall (0.1 screens), 799px short of one screen (900px): every section after the hero is one screen or two, 2px either way (SR-2)",
+    "fix": "set the section to one screen or two (height: calc(var(--h,1) * 100vh), --h 1 or 2) and cut or split its content to fit",
+    "widths": [
+     1440
+    ],
+    "from": "consistency",
+    "ids": [
+     "section-height"
+    ],
+    "wheres": [
+     "footer.site-foot \"Aman CoachingExecutive & transformationa\""
+    ]
+   },
+   {
+    "check": "section-height",
+    "where": "section#approach \"The approachHow coaching works. Explore \"",
+    "msg": "the section starts at 3101px, 401px below the screen grid (3 x 900px): sections start on whole screens (SR-2)",
+    "fix": "make every section above it exactly one or two screens tall, so this one starts on a whole screen",
+    "widths": [
+     1440,
+     390
+    ],
+    "from": "consistency",
+    "ids": [
+     "section-height",
+     "screen-short",
+     "screen-height"
+    ],
+    "wheres": [
+     "section#approach \"The approachHow coaching works. Explore \"",
+     "#approach section.journey \"The approachHow coaching works. \""
+    ]
+   },
+   {
+    "check": "section-height",
+    "where": "section#meet \"Meet Aman DavegunI know the pressure fro\"",
+    "msg": "the section starts at 2356px, 344px above the screen grid (3 x 900px): sections start on whole screens (SR-2)",
+    "fix": "make every section above it exactly one or two screens tall, so this one starts on a whole screen",
+    "widths": [
+     1440
+    ],
+    "from": "consistency",
+    "ids": [
+     "section-height",
+     "screen-short",
+     "screen-height"
+    ],
+    "wheres": [
+     "section#meet \"Meet Aman DavegunI know the pressure fro\"",
+     "#meet section.wrap.section \"Meet Aman DavegunI know the pres\""
+    ]
+   },
+   {
+    "check": "section-air",
+    "where": "main#main > div.credentials \"Professional backgroundDeputy Head of Th\"",
+    "msg": "the content fills 35.2% of the section's height (25 of 71px): 55% or more (40% WARN) (SR-3)",
+    "fix": "fill the section to 55%: more content, a picture or a background layer, or merge it into the section above as its last block",
+    "widths": [
+     1440
+    ],
+    "from": "consistency",
+    "ids": [
+     "section-air"
+    ],
+    "wheres": [
+     "main#main > div.credentials \"Professional backgroundDeputy Head of Th\""
+    ]
+   },
+   {
+    "check": "one-section",
+    "where": "main#main > section.closing > div.wrap > h2 \"What’s on your mind?\"",
+    "msg": "the screen at scroll 3806px (the top of section 7) shows 415px of section 8 and the heading of section 8 whole and the content of 2 sections, over 24px each beside section 7: a screen shows one section (another may peek 8px, 24px WARN) (SR-4)",
+    "fix": "make each section exactly one screen or two, so a screen shows one section and no neighbour peeks",
+    "widths": [
+     1440
+    ],
+    "from": "consistency",
+    "ids": [
+     "one-section"
+    ],
+    "wheres": [
+     "main#main > section.closing > div.wrap > h2 \"What’s on your mind?\"",
+     "main#main > section.wrap.section:nth-of-type(6) > div:nth-of-type(1) > h2 \"A few questions.\"",
+     "main#main > div.credentials \"Professional backgroundDeputy Head of Th\""
+    ]
+   },
+   {
+    "check": "one-section",
+    "where": "section#meet \"Meet Aman DavegunI know the pressure fro\"",
+    "msg": "the screen at scroll 2700px (stride 3) shows 401px of section 5 and the content of 2 sections, over 24px each beside section 6: a screen shows one section (another may peek 8px, 24px WARN) (SR-4)",
+    "fix": "make each section exactly one screen or two, so a screen shows one section and no neighbour peeks",
+    "widths": [
+     1440
+    ],
+    "from": "consistency",
+    "ids": [
+     "one-section",
+     "neighbour"
+    ],
+    "wheres": [
+     "section#meet \"Meet Aman DavegunI know the pressure fro\"",
+     "#meet section.wrap.section \"Meet Aman DavegunI know the pres\""
+    ]
+   },
+   {
+    "check": "one-heading",
+    "where": "section#meet > div:nth-of-type(2) > h2 \"I know the pressure from the inside.\"",
+    "msg": "headings of two sections show whole on one screen at 10 of 78 scroll positions (12.8%; at scroll 1800, 3150, 3200, 3250px), here with \"See where you’re strong. Find wh\": at most 3% on a desktop (SR-5)",
+    "fix": "make the sections one screen tall so their headings sit a screen apart and two never share one",
+    "widths": [
+     1440
+    ],
+    "from": "consistency",
+    "ids": [
+     "one-heading"
+    ],
+    "wheres": [
+     "section#meet > div:nth-of-type(2) > h2 \"I know the pressure from the inside.\""
+    ]
+   },
+   {
+    "check": "container-edges",
+    "where": "footer.site-foot \"Aman CoachingExecutive & transformationa\"",
+    "msg": "a <footer> at the top of the page, outside header.nav, main, footer.closing and nav.actionbar (SR-6)",
+    "fix": "build the page as header.nav, a main of sections (each one in-flow .wrap plus background layers) and footer.closing",
+    "widths": [
+     1440
+    ],
+    "from": "consistency",
+    "ids": [
+     "container-edges"
+    ],
+    "wheres": [
+     "footer.site-foot \"Aman CoachingExecutive & transformationa\""
+    ]
+   },
+   {
+    "check": "container-edges",
+    "where": "main#main > section.hero.wrap \"Executive & transformational leadership \"",
+    "msg": "the section needs exactly one in-flow child .wrap (it has 2 in-flow children, 0 .wrap) (SR-6)",
+    "fix": "build the page as header.nav, a main of sections (each one in-flow .wrap plus background layers) and footer.closing",
+    "widths": [
+     1440
+    ],
+    "from": "consistency",
+    "ids": [
+     "container-edges"
+    ],
+    "wheres": [
+     "main#main > section.hero.wrap \"Executive & transformational leadership \""
+    ]
+   },
+   {
+    "check": "container-edges",
+    "where": "section#situations \"The work you bringWhen leadership gets h\"",
+    "msg": "the section needs exactly one in-flow child .wrap (it has 3 in-flow children, 0 .wrap) (and 2 more like it: \"Meet Aman DavegunI know \", \"Before we meetA few ques\") (SR-6)",
+    "fix": "build the page as header.nav, a main of sections (each one in-flow .wrap plus background layers) and footer.closing",
+    "widths": [
+     1440
+    ],
+    "from": "consistency",
+    "ids": [
+     "container-edges"
+    ],
+    "wheres": [
+     "section#situations \"The work you bringWhen leadership gets h\""
+    ]
+   },
+   {
+    "check": "container-edges",
+    "where": "section#meet > div:nth-of-type(2) > h2 \"I know the pressure from the inside.\"",
+    "msg": "the h2 starts 626px right of the container's left: every h1 and h2 starts on it, 2px either way (SR-6)",
+    "fix": "start the text on the container's left, or on the one split line every split shares",
+    "widths": [
+     1440
+    ],
+    "from": "consistency",
+    "ids": [
+     "container-edges"
+    ],
+    "wheres": [
+     "section#meet > div:nth-of-type(2) > h2 \"I know the pressure from the inside.\""
+    ]
+   },
+   {
+    "check": "container-edges",
+    "where": "main#main > section.closing > div.wrap > p.eyebrow \"A conversation with Aman\"",
+    "msg": "1 text block starts on a left line at x 618, 536px from the container's left: text starts on the container's left, or on one split line (x 624, 732, 840) (SR-6)",
+    "fix": "start the text on the container's left, or on the one split line every split shares",
+    "widths": [
+     1440
+    ],
+    "from": "consistency",
+    "ids": [
+     "container-edges"
+    ],
+    "wheres": [
+     "main#main > section.closing > div.wrap > p.eyebrow \"A conversation with Aman\""
+    ]
+   },
+   {
+    "check": "container-edges",
+    "where": "main#main > section.closing > div.wrap > p:nth-of-type(2) \"Bring one real leadership challenge. We’\"",
+    "msg": "1 text block starts on a left line at x 443, 361px from the container's left: text starts on the container's left, or on one split line (x 624, 732, 840) (and 3 more like it: x 429, \"What’s on your mind?\", x 122) (SR-6)",
+    "fix": "start the text on the container's left, or on the one split line every split shares",
+    "widths": [
+     1440
+    ],
+    "from": "consistency",
+    "ids": [
+     "container-edges"
+    ],
+    "wheres": [
+     "main#main > section.closing > div.wrap > p:nth-of-type(2) \"Bring one real leadership challenge. We’\""
+    ]
+   },
+   {
+    "check": "container-edges",
+    "where": "main#main > section.closing > div.wrap > h2 \"What’s on your mind?\"",
+    "msg": "\"What’s on your mind?\" is set centred across 1276px, over half the 1276px container: text that wide is set left (SR-6)",
+    "fix": "set the text left (text-align: start)",
+    "widths": [
+     1440
+    ],
+    "from": "consistency",
+    "ids": [
+     "container-edges"
+    ],
+    "wheres": [
+     "main#main > section.closing > div.wrap > h2 \"What’s on your mind?\""
+    ]
+   },
+   {
+    "check": "split-pair",
+    "where": "section#snapshot > div.wrap.section \"The Leadership SnapshotSee where you’re \"",
+    "msg": "the two columns of the split start 52px apart at the top (centred on each other): a split's columns are top-aligned, 8px either way (SR-8)",
+    "fix": "top-align both columns of the split (align-items: start)",
+    "widths": [
+     1440
+    ],
+    "from": "consistency",
+    "ids": [
+     "split-pair"
+    ],
+    "wheres": [
+     "section#snapshot > div.wrap.section \"The Leadership SnapshotSee where you’re \""
+    ]
+   },
+   {
+    "check": "split-pair",
+    "where": "section#approach > div.wrap.section \"The approachHow coaching works. Explore \"",
+    "msg": "the split's columns are off the page's one pair of lines: its right column starts at x 749, on none of the split lines 624 (k=5), 732 (k=6), 840 (k=7) (SR-8)",
+    "fix": "start every split's right column on one shared line (wrap.left + k x (width + 24) / 12, k 5, 6 or 7; 6 on a place page) and end the left one 24px before it",
+    "widths": [
+     1440
+    ],
+    "from": "consistency",
+    "ids": [
+     "split-pair"
+    ],
+    "wheres": [
+     "section#approach > div.wrap.section \"The approachHow coaching works. Explore \""
+    ]
+   },
+   {
+    "check": "off-grid",
+    "where": "main#main > section.hero.wrap > div.hero-art > div.arch-line",
+    "msg": "left edge at 35px, 15px off the page margin at 20px (39 elements, like div.portrait-frame)",
+    "fix": "move it onto the page margin, or the column edge its section uses",
     "widths": [
      390
     ],
     "from": "consistency",
     "ids": [
-     "no-visual"
+     "off-grid"
     ],
     "wheres": [
-     "section#quiz \"A little reflection.A useful next step.\""
+     "main#main > section.hero.wrap > div.hero-art > div.arch-line"
+    ]
+   },
+   {
+    "check": "off-grid",
+    "where": "ul#credentials > li:nth-of-type(1) \"Deputy Head of Therapies\"",
+    "msg": "left edge at 35.5px, 15.5px off the page margin at 20px (39 elements, like p.eyebrow); 2 more in this section off the grid too (li:nth-of-type(2) at 35.5px, li:nth-of-type(3) at 35.5px)",
+    "fix": "move it onto the page margin, or the column edge its section uses",
+    "widths": [
+     390
+    ],
+    "from": "consistency",
+    "ids": [
+     "off-grid"
+    ],
+    "wheres": [
+     "ul#credentials > li:nth-of-type(1) \"Deputy Head of Therapies\""
+    ]
+   },
+   {
+    "check": "hero-fill",
+    "where": "main#main > div.credentials \"PROFESSIONAL BACKGROUND Deputy Head of T\"",
+    "msg": "the next section shows on the first screen: it starts at 657px on a 800px screen (the hero ends at 657px) (also at 768)",
+    "fix": "let the hero fill the first screen alone (min-height: 100svh, less above it): nothing of the next section on load",
+    "widths": [
+     896
+    ],
+    "from": "consistency",
+    "ids": [
+     "hero-fill"
+    ],
+    "wheres": [
+     "main#main > div.credentials \"PROFESSIONAL BACKGROUND Deputy Head of T\""
+    ]
+   },
+   {
+    "check": "edge-left",
+    "where": "div.credentials ul \"Deputy Head of TherapiesClinical\"",
+    "msg": "starts at x 358.1; the lines are 82 and the column starts",
+    "fix": "start it on the .wrap left line",
+    "widths": [
+     1440
+    ],
+    "from": "layout",
+    "ids": [
+     "edge-left"
+    ],
+    "wheres": [
+     "div.credentials ul \"Deputy Head of TherapiesClinical\""
+    ]
+   },
+   {
+    "check": "edge-left",
+    "where": "#situations h3 \"You’re accountable for decisions\"",
+    "msg": "starts at x 524.3; the lines are 82 and the column starts",
+    "fix": "start it on the .wrap left line",
+    "widths": [
+     1440
+    ],
+    "from": "layout",
+    "ids": [
+     "edge-left"
+    ],
+    "wheres": [
+     "#situations h3 \"You’re accountable for decisions\""
+    ]
+   },
+   {
+    "check": "edge-left",
+    "where": "#situations h3 \"You’re still the person every de\"",
+    "msg": "starts at x 966.7; the lines are 82 and the column starts",
+    "fix": "start it on the .wrap left line",
+    "widths": [
+     1440
+    ],
+    "from": "layout",
+    "ids": [
+     "edge-left"
+    ],
+    "wheres": [
+     "#situations h3 \"You’re still the person every de\""
+    ]
+   },
+   {
+    "check": "edge-left",
+    "where": "#situations p \"You want your team to take owner\"",
+    "msg": "starts at x 966.7; the lines are 82 and the column starts",
+    "fix": "start it on the .wrap left line",
+    "widths": [
+     1440
+    ],
+    "from": "layout",
+    "ids": [
+     "edge-left"
+    ],
+    "wheres": [
+     "#situations p \"You want your team to take owner\""
+    ]
+   },
+   {
+    "check": "edge-left",
+    "where": "#snapshot article.paper \"Sample resulta.Your leadership s\"",
+    "msg": "starts at x 748.6; the lines are 82 and the column starts",
+    "fix": "start it on the .wrap left line",
+    "widths": [
+     1440
+    ],
+    "from": "layout",
+    "ids": [
+     "edge-left"
+    ],
+    "wheres": [
+     "#snapshot article.paper \"Sample resulta.Your leadership s\""
+    ]
+   },
+   {
+    "check": "edge-left",
+    "where": "#meet p.eyebrow.lead-label \"Meet Aman Davegun\"",
+    "msg": "starts at x 707.9; the lines are 82 and the column starts",
+    "fix": "start it on the .wrap left line",
+    "widths": [
+     1440
+    ],
+    "from": "layout",
+    "ids": [
+     "edge-left"
+    ],
+    "wheres": [
+     "#meet p.eyebrow.lead-label \"Meet Aman Davegun\""
+    ]
+   },
+   {
+    "check": "edge-left",
+    "where": "#meet h2 \"I know the pressure from the ins\"",
+    "msg": "starts at x 707.9; the lines are 82 and the column starts",
+    "fix": "start it on the .wrap left line",
+    "widths": [
+     1440
+    ],
+    "from": "layout",
+    "ids": [
+     "edge-left"
+    ],
+    "wheres": [
+     "#meet h2 \"I know the pressure from the ins\""
+    ]
+   },
+   {
+    "check": "edge-left",
+    "where": "#meet p \"My background is in clinical lea\"",
+    "msg": "starts at x 707.9; the lines are 82 and the column starts",
+    "fix": "start it on the .wrap left line",
+    "widths": [
+     1440
+    ],
+    "from": "layout",
+    "ids": [
+     "edge-left"
+    ],
+    "wheres": [
+     "#meet p \"My background is in clinical lea\""
+    ]
+   },
+   {
+    "check": "edge-left",
+    "where": "#meet p \"In coaching, we can take one of \"",
+    "msg": "starts at x 707.9; the lines are 82 and the column starts",
+    "fix": "start it on the .wrap left line",
+    "widths": [
+     1440
+    ],
+    "from": "layout",
+    "ids": [
+     "edge-left"
+    ],
+    "wheres": [
+     "#meet p \"In coaching, we can take one of \""
+    ]
+   },
+   {
+    "check": "edge-left",
+    "where": "#approach ol.stages \"Explore the fitBring a real chal\"",
+    "msg": "starts at x 748.6; the lines are 82 and the column starts",
+    "fix": "start it on the .wrap left line",
+    "widths": [
+     1440
+    ],
+    "from": "layout",
+    "ids": [
+     "edge-left"
+    ],
+    "wheres": [
+     "#approach ol.stages \"Explore the fitBring a real chal\""
+    ]
+   },
+   {
+    "check": "edge-left",
+    "where": "footer.site-foot a \"Privacy\"",
+    "msg": "starts at x 1210.8; the lines are 82 and the column starts",
+    "fix": "start it on the .wrap left line",
+    "widths": [
+     1440,
+     390
+    ],
+    "from": "layout",
+    "ids": [
+     "edge-left"
+    ],
+    "wheres": [
+     "footer.site-foot a \"Privacy\""
+    ]
+   },
+   {
+    "check": "edge-left",
+    "where": "footer.site-foot a \"Accessibility\"",
+    "msg": "starts at x 1280; the lines are 82 and the column starts",
+    "fix": "start it on the .wrap left line",
+    "widths": [
+     1440
+    ],
+    "from": "layout",
+    "ids": [
+     "edge-left"
+    ],
+    "wheres": [
+     "footer.site-foot a \"Accessibility\""
+    ]
+   },
+   {
+    "check": "screen-short",
+    "where": "section.hero.wrap section.hero.wrap \"Executive & transformational lea\"",
+    "msg": "815px tall; one screen under the nav is 900px",
+    "fix": "make the section one full screen (--h: 1, layout-v4.md section 2)",
+    "widths": [
+     1440
+    ],
+    "from": "layout",
+    "ids": [
+     "screen-short"
+    ],
+    "wheres": [
+     "section.hero.wrap section.hero.wrap \"Executive & transformational lea\""
+    ]
+   },
+   {
+    "check": "screen-short",
+    "where": "#situations section.wrap.section \"The work you bringWhen leadershi\"",
+    "msg": "634px tall; one screen under the nav is 900px",
+    "fix": "make the section one full screen (--h: 1, layout-v4.md section 2)",
+    "widths": [
+     1440,
+     390
+    ],
+    "from": "layout",
+    "ids": [
+     "screen-short",
+     "screen-height"
+    ],
+    "wheres": [
+     "#situations section.wrap.section \"The work you bringWhen leadershi\""
+    ]
+   },
+   {
+    "check": "neighbour",
+    "where": "#situations section.wrap.section \"The work you bringWhen leadershi\"",
+    "msg": "framed, 55px of #snapshot section.snapshot-band \"The Leadership SnapshotSee where\" shows",
+    "fix": "keep the next section's heading and picture out of this screen",
+    "widths": [
+     1440
+    ],
+    "from": "layout",
+    "ids": [
+     "neighbour"
+    ],
+    "wheres": [
+     "#situations section.wrap.section \"The work you bringWhen leadershi\""
+    ]
+   },
+   {
+    "check": "screen-short",
+    "where": "#snapshot section.snapshot-band \"The Leadership SnapshotSee where\"",
+    "msg": "751px tall; one screen under the nav is 900px",
+    "fix": "make the section one full screen (--h: 1, layout-v4.md section 2)",
+    "widths": [
+     1440
+    ],
+    "from": "layout",
+    "ids": [
+     "screen-short",
+     "screen-height"
+    ],
+    "wheres": [
+     "#snapshot section.snapshot-band \"The Leadership SnapshotSee where\""
+    ]
+   },
+   {
+    "check": "neighbour",
+    "where": "#snapshot section.snapshot-band \"The Leadership SnapshotSee where\"",
+    "msg": "framed, 27px of #meet section.wrap.section \"Meet Aman DavegunI know the pres\" shows",
+    "fix": "keep the next section's heading and picture out of this screen",
+    "widths": [
+     1440
+    ],
+    "from": "layout",
+    "ids": [
+     "neighbour"
+    ],
+    "wheres": [
+     "#snapshot section.snapshot-band \"The Leadership SnapshotSee where\""
+    ]
+   },
+   {
+    "check": "neighbour",
+    "where": "#approach section.journey \"The approachHow coaching works. \"",
+    "msg": "framed, 44px of section.wrap.section section.wrap.section \"Before we meetA few questions. W\" shows",
+    "fix": "keep the next section's heading and picture out of this screen",
+    "widths": [
+     1440
+    ],
+    "from": "layout",
+    "ids": [
+     "neighbour"
+    ],
+    "wheres": [
+     "#approach section.journey \"The approachHow coaching works. \""
+    ]
+   },
+   {
+    "check": "screen-short",
+    "where": "section.wrap.section section.wrap.section \"Before we meetA few questions. W\"",
+    "msg": "477px tall; one screen under the nav is 900px",
+    "fix": "make the section one full screen (--h: 1, layout-v4.md section 2)",
+    "widths": [
+     1440,
+     390
+    ],
+    "from": "layout",
+    "ids": [
+     "screen-short"
+    ],
+    "wheres": [
+     "section.wrap.section section.wrap.section \"Before we meetA few questions. W\""
+    ]
+   },
+   {
+    "check": "screen-height",
+    "where": "section.wrap.section section.wrap.section \"Before we meetA few questions. W\"",
+    "msg": "477px, 0.53 screens; a section is exactly one or two (--h)",
+    "fix": "make the section exactly one or two screens (--h: 1 or 2)",
+    "widths": [
+     1440,
+     390
+    ],
+    "from": "layout",
+    "ids": [
+     "screen-height"
+    ],
+    "wheres": [
+     "section.wrap.section section.wrap.section \"Before we meetA few questions. W\""
+    ]
+   },
+   {
+    "check": "neighbour",
+    "where": "section.wrap.section section.wrap.section \"Before we meetA few questions. W\"",
+    "msg": "framed, 85px of section.closing section.closing \"A conversation with AmanWhat’s o\" shows",
+    "fix": "keep the next section's heading and picture out of this screen",
+    "widths": [
+     1440,
+     390
+    ],
+    "from": "layout",
+    "ids": [
+     "neighbour"
+    ],
+    "wheres": [
+     "section.wrap.section section.wrap.section \"Before we meetA few questions. W\""
+    ]
+   },
+   {
+    "check": "screen-short",
+    "where": "section.closing section.closing \"A conversation with AmanWhat’s o\"",
+    "msg": "415px tall; one screen under the nav is 900px",
+    "fix": "make the section one full screen (--h: 1, layout-v4.md section 2)",
+    "widths": [
+     1440,
+     390
+    ],
+    "from": "layout",
+    "ids": [
+     "screen-short"
+    ],
+    "wheres": [
+     "section.closing section.closing \"A conversation with AmanWhat’s o\""
+    ]
+   },
+   {
+    "check": "screen-height",
+    "where": "section.closing section.closing \"A conversation with AmanWhat’s o\"",
+    "msg": "415px, 0.46 screens; a section is exactly one or two (--h)",
+    "fix": "make the section exactly one or two screens (--h: 1 or 2)",
+    "widths": [
+     1440,
+     390
+    ],
+    "from": "layout",
+    "ids": [
+     "screen-height"
+    ],
+    "wheres": [
+     "section.closing section.closing \"A conversation with AmanWhat’s o\""
+    ]
+   },
+   {
+    "check": "neighbour",
+    "where": "section.closing section.closing \"A conversation with AmanWhat’s o\"",
+    "msg": "framed, 101px of the footer shows",
+    "fix": "keep the next section's heading and picture out of this screen",
+    "widths": [
+     1440,
+     390
+    ],
+    "from": "layout",
+    "ids": [
+     "neighbour"
+    ],
+    "wheres": [
+     "section.closing section.closing \"A conversation with AmanWhat’s o\""
+    ]
+   },
+   {
+    "check": "neighbour-ground",
+    "where": "#situations section.wrap.section \"The work you bringWhen leadershi\"",
+    "msg": "framed, 18px of #snapshot section.snapshot-band \"The Leadership SnapshotSee where\"'s ground shows",
+    "fix": "end the ground with the section",
+    "widths": [
+     390
+    ],
+    "from": "layout",
+    "ids": [
+     "neighbour-ground"
+    ],
+    "wheres": [
+     "#situations section.wrap.section \"The work you bringWhen leadershi\""
+    ]
+   },
+   {
+    "check": "hero-fold",
+    "where": "section.hero.wrap section.hero.wrap \"Executive & transformational lea\"",
+    "msg": "ends at y 967, past the fold (844): 1.07 screens tall",
+    "fix": "the hero fills the first screen alone, its button inside it",
+    "widths": [
+     390
+    ],
+    "from": "layout",
+    "ids": [
+     "hero-fold"
+    ],
+    "wheres": [
+     "section.hero.wrap section.hero.wrap \"Executive & transformational lea\""
+    ]
+   },
+   {
+    "check": "copy-two-fragment",
+    "msg": "two-fragment headings \"X. Y.\": 3, budget 1 (a tic, not a device)",
+    "fix": "spend it once where it lands hardest; give the other headings a plain label, a claim or the thing they name (references/copy-tells.md)",
+    "widths": [],
+    "from": "copy",
+    "where": "copy x3: \"Lead with clarity. No...\", \"Your remit got bigger...\", \"See where y...",
+    "exact": true,
+    "ids": [
+     "copy-two-fragment"
+    ],
+    "wheres": [
+     "copy x3: \"Lead with clarity. No...\", \"Your remit got bigger...\", \"See where y..."
     ]
    }
   ],
   "warns": [
    {
-    "check": "scroll-reveal",
-    "where": "div.wrap > div.report-layout > div.report-copy > h3.mo-wh__text \"Make room for the leadership work that n\"",
-    "msg": "starts \"color\" (0.2 s) the moment it is scrolled into view (an IntersectionObserver) on span.mo-w:nth-of-type(1) (inside a dealt moment's section, [data-moment]: an enter moment is expected on every kind; its still is judged under reduced motion)",
-    "fix": "show it at rest: no fade, rise or unmask when it is scrolled into view",
+    "check": "flush",
+    "where": "ul#credentials > li:nth-of-type(1) \"Deputy Head of Therapies\"",
+    "msg": "its first line sits 23px under the top edge of div.credentials, where the ground changes",
+    "fix": "give the section its padding at the edge where the ground changes (the closing call keeps a clear gap above the footer)",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "same-action",
+    "where": "section.hero.wrap > div.hero-copy > div.actions > a.text-link \"Book a free discovery call ↗\"",
+    "msg": "\"Book a free discovery call ↗\" is a button in one place and a text link in another: one action in two looks",
+    "fix": "show one action one way: the same button wherever it repeats, or a text link everywhere",
+    "widths": [
+     1440,
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "same-action",
+    "where": "section.closing > div.wrap > div.actions > a.text-link \"Take the leadership quiz →\"",
+    "msg": "\"Take the leadership quiz →\" is a button in one place and a text link in another: one action in two looks",
+    "fix": "show one action one way: the same button wherever it repeats, or a text link everywhere",
     "widths": [
      1440,
      390
@@ -126,8 +1113,28 @@
    },
    {
     "check": "copy-actions",
+    "where": "header.mast.nav > div.wrap.mast-inner > a.nav-book \"Book a free call ↗\"",
+    "msg": "2 labels for one target /book: \"Book a free call ↗\", \"Book a free discovery call ↗\"",
+    "fix": "few actions, one wording: at most 2 in the hero, the main action word for word in nav, hero and close",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "copy-actions",
+    "where": "section.hero.wrap > div.hero-copy > div.actions > a.button \"Take the leadership quiz →\"",
+    "msg": "2 labels for one target /leadership-quiz: \"Take the leadership quiz →\", \"Start my Leadership Snapshot →\"",
+    "fix": "few actions, one wording: at most 2 in the hero, the main action word for word in nav, hero and close",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "copy-actions",
     "where": "(the page)",
-    "msg": "the main action \"Start the quiz\" does not read word for word the same in the closing section",
+    "msg": "the main action \"Take the leadership quiz\" does not read word for word the same in the closing section",
     "fix": "few actions, one wording: at most 2 in the hero, the main action word for word in nav, hero and close",
     "widths": [
      1440
@@ -136,152 +1143,93 @@
    },
    {
     "check": "section-gaps",
-    "where": "section#quiz / section#coaching",
-    "msg": "uneven space at the edge of a band: 126px outside its edge, 270px inside it (the space on either side of a change of ground reads as one gap only when the two match)",
+    "where": "main#main > section.hero.wrap / main#main > div.credentials",
+    "msg": "121px between these sections, -50% against the median 240px",
     "fix": "use one gap between sections (all within 25% of each other)",
     "widths": [
      1440,
-     390
-    ],
-    "from": "consistency"
-   },
-   {
-    "check": "links",
-    "where": "header.nav.nav--centre > div.wrap.nav__bar > nav.nav__links > a.nav__link:nth-of-type(3) \"Get in touch\"",
-    "msg": "\"Get in touch\" goes to #contact, in the footer",
-    "fix": "point every link at a real section, page or file",
-    "widths": [
-     1440
-    ],
-    "from": "consistency"
-   },
-   {
-    "check": "links",
-    "where": "div.wrap > div.report-layout > div.report-copy > a.text-link \"Get your snapshot ↗\"",
-    "msg": "\"Get your snapshot ↗\" only scrolls to #quiz, where nothing completes it",
-    "fix": "point every link at a real section, page or file",
-    "widths": [
-     1440
-    ],
-    "from": "consistency"
-   },
-   {
-    "check": "links",
-    "where": "div.wrap > div.coaching-layout > div.coaching-copy > a.text-link.booking-link \"Request a discovery call ↗\"",
-    "msg": "\"Request a discovery call ↗\" goes to #contact, in the footer",
-    "fix": "point every link at a real section, page or file",
-    "widths": [
-     1440
-    ],
-    "from": "consistency"
-   },
-   {
-    "check": "nav-labels",
-    "where": "header.nav.nav--centre > a.skip-link \"Skip to content\"",
-    "msg": "\"Skip to content\" opens a section headed \"Leadership coaching for senior leaders.\"",
-    "fix": "name each nav link after the heading of the section it opens",
-    "widths": [
-     1440
-    ],
-    "from": "consistency"
-   },
-   {
-    "check": "nav-labels",
-    "where": "header.nav.nav--centre > div.wrap.nav__bar > nav.nav__links > a.nav__link:nth-of-type(1) \"Your report\"",
-    "msg": "\"Your report\" opens a section headed \"Your leadership, in perspective.\"",
-    "fix": "name each nav link after the heading of the section it opens",
-    "widths": [
-     1440
-    ],
-    "from": "consistency"
-   },
-   {
-    "check": "nav-labels",
-    "where": "header.nav.nav--centre > div.wrap.nav__bar > nav.nav__links > a.nav__link:nth-of-type(3) \"Get in touch\"",
-    "msg": "\"Get in touch\" opens a section headed \"Bring your next leadership question.\"",
-    "fix": "name each nav link after the heading of the section it opens",
-    "widths": [
-     1440
-    ],
-    "from": "consistency"
-   },
-   {
-    "check": "link-styles",
-    "where": "footer#contact > div.wrap > div.footer-bottom > a.inline-button \"Accessibility\"",
-    "msg": "text links in 3 looks: no line, regular (2, like \"See the coaching →\"); no line, bold (3, like \"Get your snapshot ↗\"); underline, regular (1, like \"Accessibility\")",
-    "fix": "give text links one look wherever they sit: one underline, one weight",
-    "widths": [
-     1440,
-     390
-    ],
-    "from": "consistency"
-   },
-   {
-    "check": "nav-current",
-    "where": "header.nav.nav--centre",
-    "msg": "the nav stays on screen with 3 links to the page's sections, but never marks the one you are in (no link changes as the page scrolls)",
-    "fix": "mark the link of the section on screen (a colour, a weight or a line under it) as the visitor scrolls",
-    "widths": [
-     1440
-    ],
-    "from": "consistency"
-   },
-   {
-    "check": "grounds",
-    "where": "section#top \"AMAN COACHING · WEBSITE PREVIEW Leadersh\"",
-    "msg": "4 flat grounds across the page (#1b1b1b section, #e2e2e2 section x2, #d6d6d6 section, #7d0c14 footer): three at most (the base, a surface, an inverse)",
-    "fix": "three flat grounds at most (the base, one surface, one inverse): lay the other bands on one of them",
-    "widths": [
-     1440
-    ],
-    "from": "consistency"
-   },
-   {
-    "check": "action-repeat",
-    "where": "header.nav.nav--centre > div.wrap.nav__bar > div.nav__actions > a.btn.btn--primary \"start the quiz\"",
-    "msg": "\"start the quiz\" shows 2 times on the first screen at 1440px (nav, hero): the nav's button and the hero's; nothing else on the screen may repeat it",
-    "fix": "show the action once a screen besides the nav's button: the hero's, the close's or the phone bar's, never all at once",
-    "widths": [
-     1440
-    ],
-    "from": "consistency"
-   },
-   {
-    "check": "nav",
-    "where": "header.nav.nav--centre > div.wrap.nav__bar > button.nav__toggle \"Menu ＋\"",
-    "msg": "the nav is lopsided: its last item ends 7px inside the content's edge (366px), while its first starts on the other edge",
-    "fix": "start the nav's first item and end its last on the content's two edges",
-    "widths": [
-     390
-    ],
-    "from": "consistency"
-   },
-   {
-    "check": "tap-size",
-    "where": "p#contact-note > button.inline-button.privacy-open \"Read the privacy notice\"",
-    "msg": "a 125x19px tap target: under the 44px a phone needs",
-    "fix": "make every link and control outside running text 44px tall on a phone: display: inline-flex; align-items: center; min-height: 44px (a footer list then needs no gap), a 44px small button, or a transparent ::before laid past the box",
-    "widths": [
-     390,
-     320
-    ],
-    "from": "consistency"
-   },
-   {
-    "check": "body-size",
-    "where": "div.coaching-layout > div.questions > details:nth-of-type(1) > p \"Mid-to-senior leaders and people taking \"",
-    "msg": "5 of 8 paragraphs of running text are set under 16px (14, 15px)",
-    "fix": "set running text at 16px or more",
-    "widths": [
      390
     ],
     "from": "consistency"
    },
    {
     "check": "section-gaps",
-    "where": "section#coaching / footer#contact",
-    "msg": "571px between these sections, +58% against the median 361px of gaps at a change of ground",
+    "where": "main#main > div.credentials / section#situations",
+    "msg": "145px between these sections, -40% against the median 240px",
     "fix": "use one gap between sections (all within 25% of each other)",
+    "widths": [
+     1440,
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "section-gaps",
+    "where": "main#main > section.closing / footer.site-foot",
+    "msg": "117px between these sections, -52% against the median 245px of gaps at a change of ground",
+    "fix": "use one gap between sections (all within 25% of each other)",
+    "widths": [
+     1440,
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "section-gaps",
+    "where": "main#main > section.wrap.section:nth-of-type(6) / main#main > section.closing",
+    "msg": "uneven space at the edge of a band: 155px outside its edge, 80px inside it (the space on either side of a change of ground reads as one gap only when the two match)",
+    "fix": "use one gap between sections (all within 25% of each other)",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "heading-align",
+    "where": "main#main > section.closing > div.wrap > h2 \"What’s on your mind?\"",
+    "msg": "5 section headings sit on the left, 1 centred: \"What’s on your mind?\"",
+    "fix": "set every section heading in one place: all on the left grid, or all centred",
+    "widths": [
+     1440,
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "one-screen",
+    "where": "section#situations \"When leadership gets harder.\"",
+    "msg": "4 sections are shorter than the screen, so the next one's heading or picture shows with them: \"When leadership gets harder.\" is 634px of the 900px under the nav, and \"See where you’re strong. Find \" shows below it (\"See where you’re str\", \"How coaching works.\", \"A few questions.\")",
+    "fix": "give each section the screen (min-height: 100svh less the nav, its content centred), or join two short ones into one",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "section-air",
+    "where": "main#main > section.wrap.section:nth-of-type(6) \"Before we meetA few questions. Who is co\"",
+    "msg": "the content fills 41.7% of the section's height (199 of 477px): 55% or more (40% WARN) (SR-3)",
+    "fix": "fill the section to 55%: more content, a picture or a background layer, or merge it into the section above as its last block",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "right-edge",
+    "where": "main#main > section.hero.wrap > div.hero-art > div.portrait-frame",
+    "msg": "its right edge stops 15px short of the content's right edge (370px), which div.arch-line reaches",
+    "fix": "end it on the content's right edge, like the other blocks of its section",
+    "widths": [
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "right-edge",
+    "where": "section#snapshot > div.wrap.section > div > a.button.light \"Start my Leadership Snapshot →\"",
+    "msg": "its right edge stops 57px short of the content's right edge (370px), which article.paper reaches",
+    "fix": "end it on the content's right edge, like the other blocks of its section",
     "widths": [
      390
     ],
@@ -289,8 +1237,8 @@
    },
    {
     "check": "grounds",
-    "where": "section#report > div.wrap > div.report-layout > article.report-preview \"aman / EXAMPLE REPORT YOUR LEADERSHIP SN\"",
-    "msg": "4 flat grounds across the page (#e2e2e2 section x4, #f5f1eb band, #d6d6d6 section, #7d0c14 footer): three at most (the base, a surface, an inverse)",
+    "where": "section#snapshot > div.wrap.section > article.paper \"SAMPLE RESULT a. Your leadership snapsho\"",
+    "msg": "4 flat grounds across the page (#f6f3ec section x6, #233c31 section x2, #fbfaf5 band, #e4e8da section): three at most (the base, a surface, an inverse)",
     "fix": "three flat grounds at most (the base, one surface, one inverse): lay the other bands on one of them",
     "widths": [
      390
@@ -298,27 +1246,977 @@
     "from": "consistency"
    },
    {
-    "check": "fold-cut",
-    "where": "div.hero-text > div.hero__text > div.btn-row > a.btn.btn--primary \"Start the quiz ↗\"",
-    "msg": "the hero's button \"Start the quiz ↗\" is cut by the bottom of the first screen (8px of its 48px below the fold)",
-    "fix": "size the hero so the heading ends above the fold, or starts below it",
-    "widths": [
-     320
-    ],
-    "from": "consistency"
+    "check": "copy-stat-strip",
+    "msg": "stat strip x1",
+    "fix": "a strip only of figures the brief gives (a price, hours, a count); otherwise put each number in the sentence it proves, or leave it out (references/copy-tells.md)",
+    "widths": [],
+    "from": "copy",
+    "where": "copy x1: \"3.7 / 5 / 4.3 / 5 / 2...\"",
+    "exact": false
+   },
+   {
+    "check": "copy-eyebrows",
+    "msg": "9 eyebrow or kicker labels",
+    "fix": "one or two a page; a heading that names the thing needs no label over it (references/copy-tells.md)",
+    "widths": [],
+    "from": "copy",
+    "where": "(the copy)",
+    "exact": false
    }
   ],
   "crashed": [],
   "seconds": {
-   "consistency": 82,
-   "layout": 3
+   "consistency": 107,
+   "layout": 13
   }
  },
- "open": [],
+ "open": [
+  {
+   "check": "no-visual",
+   "where": "section#situations \"When leadership gets harder.\"",
+   "msg": "no picture, effect or mock in this section; a feature section needs a visual",
+   "fix": "give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits",
+   "widths": [
+    1440,
+    390
+   ],
+   "from": "consistency",
+   "ids": [
+    "no-visual"
+   ],
+   "wheres": [
+    "section#situations \"When leadership gets harder.\""
+   ]
+  },
+  {
+   "check": "no-visual",
+   "where": "section#snapshot \"See where you’re strong. Find what to wo\"",
+   "msg": "no picture, effect or mock in this section; a feature section needs a visual",
+   "fix": "give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits",
+   "widths": [
+    1440,
+    390
+   ],
+   "from": "consistency",
+   "ids": [
+    "no-visual"
+   ],
+   "wheres": [
+    "section#snapshot \"See where you’re strong. Find what to wo\""
+   ]
+  },
+  {
+   "check": "no-visual",
+   "where": "section#approach \"How coaching works.\"",
+   "msg": "no picture, effect or mock in this section; a feature section needs a visual",
+   "fix": "give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits",
+   "widths": [
+    1440,
+    390
+   ],
+   "from": "consistency",
+   "ids": [
+    "no-visual"
+   ],
+   "wheres": [
+    "section#approach \"How coaching works.\""
+   ]
+  },
+  {
+   "check": "text-only",
+   "where": "main#main > section.wrap.section:nth-of-type(6) \"A few questions.\"",
+   "msg": "the section is only text: no picture, icon, mock or effect in it (2 sections like it at this width)",
+   "fix": "give the section a visual: a photograph that fits, the real icons, or a UI fragment on a ground",
+   "widths": [
+    1440,
+    390
+   ],
+   "from": "consistency",
+   "ids": [
+    "text-only"
+   ],
+   "wheres": [
+    "main#main > section.wrap.section:nth-of-type(6) \"A few questions.\""
+   ]
+  },
+  {
+   "check": "text-only",
+   "where": "main#main > section.closing \"What’s on your mind?\"",
+   "msg": "the closing section is only text: no picture, icon, mock or effect in it (2 sections like it at this width)",
+   "fix": "give the section a visual: a photograph that fits, the real icons, or a UI fragment on a ground",
+   "widths": [
+    1440,
+    390
+   ],
+   "from": "consistency",
+   "ids": [
+    "text-only"
+   ],
+   "wheres": [
+    "main#main > section.closing \"What’s on your mind?\""
+   ]
+  },
+  {
+   "check": "button-styles",
+   "where": "(the page)",
+   "msg": "3 button styles on the page: pill, outline #3d5c4b x1 (\"Book a free call ↗\"); pill, fill #233c31 x1 (\"Take the leadership quiz →\"); pill, fill #f6f3ec x2 (\"Start my Leadership Snapshot →\")",
+   "fix": "one primary and one secondary button: one shape, one height per size, one label size",
+   "widths": [
+    1440,
+    390
+   ],
+   "from": "consistency",
+   "ids": [
+    "button-styles"
+   ],
+   "wheres": [
+    "(the page)"
+   ]
+  },
+  {
+   "check": "copy-fact",
+   "where": "h1#hero-title \"Lead with clarity. Not at your own expen\"",
+   "msg": "the first screen holds no number, price, date, place, platform or genre",
+   "fix": "put one hard fact from the brief on the first screen: a number, a price, a date, the place, the platforms it runs on or a game's genre; take it from the brief or remove the claim",
+   "widths": [
+    1440
+   ],
+   "from": "consistency",
+   "ids": [
+    "copy-fact"
+   ],
+   "wheres": [
+    "h1#hero-title \"Lead with clarity. Not at your own expen\""
+   ]
+  },
+  {
+   "check": "copy-headings",
+   "where": "section#situations > div.situation-grid > article:nth-of-type(1) > h3 \"Your remit got bigger. Your time didn’t.\"",
+   "msg": "\"Your remit got bigger. Your time didn’t.\" names no product, part, place or section (7 headings like it; at most one brand line per page) (and 6 more like it: \"You’re accountable for d\", \"You’re still the person \", \"See where you’re strong.\", \"Explore the fit\", ...)",
+   "fix": "name the thing in every heading: the product, a part, the place or a section noun",
+   "widths": [
+    1440
+   ],
+   "from": "consistency",
+   "ids": [
+    "copy-headings"
+   ],
+   "wheres": [
+    "section#situations > div.situation-grid > article:nth-of-type(1) > h3 \"Your remit got bigger. Your time didn’t.\""
+   ]
+  },
+  {
+   "check": "section-tile",
+   "where": "section#situations \"When leadership gets harder.\"",
+   "msg": "the section is 634px tall (0.70 screens at 1440x900), shorter than the screen: its tile (the screen from its top) shows 634px of it and 266px of the next section, its heading \"See where you’re strong. Find \" on screen",
+   "fix": "set every section after the hero to one screen or two (height: calc(var(--h,1) * 100vh)) and fit its content above --padb",
+   "widths": [
+    1440
+   ],
+   "from": "consistency",
+   "ids": [
+    "section-tile"
+   ],
+   "wheres": [
+    "section#situations \"When leadership gets harder.\""
+   ]
+  },
+  {
+   "check": "section-tile",
+   "where": "main#main > section.wrap.section:nth-of-type(6) \"A few questions.\"",
+   "msg": "the section is 477px tall (0.53 screens at 1440x900), shorter than the screen: its tile (the screen from its top) shows 477px of it and 415px of the next section, its heading \"What’s on your mind?\" on screen",
+   "fix": "set every section after the hero to one screen or two (height: calc(var(--h,1) * 100vh)) and fit its content above --padb",
+   "widths": [
+    1440,
+    390
+   ],
+   "from": "consistency",
+   "ids": [
+    "section-tile"
+   ],
+   "wheres": [
+    "main#main > section.wrap.section:nth-of-type(6) \"A few questions.\""
+   ]
+  },
+  {
+   "check": "moment-none",
+   "where": "(the page)",
+   "msg": "a service page (--type) deals no moment: every kind carries one, two on a long page (moments.md)",
+   "fix": "deal one (moments.mjs pick --page service --photo) and mount it in its own section",
+   "widths": [
+    1440
+   ],
+   "from": "consistency",
+   "ids": [
+    "moment-none"
+   ],
+   "wheres": [
+    "(the page)"
+   ]
+  },
+  {
+   "check": "section-height",
+   "where": "main#main > div.credentials \"Professional backgroundDeputy Head of Th\"",
+   "msg": "the section is 71px tall (0.1 screens), 829px short of one screen (900px): every section after the hero is one screen or two, 2px either way (SR-2)",
+   "fix": "set the section to one screen or two (height: calc(var(--h,1) * 100vh), --h 1 or 2) and cut or split its content to fit",
+   "widths": [
+    1440
+   ],
+   "from": "consistency",
+   "ids": [
+    "section-height"
+   ],
+   "wheres": [
+    "main#main > div.credentials \"Professional backgroundDeputy Head of Th\"",
+    "main#main > section.closing \"A conversation with AmanWhat’s on your m\""
+   ]
+  },
+  {
+   "check": "section-height",
+   "where": "footer.site-foot \"Aman CoachingExecutive & transformationa\"",
+   "msg": "the section is 101px tall (0.1 screens), 799px short of one screen (900px): every section after the hero is one screen or two, 2px either way (SR-2)",
+   "fix": "set the section to one screen or two (height: calc(var(--h,1) * 100vh), --h 1 or 2) and cut or split its content to fit",
+   "widths": [
+    1440
+   ],
+   "from": "consistency",
+   "ids": [
+    "section-height"
+   ],
+   "wheres": [
+    "footer.site-foot \"Aman CoachingExecutive & transformationa\""
+   ]
+  },
+  {
+   "check": "section-height",
+   "where": "section#approach \"The approachHow coaching works. Explore \"",
+   "msg": "the section starts at 3101px, 401px below the screen grid (3 x 900px): sections start on whole screens (SR-2)",
+   "fix": "make every section above it exactly one or two screens tall, so this one starts on a whole screen",
+   "widths": [
+    1440,
+    390
+   ],
+   "from": "consistency",
+   "ids": [
+    "section-height",
+    "screen-short",
+    "screen-height"
+   ],
+   "wheres": [
+    "section#approach \"The approachHow coaching works. Explore \"",
+    "#approach section.journey \"The approachHow coaching works. \""
+   ]
+  },
+  {
+   "check": "section-height",
+   "where": "section#meet \"Meet Aman DavegunI know the pressure fro\"",
+   "msg": "the section starts at 2356px, 344px above the screen grid (3 x 900px): sections start on whole screens (SR-2)",
+   "fix": "make every section above it exactly one or two screens tall, so this one starts on a whole screen",
+   "widths": [
+    1440
+   ],
+   "from": "consistency",
+   "ids": [
+    "section-height",
+    "screen-short",
+    "screen-height"
+   ],
+   "wheres": [
+    "section#meet \"Meet Aman DavegunI know the pressure fro\"",
+    "#meet section.wrap.section \"Meet Aman DavegunI know the pres\""
+   ]
+  },
+  {
+   "check": "section-air",
+   "where": "main#main > div.credentials \"Professional backgroundDeputy Head of Th\"",
+   "msg": "the content fills 35.2% of the section's height (25 of 71px): 55% or more (40% WARN) (SR-3)",
+   "fix": "fill the section to 55%: more content, a picture or a background layer, or merge it into the section above as its last block",
+   "widths": [
+    1440
+   ],
+   "from": "consistency",
+   "ids": [
+    "section-air"
+   ],
+   "wheres": [
+    "main#main > div.credentials \"Professional backgroundDeputy Head of Th\""
+   ]
+  },
+  {
+   "check": "one-section",
+   "where": "main#main > section.closing > div.wrap > h2 \"What’s on your mind?\"",
+   "msg": "the screen at scroll 3806px (the top of section 7) shows 415px of section 8 and the heading of section 8 whole and the content of 2 sections, over 24px each beside section 7: a screen shows one section (another may peek 8px, 24px WARN) (SR-4)",
+   "fix": "make each section exactly one screen or two, so a screen shows one section and no neighbour peeks",
+   "widths": [
+    1440
+   ],
+   "from": "consistency",
+   "ids": [
+    "one-section"
+   ],
+   "wheres": [
+    "main#main > section.closing > div.wrap > h2 \"What’s on your mind?\"",
+    "main#main > section.wrap.section:nth-of-type(6) > div:nth-of-type(1) > h2 \"A few questions.\"",
+    "main#main > div.credentials \"Professional backgroundDeputy Head of Th\""
+   ]
+  },
+  {
+   "check": "one-section",
+   "where": "section#meet \"Meet Aman DavegunI know the pressure fro\"",
+   "msg": "the screen at scroll 2700px (stride 3) shows 401px of section 5 and the content of 2 sections, over 24px each beside section 6: a screen shows one section (another may peek 8px, 24px WARN) (SR-4)",
+   "fix": "make each section exactly one screen or two, so a screen shows one section and no neighbour peeks",
+   "widths": [
+    1440
+   ],
+   "from": "consistency",
+   "ids": [
+    "one-section",
+    "neighbour"
+   ],
+   "wheres": [
+    "section#meet \"Meet Aman DavegunI know the pressure fro\"",
+    "#meet section.wrap.section \"Meet Aman DavegunI know the pres\""
+   ]
+  },
+  {
+   "check": "one-heading",
+   "where": "section#meet > div:nth-of-type(2) > h2 \"I know the pressure from the inside.\"",
+   "msg": "headings of two sections show whole on one screen at 10 of 78 scroll positions (12.8%; at scroll 1800, 3150, 3200, 3250px), here with \"See where you’re strong. Find wh\": at most 3% on a desktop (SR-5)",
+   "fix": "make the sections one screen tall so their headings sit a screen apart and two never share one",
+   "widths": [
+    1440
+   ],
+   "from": "consistency",
+   "ids": [
+    "one-heading"
+   ],
+   "wheres": [
+    "section#meet > div:nth-of-type(2) > h2 \"I know the pressure from the inside.\""
+   ]
+  },
+  {
+   "check": "container-edges",
+   "where": "footer.site-foot \"Aman CoachingExecutive & transformationa\"",
+   "msg": "a <footer> at the top of the page, outside header.nav, main, footer.closing and nav.actionbar (SR-6)",
+   "fix": "build the page as header.nav, a main of sections (each one in-flow .wrap plus background layers) and footer.closing",
+   "widths": [
+    1440
+   ],
+   "from": "consistency",
+   "ids": [
+    "container-edges"
+   ],
+   "wheres": [
+    "footer.site-foot \"Aman CoachingExecutive & transformationa\""
+   ]
+  },
+  {
+   "check": "container-edges",
+   "where": "main#main > section.hero.wrap \"Executive & transformational leadership \"",
+   "msg": "the section needs exactly one in-flow child .wrap (it has 2 in-flow children, 0 .wrap) (SR-6)",
+   "fix": "build the page as header.nav, a main of sections (each one in-flow .wrap plus background layers) and footer.closing",
+   "widths": [
+    1440
+   ],
+   "from": "consistency",
+   "ids": [
+    "container-edges"
+   ],
+   "wheres": [
+    "main#main > section.hero.wrap \"Executive & transformational leadership \""
+   ]
+  },
+  {
+   "check": "container-edges",
+   "where": "section#situations \"The work you bringWhen leadership gets h\"",
+   "msg": "the section needs exactly one in-flow child .wrap (it has 3 in-flow children, 0 .wrap) (and 2 more like it: \"Meet Aman DavegunI know \", \"Before we meetA few ques\") (SR-6)",
+   "fix": "build the page as header.nav, a main of sections (each one in-flow .wrap plus background layers) and footer.closing",
+   "widths": [
+    1440
+   ],
+   "from": "consistency",
+   "ids": [
+    "container-edges"
+   ],
+   "wheres": [
+    "section#situations \"The work you bringWhen leadership gets h\""
+   ]
+  },
+  {
+   "check": "container-edges",
+   "where": "section#meet > div:nth-of-type(2) > h2 \"I know the pressure from the inside.\"",
+   "msg": "the h2 starts 626px right of the container's left: every h1 and h2 starts on it, 2px either way (SR-6)",
+   "fix": "start the text on the container's left, or on the one split line every split shares",
+   "widths": [
+    1440
+   ],
+   "from": "consistency",
+   "ids": [
+    "container-edges"
+   ],
+   "wheres": [
+    "section#meet > div:nth-of-type(2) > h2 \"I know the pressure from the inside.\""
+   ]
+  },
+  {
+   "check": "container-edges",
+   "where": "main#main > section.closing > div.wrap > p.eyebrow \"A conversation with Aman\"",
+   "msg": "1 text block starts on a left line at x 618, 536px from the container's left: text starts on the container's left, or on one split line (x 624, 732, 840) (SR-6)",
+   "fix": "start the text on the container's left, or on the one split line every split shares",
+   "widths": [
+    1440
+   ],
+   "from": "consistency",
+   "ids": [
+    "container-edges"
+   ],
+   "wheres": [
+    "main#main > section.closing > div.wrap > p.eyebrow \"A conversation with Aman\""
+   ]
+  },
+  {
+   "check": "container-edges",
+   "where": "main#main > section.closing > div.wrap > p:nth-of-type(2) \"Bring one real leadership challenge. We’\"",
+   "msg": "1 text block starts on a left line at x 443, 361px from the container's left: text starts on the container's left, or on one split line (x 624, 732, 840) (and 3 more like it: x 429, \"What’s on your mind?\", x 122) (SR-6)",
+   "fix": "start the text on the container's left, or on the one split line every split shares",
+   "widths": [
+    1440
+   ],
+   "from": "consistency",
+   "ids": [
+    "container-edges"
+   ],
+   "wheres": [
+    "main#main > section.closing > div.wrap > p:nth-of-type(2) \"Bring one real leadership challenge. We’\""
+   ]
+  },
+  {
+   "check": "container-edges",
+   "where": "main#main > section.closing > div.wrap > h2 \"What’s on your mind?\"",
+   "msg": "\"What’s on your mind?\" is set centred across 1276px, over half the 1276px container: text that wide is set left (SR-6)",
+   "fix": "set the text left (text-align: start)",
+   "widths": [
+    1440
+   ],
+   "from": "consistency",
+   "ids": [
+    "container-edges"
+   ],
+   "wheres": [
+    "main#main > section.closing > div.wrap > h2 \"What’s on your mind?\""
+   ]
+  },
+  {
+   "check": "split-pair",
+   "where": "section#snapshot > div.wrap.section \"The Leadership SnapshotSee where you’re \"",
+   "msg": "the two columns of the split start 52px apart at the top (centred on each other): a split's columns are top-aligned, 8px either way (SR-8)",
+   "fix": "top-align both columns of the split (align-items: start)",
+   "widths": [
+    1440
+   ],
+   "from": "consistency",
+   "ids": [
+    "split-pair"
+   ],
+   "wheres": [
+    "section#snapshot > div.wrap.section \"The Leadership SnapshotSee where you’re \""
+   ]
+  },
+  {
+   "check": "split-pair",
+   "where": "section#approach > div.wrap.section \"The approachHow coaching works. Explore \"",
+   "msg": "the split's columns are off the page's one pair of lines: its right column starts at x 749, on none of the split lines 624 (k=5), 732 (k=6), 840 (k=7) (SR-8)",
+   "fix": "start every split's right column on one shared line (wrap.left + k x (width + 24) / 12, k 5, 6 or 7; 6 on a place page) and end the left one 24px before it",
+   "widths": [
+    1440
+   ],
+   "from": "consistency",
+   "ids": [
+    "split-pair"
+   ],
+   "wheres": [
+    "section#approach > div.wrap.section \"The approachHow coaching works. Explore \""
+   ]
+  },
+  {
+   "check": "off-grid",
+   "where": "main#main > section.hero.wrap > div.hero-art > div.arch-line",
+   "msg": "left edge at 35px, 15px off the page margin at 20px (39 elements, like div.portrait-frame)",
+   "fix": "move it onto the page margin, or the column edge its section uses",
+   "widths": [
+    390
+   ],
+   "from": "consistency",
+   "ids": [
+    "off-grid"
+   ],
+   "wheres": [
+    "main#main > section.hero.wrap > div.hero-art > div.arch-line"
+   ]
+  },
+  {
+   "check": "off-grid",
+   "where": "ul#credentials > li:nth-of-type(1) \"Deputy Head of Therapies\"",
+   "msg": "left edge at 35.5px, 15.5px off the page margin at 20px (39 elements, like p.eyebrow); 2 more in this section off the grid too (li:nth-of-type(2) at 35.5px, li:nth-of-type(3) at 35.5px)",
+   "fix": "move it onto the page margin, or the column edge its section uses",
+   "widths": [
+    390
+   ],
+   "from": "consistency",
+   "ids": [
+    "off-grid"
+   ],
+   "wheres": [
+    "ul#credentials > li:nth-of-type(1) \"Deputy Head of Therapies\""
+   ]
+  },
+  {
+   "check": "hero-fill",
+   "where": "main#main > div.credentials \"PROFESSIONAL BACKGROUND Deputy Head of T\"",
+   "msg": "the next section shows on the first screen: it starts at 657px on a 800px screen (the hero ends at 657px) (also at 768)",
+   "fix": "let the hero fill the first screen alone (min-height: 100svh, less above it): nothing of the next section on load",
+   "widths": [
+    896
+   ],
+   "from": "consistency",
+   "ids": [
+    "hero-fill"
+   ],
+   "wheres": [
+    "main#main > div.credentials \"PROFESSIONAL BACKGROUND Deputy Head of T\""
+   ]
+  },
+  {
+   "check": "edge-left",
+   "where": "div.credentials ul \"Deputy Head of TherapiesClinical\"",
+   "msg": "starts at x 358.1; the lines are 82 and the column starts",
+   "fix": "start it on the .wrap left line",
+   "widths": [
+    1440
+   ],
+   "from": "layout",
+   "ids": [
+    "edge-left"
+   ],
+   "wheres": [
+    "div.credentials ul \"Deputy Head of TherapiesClinical\""
+   ]
+  },
+  {
+   "check": "edge-left",
+   "where": "#situations h3 \"You’re accountable for decisions\"",
+   "msg": "starts at x 524.3; the lines are 82 and the column starts",
+   "fix": "start it on the .wrap left line",
+   "widths": [
+    1440
+   ],
+   "from": "layout",
+   "ids": [
+    "edge-left"
+   ],
+   "wheres": [
+    "#situations h3 \"You’re accountable for decisions\""
+   ]
+  },
+  {
+   "check": "edge-left",
+   "where": "#situations h3 \"You’re still the person every de\"",
+   "msg": "starts at x 966.7; the lines are 82 and the column starts",
+   "fix": "start it on the .wrap left line",
+   "widths": [
+    1440
+   ],
+   "from": "layout",
+   "ids": [
+    "edge-left"
+   ],
+   "wheres": [
+    "#situations h3 \"You’re still the person every de\""
+   ]
+  },
+  {
+   "check": "edge-left",
+   "where": "#situations p \"You want your team to take owner\"",
+   "msg": "starts at x 966.7; the lines are 82 and the column starts",
+   "fix": "start it on the .wrap left line",
+   "widths": [
+    1440
+   ],
+   "from": "layout",
+   "ids": [
+    "edge-left"
+   ],
+   "wheres": [
+    "#situations p \"You want your team to take owner\""
+   ]
+  },
+  {
+   "check": "edge-left",
+   "where": "#snapshot article.paper \"Sample resulta.Your leadership s\"",
+   "msg": "starts at x 748.6; the lines are 82 and the column starts",
+   "fix": "start it on the .wrap left line",
+   "widths": [
+    1440
+   ],
+   "from": "layout",
+   "ids": [
+    "edge-left"
+   ],
+   "wheres": [
+    "#snapshot article.paper \"Sample resulta.Your leadership s\""
+   ]
+  },
+  {
+   "check": "edge-left",
+   "where": "#meet p.eyebrow.lead-label \"Meet Aman Davegun\"",
+   "msg": "starts at x 707.9; the lines are 82 and the column starts",
+   "fix": "start it on the .wrap left line",
+   "widths": [
+    1440
+   ],
+   "from": "layout",
+   "ids": [
+    "edge-left"
+   ],
+   "wheres": [
+    "#meet p.eyebrow.lead-label \"Meet Aman Davegun\""
+   ]
+  },
+  {
+   "check": "edge-left",
+   "where": "#meet h2 \"I know the pressure from the ins\"",
+   "msg": "starts at x 707.9; the lines are 82 and the column starts",
+   "fix": "start it on the .wrap left line",
+   "widths": [
+    1440
+   ],
+   "from": "layout",
+   "ids": [
+    "edge-left"
+   ],
+   "wheres": [
+    "#meet h2 \"I know the pressure from the ins\""
+   ]
+  },
+  {
+   "check": "edge-left",
+   "where": "#meet p \"My background is in clinical lea\"",
+   "msg": "starts at x 707.9; the lines are 82 and the column starts",
+   "fix": "start it on the .wrap left line",
+   "widths": [
+    1440
+   ],
+   "from": "layout",
+   "ids": [
+    "edge-left"
+   ],
+   "wheres": [
+    "#meet p \"My background is in clinical lea\""
+   ]
+  },
+  {
+   "check": "edge-left",
+   "where": "#meet p \"In coaching, we can take one of \"",
+   "msg": "starts at x 707.9; the lines are 82 and the column starts",
+   "fix": "start it on the .wrap left line",
+   "widths": [
+    1440
+   ],
+   "from": "layout",
+   "ids": [
+    "edge-left"
+   ],
+   "wheres": [
+    "#meet p \"In coaching, we can take one of \""
+   ]
+  },
+  {
+   "check": "edge-left",
+   "where": "#approach ol.stages \"Explore the fitBring a real chal\"",
+   "msg": "starts at x 748.6; the lines are 82 and the column starts",
+   "fix": "start it on the .wrap left line",
+   "widths": [
+    1440
+   ],
+   "from": "layout",
+   "ids": [
+    "edge-left"
+   ],
+   "wheres": [
+    "#approach ol.stages \"Explore the fitBring a real chal\""
+   ]
+  },
+  {
+   "check": "edge-left",
+   "where": "footer.site-foot a \"Privacy\"",
+   "msg": "starts at x 1210.8; the lines are 82 and the column starts",
+   "fix": "start it on the .wrap left line",
+   "widths": [
+    1440,
+    390
+   ],
+   "from": "layout",
+   "ids": [
+    "edge-left"
+   ],
+   "wheres": [
+    "footer.site-foot a \"Privacy\""
+   ]
+  },
+  {
+   "check": "edge-left",
+   "where": "footer.site-foot a \"Accessibility\"",
+   "msg": "starts at x 1280; the lines are 82 and the column starts",
+   "fix": "start it on the .wrap left line",
+   "widths": [
+    1440
+   ],
+   "from": "layout",
+   "ids": [
+    "edge-left"
+   ],
+   "wheres": [
+    "footer.site-foot a \"Accessibility\""
+   ]
+  },
+  {
+   "check": "screen-short",
+   "where": "section.hero.wrap section.hero.wrap \"Executive & transformational lea\"",
+   "msg": "815px tall; one screen under the nav is 900px",
+   "fix": "make the section one full screen (--h: 1, layout-v4.md section 2)",
+   "widths": [
+    1440
+   ],
+   "from": "layout",
+   "ids": [
+    "screen-short"
+   ],
+   "wheres": [
+    "section.hero.wrap section.hero.wrap \"Executive & transformational lea\""
+   ]
+  },
+  {
+   "check": "screen-short",
+   "where": "#situations section.wrap.section \"The work you bringWhen leadershi\"",
+   "msg": "634px tall; one screen under the nav is 900px",
+   "fix": "make the section one full screen (--h: 1, layout-v4.md section 2)",
+   "widths": [
+    1440,
+    390
+   ],
+   "from": "layout",
+   "ids": [
+    "screen-short",
+    "screen-height"
+   ],
+   "wheres": [
+    "#situations section.wrap.section \"The work you bringWhen leadershi\""
+   ]
+  },
+  {
+   "check": "neighbour",
+   "where": "#situations section.wrap.section \"The work you bringWhen leadershi\"",
+   "msg": "framed, 55px of #snapshot section.snapshot-band \"The Leadership SnapshotSee where\" shows",
+   "fix": "keep the next section's heading and picture out of this screen",
+   "widths": [
+    1440
+   ],
+   "from": "layout",
+   "ids": [
+    "neighbour"
+   ],
+   "wheres": [
+    "#situations section.wrap.section \"The work you bringWhen leadershi\""
+   ]
+  },
+  {
+   "check": "screen-short",
+   "where": "#snapshot section.snapshot-band \"The Leadership SnapshotSee where\"",
+   "msg": "751px tall; one screen under the nav is 900px",
+   "fix": "make the section one full screen (--h: 1, layout-v4.md section 2)",
+   "widths": [
+    1440
+   ],
+   "from": "layout",
+   "ids": [
+    "screen-short",
+    "screen-height"
+   ],
+   "wheres": [
+    "#snapshot section.snapshot-band \"The Leadership SnapshotSee where\""
+   ]
+  },
+  {
+   "check": "neighbour",
+   "where": "#snapshot section.snapshot-band \"The Leadership SnapshotSee where\"",
+   "msg": "framed, 27px of #meet section.wrap.section \"Meet Aman DavegunI know the pres\" shows",
+   "fix": "keep the next section's heading and picture out of this screen",
+   "widths": [
+    1440
+   ],
+   "from": "layout",
+   "ids": [
+    "neighbour"
+   ],
+   "wheres": [
+    "#snapshot section.snapshot-band \"The Leadership SnapshotSee where\""
+   ]
+  },
+  {
+   "check": "neighbour",
+   "where": "#approach section.journey \"The approachHow coaching works. \"",
+   "msg": "framed, 44px of section.wrap.section section.wrap.section \"Before we meetA few questions. W\" shows",
+   "fix": "keep the next section's heading and picture out of this screen",
+   "widths": [
+    1440
+   ],
+   "from": "layout",
+   "ids": [
+    "neighbour"
+   ],
+   "wheres": [
+    "#approach section.journey \"The approachHow coaching works. \""
+   ]
+  },
+  {
+   "check": "screen-short",
+   "where": "section.wrap.section section.wrap.section \"Before we meetA few questions. W\"",
+   "msg": "477px tall; one screen under the nav is 900px",
+   "fix": "make the section one full screen (--h: 1, layout-v4.md section 2)",
+   "widths": [
+    1440,
+    390
+   ],
+   "from": "layout",
+   "ids": [
+    "screen-short"
+   ],
+   "wheres": [
+    "section.wrap.section section.wrap.section \"Before we meetA few questions. W\""
+   ]
+  },
+  {
+   "check": "screen-height",
+   "where": "section.wrap.section section.wrap.section \"Before we meetA few questions. W\"",
+   "msg": "477px, 0.53 screens; a section is exactly one or two (--h)",
+   "fix": "make the section exactly one or two screens (--h: 1 or 2)",
+   "widths": [
+    1440,
+    390
+   ],
+   "from": "layout",
+   "ids": [
+    "screen-height"
+   ],
+   "wheres": [
+    "section.wrap.section section.wrap.section \"Before we meetA few questions. W\""
+   ]
+  },
+  {
+   "check": "neighbour",
+   "where": "section.wrap.section section.wrap.section \"Before we meetA few questions. W\"",
+   "msg": "framed, 85px of section.closing section.closing \"A conversation with AmanWhat’s o\" shows",
+   "fix": "keep the next section's heading and picture out of this screen",
+   "widths": [
+    1440,
+    390
+   ],
+   "from": "layout",
+   "ids": [
+    "neighbour"
+   ],
+   "wheres": [
+    "section.wrap.section section.wrap.section \"Before we meetA few questions. W\""
+   ]
+  },
+  {
+   "check": "screen-short",
+   "where": "section.closing section.closing \"A conversation with AmanWhat’s o\"",
+   "msg": "415px tall; one screen under the nav is 900px",
+   "fix": "make the section one full screen (--h: 1, layout-v4.md section 2)",
+   "widths": [
+    1440,
+    390
+   ],
+   "from": "layout",
+   "ids": [
+    "screen-short"
+   ],
+   "wheres": [
+    "section.closing section.closing \"A conversation with AmanWhat’s o\""
+   ]
+  },
+  {
+   "check": "screen-height",
+   "where": "section.closing section.closing \"A conversation with AmanWhat’s o\"",
+   "msg": "415px, 0.46 screens; a section is exactly one or two (--h)",
+   "fix": "make the section exactly one or two screens (--h: 1 or 2)",
+   "widths": [
+    1440,
+    390
+   ],
+   "from": "layout",
+   "ids": [
+    "screen-height"
+   ],
+   "wheres": [
+    "section.closing section.closing \"A conversation with AmanWhat’s o\""
+   ]
+  },
+  {
+   "check": "neighbour",
+   "where": "section.closing section.closing \"A conversation with AmanWhat’s o\"",
+   "msg": "framed, 101px of the footer shows",
+   "fix": "keep the next section's heading and picture out of this screen",
+   "widths": [
+    1440,
+    390
+   ],
+   "from": "layout",
+   "ids": [
+    "neighbour"
+   ],
+   "wheres": [
+    "section.closing section.closing \"A conversation with AmanWhat’s o\""
+   ]
+  },
+  {
+   "check": "neighbour-ground",
+   "where": "#situations section.wrap.section \"The work you bringWhen leadershi\"",
+   "msg": "framed, 18px of #snapshot section.snapshot-band \"The Leadership SnapshotSee where\"'s ground shows",
+   "fix": "end the ground with the section",
+   "widths": [
+    390
+   ],
+   "from": "layout",
+   "ids": [
+    "neighbour-ground"
+   ],
+   "wheres": [
+    "#situations section.wrap.section \"The work you bringWhen leadershi\""
+   ]
+  },
+  {
+   "check": "hero-fold",
+   "where": "section.hero.wrap section.hero.wrap \"Executive & transformational lea\"",
+   "msg": "ends at y 967, past the fold (844): 1.07 screens tall",
+   "fix": "the hero fills the first screen alone, its button inside it",
+   "widths": [
+    390
+   ],
+   "from": "layout",
+   "ids": [
+    "hero-fold"
+   ],
+   "wheres": [
+    "section.hero.wrap section.hero.wrap \"Executive & transformational lea\""
+   ]
+  }
+ ],
  "waived": [
   {
    "check": "nav",
-   "where": "header.nav.nav--centre > div.wrap.nav__bar > a.nav__logo.wordmark \"aman COACHING\"",
+   "where": "header.mast.nav > div.wrap.mast-inner > a.brand \"Aman COACHING\"",
    "msg": "nav link wraps to a second line",
    "fix": "make the nav one bar from the content's left edge to its right edge, with every link and action inside it",
    "widths": [
@@ -330,63 +2228,81 @@
     "nav"
    ],
    "wheres": [
-    "header.nav.nav--centre > div.wrap.nav__bar > a.nav__logo.wordmark \"aman COACHING\""
+    "header.mast.nav > div.wrap.mast-inner > a.brand \"Aman COACHING\""
    ],
-   "reason": "The two-line Aman / COACHING wordmark is an intentional logo lockup, not a navigation label wrapping. It stays within the header at all tested widths."
+   "reason": "The two lines form the designed wordmark and remain within the header at every tested size."
   },
   {
-   "check": "no-visual",
-   "where": "section#quiz \"A little reflection. A useful next step.\"",
-   "msg": "no picture, effect or mock in this section; a feature section needs a visual",
-   "fix": "give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits",
-   "widths": [
-    1440
-   ],
-   "from": "consistency",
-   "ids": [
-    "no-visual"
-   ],
-   "wheres": [
-    "section#quiz \"A little reflection. A useful next step.\""
-   ],
-   "reason": "This is the requested working quiz application, not a feature illustration. The interactive questions and report are the primary content; a decorative photograph would displace the form."
-  },
-  {
-   "check": "text-only",
-   "where": "section#coaching \"Coaching for the decisions ahead.\"",
-   "msg": "the closing section is only text: no picture, icon, mock or effect in it",
-   "fix": "give the section a visual: a photograph that fits, the real icons, or a UI fragment on a ground",
+   "check": "spill",
+   "where": "main#main > section.hero.wrap > div.hero-art > div.portrait-frame",
+   "msg": "runs 13px past the left edge of the panel it sits on (main#main > section.hero.wrap > div.hero-art > div.arch-line)",
+   "fix": "keep the box inside the panel it starts on: shrink it, or grow the panel to hold it",
    "widths": [
     1440,
     390
    ],
    "from": "consistency",
    "ids": [
-    "text-only"
+    "spill"
    ],
    "wheres": [
-    "section#coaching \"Coaching for the decisions ahead.\""
+    "main#main > section.hero.wrap > div.hero-art > div.portrait-frame"
    ],
-   "reason": "This section provides the coaching explanation and six substantive FAQs. The skill permits text-led FAQs; no additional stock person or unverified proof is needed."
+   "reason": "The two offset arch outlines form a deliberately layered portrait frame and never overflow the page."
   },
   {
-   "check": "no-visual",
-   "where": "section#quiz \"A little reflection.A useful next step.\"",
-   "msg": "no picture, effect or mock in this section; a feature section needs a visual",
-   "fix": "give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits",
+   "check": "scroll-reveal",
+   "where": "div#sample-bars \"Clarity and judgement 3.7 / 5 Influence \"",
+   "msg": "starts \"draw\" (0.8 s) the moment it is scrolled into view (an IntersectionObserver) on i",
+   "fix": "show it at rest: no fade, rise or unmask when it is scrolled into view",
    "widths": [
+    1440,
     390
    ],
    "from": "consistency",
    "ids": [
-    "no-visual"
+    "scroll-reveal"
    ],
    "wheres": [
-    "section#quiz \"A little reflection.A useful next step.\""
+    "div#sample-bars \"Clarity and judgement 3.7 / 5 Influence \""
    ],
-   "reason": "This is the requested working quiz application, not a feature illustration. The interactive questions and report are the primary content; a decorative photograph would displace the form."
+   "reason": "The brief explicitly requests one entrance animation of the five sample bars. All labels and values remain readable without animation."
+  },
+  {
+   "check": "copy-headline",
+   "where": "h1#hero-title \"Lead with clarity. Not at your own expen\"",
+   "msg": "\"Lead with clarity. Not at your own expense.\" does not name what is sold (executive leadership coaching, executive, leadership, coaching, from flags)",
+   "fix": "put the category noun in the h1 (and who it is for, or where), in 2 to 8 words",
+   "widths": [
+    1440
+   ],
+   "from": "consistency",
+   "ids": [
+    "copy-headline"
+   ],
+   "wheres": [
+    "h1#hero-title \"Lead with clarity. Not at your own expen\""
+   ],
+   "reason": "The supplied headline is paired with the immediately preceding executive coaching eyebrow and a next-sentence audience description."
+  },
+  {
+   "check": "copy-two-fragment",
+   "msg": "two-fragment headings \"X. Y.\": 3, budget 1 (a tic, not a device)",
+   "fix": "spend it once where it lands hardest; give the other headings a plain label, a claim or the thing they name (references/copy-tells.md)",
+   "widths": [],
+   "from": "copy",
+   "where": "copy x3: \"Lead with clarity. No...\", \"Your remit got bigger...\", \"See where y...",
+   "exact": true,
+   "ids": [
+    "copy-two-fragment"
+   ],
+   "wheres": [
+    "copy x3: \"Lead with clarity. No...\", \"Your remit got bigger...\", \"See where y..."
+   ],
+   "reason": "All three headlines are verbatim launch copy requested by the client brief."
   }
  ],
- "warnCount": 19,
- "at": "2026-11-18T09:54:47.469Z"
+ "warnCount": 18,
+ "at": "2026-11-18T11:24:56.985Z",
+ "openTold": true
 }

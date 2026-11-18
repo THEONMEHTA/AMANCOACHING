@@ -4,9 +4,9 @@ Initial website audit and implementation plan · 18 November 2026
 
 **Objective:** turn website visitors into qualified coaching enquiries through a useful leadership self-reflection quiz, a personalised report and an optional discovery call.
 
-**Current status:** the launch website and six-question quiz are implemented in this repository. The initial 12-question proposal below is retained as planning history; the hackathon build uses four reflection questions plus role and preferred focus. Reports are available immediately as HTML and a three-page PDF. The business email is **achieve@amancoaching.com**. The current release targets a Vercel preview with private Blob storage. No email is sent to the client or respondents.
+**Current release.** Aman Davegun’s executive coaching site includes an editorial homepage, a fifteen-statement Leadership Snapshot, a discovery-call route and a privacy notice. Visitors see their five scores, choose or receive one weekly action, and download a PDF without supplying details. Optional report and call requests go to the private Vercel store. Email delivery is disabled in preview. The confirmed direct business address is **achieve@amancoaching.com**.
 
-**Live preview:** https://aman-coaching-snapshot-20261118-h70on16s8-0013s-projects.vercel.app (Vercel sign-in required). Both forms have been verified against private storage; no emails are sent. See [release status](docs/RELEASE_STATUS.md) and [QA report](docs/QA_REPORT.md).
+[Open the redesigned Vercel preview](https://aman-coaching-snapshot-20261118-3vgod7v9s-0013s-projects.vercel.app) (Vercel access required). [Release verification](docs/RELEASE_STATUS.md) · [QA results](docs/QA_REPORT.md) · [Editing and analytics guide](docs/CLIENT_HANDOVER.md).
 
 ## Run the current build
 

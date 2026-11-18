@@ -1,22 +1,11 @@
-# Verified Vercel preview
+# Executive coaching redesign preview
 
-- **Preview:** https://aman-coaching-snapshot-20261118-h70on16s8-0013s-projects.vercel.app
-- **Project dashboard:** https://vercel.com/0013s-projects/aman-coaching-snapshot-20261118
-- **Deployed source commit:** `76f6b78455586d72571d3084f1b4e3775739de2a`.
-- **Live checks completed:** 2026-11-18T09:59:05.090Z (UTC / GMT).
-- **Environment:** preview, protected by Vercel sign-in; no client domain was changed.
-- **Storage:** `aman-coaching-preview-leads`, private Blob store in London, connected to preview/development.
-- **Submissions:** quiz leads and discovery requests saved privately; no email sent to Aman or respondents.
-- **Live verification:** both forms stored records; private reads worked for the authenticated owner; anonymous reads returned 403; retries succeeded; two synthetic QA records were removed. GET/list access returns 405 and cross-origin submission returns 403.
-- **Checks:** 14 unit/API tests pass. 14 browser tests pass, including the deployed CSP and PDF download; dependency audit has zero vulnerabilities. Design gate: PASS with four documented exceptions; copy lint: zero warnings. See [QA report](QA_REPORT.md).
-- **Lead review:** Vercel project → Storage → aman-coaching-preview-leads → Browse → submissions. Private CSV/JSON export instructions are in [DEPLOYMENT.md](DEPLOYMENT.md).
+[Open the protected preview](https://aman-coaching-snapshot-20261118-3vgod7v9s-0013s-projects.vercel.app) · [Vercel deployment](https://vercel.com/0013s-projects/aman-coaching-snapshot-20261118/DK4oN1YVFgAvpb8D4zERaLXMHKDv)
 
-## Setup deployment cleanup
+The redesigned website was deployed to the existing Vercel Preview environment from commit `32fd4904b0470589bcc4d3166d90cb047ebfa8cb`. Authenticated verification completed on **18 November 2026 at 11:24:13 UTC**. Anonymous homepage access returned a redirect to Vercel authentication.
 
-Vercel automatically assigned the new project's first setup deployment to its production environment before an explicit preview deployment was created. That unused setup deployment is protected, noindex, has no production-connected lead store, and does not use the client's domain. It is not the preview URL above.
+The homepage, quiz, booking and privacy routes responded successfully. Both private submissions saved, survived an identical retry, and returned HTTP 403 on anonymous storage reads. Live report records contained five totals and a focus with no respondent name or raw answers. The event endpoint rejected an unexpected email field and stored the allowed anonymous step event. The two synthetic submissions and the metric were removed. Preview delivery sends no email.
 
-A request to delete that setup deployment and its automatic project aliases was stopped by Vercel CLI with `confirmation_required`; the tool explicitly requires a human's approval even with `--yes`. Approval was requested in the conversation. Until it is given, the unused deployment is retained. No approval was inferred or bypassed.
+[Lead review and deployment](DEPLOYMENT.md) · [Editing, approval and event map](CLIENT_HANDOVER.md) · [QA results](QA_REPORT.md)
 
-## Scope of delivery
-
-This is a working preview prepared for review. Client acceptance and payment have not been verified; no hackathon revenue is claimed. Production launch, client ownership transfer, domain changes and email notifications remain separate steps.
+The current review link requires access to Vercel. The earlier setup deployment remains in the project. The client domain, live calendar, client email account and payment flow have not been activated. Client acceptance and paid delivery for the hackathon require separate evidence.

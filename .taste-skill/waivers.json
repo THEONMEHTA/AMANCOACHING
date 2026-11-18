@@ -1,22 +1,27 @@
 [
   {
     "check": "nav",
-    "target": "header.nav.nav--centre > div.wrap.nav__bar > a.nav__logo.wordmark \"aman COACHING\"",
-    "reason": "The two-line Aman / COACHING wordmark is an intentional logo lockup, not a navigation label wrapping. It stays within the header at all tested widths."
+    "target": "a.brand \"Aman COACHING\"",
+    "reason": "The two lines form the designed wordmark and remain within the header at every tested size."
   },
   {
-    "check": "no-visual",
-    "target": "section#quiz \"A little reflection. A useful next step.\"",
-    "reason": "This is the requested working quiz application, not a feature illustration. The interactive questions and report are the primary content; a decorative photograph would displace the form."
+    "check": "scroll-reveal",
+    "target": "div#sample-bars",
+    "reason": "The brief explicitly requests one entrance animation of the five sample bars. All labels and values remain readable without animation."
   },
   {
-    "check": "text-only",
-    "target": "section#coaching \"Coaching for the decisions ahead.\"",
-    "reason": "This section provides the coaching explanation and six substantive FAQs. The skill permits text-led FAQs; no additional stock person or unverified proof is needed."
+    "check": "copy-two-fragment",
+    "target": "copy x3: \"Lead with clarity. No...\", \"Your remit got bigger...\", \"See where y...",
+    "reason": "All three headlines are verbatim launch copy requested by the client brief."
   },
   {
-    "check": "no-visual",
-    "target": "section#quiz \"A little reflection.A useful next step.\"",
-    "reason": "This is the requested working quiz application, not a feature illustration. The interactive questions and report are the primary content; a decorative photograph would displace the form."
+    "check": "spill",
+    "target": "div.hero-art > div.portrait-frame",
+    "reason": "The two offset arch outlines form a deliberately layered portrait frame and never overflow the page."
+  },
+  {
+    "check": "copy-headline",
+    "target": "h1#hero-title",
+    "reason": "The supplied headline is paired with the immediately preceding executive coaching eyebrow and a next-sentence audience description."
   }
 ]

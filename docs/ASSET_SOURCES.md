@@ -9,3 +9,5 @@
 Distribution licence copies for both fonts and jsPDF are included under `public/licenses/`.
 
 The editorial and city WebP images are two crops of the same client photograph. The portrait also provides the updated social share image. Distinct second portrait and both uses remain subject to approval. The headline and the 15 first-person quiz statements were supplied by the user. Aman’s role as Deputy Head of Therapies is independently corroborated by a Barts Health NHS Trust job posting that names her in that role. Only her professional title and organisation were carried across. [NHS Jobs posting](https://www.jobs.nhs.uk/candidate/jobadvert/C9259-26-0293)
+
+Design references reviewed for this iteration include [Ballast](https://ballast-template.framer.website/) and [MindEdge](https://mindedge.framer.website/). No media, client counts or testimonials from either reference were included.

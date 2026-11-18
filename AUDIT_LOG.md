@@ -95,3 +95,10 @@ All timestamps are UTC (GMT on 18 November 2026). Entries describe completed act
 - **Files created/modified:** src/style.css, frontend and server modules, build scripts, smoke checks
 - **Verification:** Darkened secondary text on sage, expanded phone tap targets, formatted the editable implementation, and repeated 14 unit/API tests, 11 browser scenarios and route checks. Built output contained no configured server credential values.
 - **Pending / limitations:** Deploy these last changes as the reviewed preview.
+
+## 2026-11-18T11:25:23.115Z — Final redesign handover and commit ledger
+
+- **Requested:** Deliver the revised Vercel project with timestamped audit evidence and an editing guide.
+- **Files created/modified:** README, client and QA documentation, release status, Taste checker report, source archive and Git ledger
+- **Verification:** Verified source 32fd490 live at 11:24:13 UTC, both private forms, the analytics event shape and cleanup. Performance check had zero failures and one warning. Taste gate remained open with 57 findings after its three rounds. The QA report records the findings and exceptions. Full local and live checks passed.
+- **Pending / limitations:** Aman still needs to approve the calendar, portraits, format, claims and privacy for public launch. No paid delivery or client acceptance documented.
