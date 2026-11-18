@@ -25,3 +25,10 @@ All timestamps are UTC (GMT on 18 November 2026). Entries describe completed act
 - **Files created/modified:** Quiz/report modules, index.html, responsive styles, browser test configuration and suites, dependency lockfile; licence copies and client asset provenance.
 - **Verification:** Seven unit tests and thirteen browser tests passed in the preceding complete run, including 320–1440px flows, lead payloads, failed submissions, consent default, PDF download, mobile menu and automated WCAG A/AA checks. All four PDF variants rendered to three pages and passed text/bounds checks; representative three-page report inspected visually. Adjusted column edges, touch targets and entrance progressively afterwards; final verification pending.
 - **Pending / limitations:** No live form or mailbox test yet. Intended recipient is confirmed by the user; account-level Netlify notifications and recipient confirmation remain required. All automated submissions are intercepted locally. Payment and live delivery remain unverified.
+
+## 2026-11-18T09:42:35.067Z — Deployment configuration and hackathon handover
+
+- **Requested:** Prepare an immediately deployable client project with milestone commits, timestamped logs and an auditable paid-and-delivered record.
+- **Files created/modified:** netlify.toml; .env.example; README.md; docs/DEPLOYMENT.md, CLIENT_HANDOVER.md and HACKATHON_EVIDENCE.md; .gitignore.
+- **Verification:** Static production build passes link, asset and native-form blueprint checks. npm audit reports zero vulnerabilities. Latest complete browser run passed all thirteen tests. Netlify configuration includes Node 22, build/test commands, CSP and security headers. No credentials are embedded.
+- **Pending / limitations:** Prepared for Netlify, not yet deployed. Account access and confirmation of notifications to achieve@amancoaching.com are required for live email proof. Client payment, acceptance, touches/spend submissions and organiser evidence submission remain unverified. Requested the deployment account/site in the conversation.

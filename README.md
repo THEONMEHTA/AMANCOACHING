@@ -4,7 +4,35 @@ Initial website audit and implementation plan · 18 November 2026
 
 **Objective:** turn website visitors into qualified coaching enquiries through a useful leadership self-reflection quiz, a personalised report and an optional discovery call.
 
-**Project status:** planning only. This initial commit contains the audit and proposed build specification; no application, integrations or live website changes have been made.
+**Current status:** the launch website and six-question quiz are implemented in this repository. The initial 12-question proposal below is retained as planning history; the hackathon build uses four reflection questions plus role and preferred focus. Reports are available immediately as HTML and a three-page PDF. The business email is **achieve@amancoaching.com**. Native Netlify form storage and email notifications need live deployment verification before claiming delivery.
+
+## Run the current build
+
+```sh
+npm ci
+npm run dev
+```
+
+```sh
+npm test
+npm run test:e2e
+npm run build
+npm run audit:commits
+```
+
+Install browser dependencies once with `npx playwright install chromium` before browser tests. Development forms deliberately do not submit leads. A Netlify build enables the two native forms; configure notifications to **achieve@amancoaching.com** in the account.
+
+- [Deployment and email setup](docs/DEPLOYMENT.md)
+- [Client handover](docs/CLIENT_HANDOVER.md)
+- [Hackathon evidence and deadlines](docs/HACKATHON_EVIDENCE.md)
+- [Timestamped audit log](AUDIT_LOG.md)
+- [Design decisions](docs/DESIGN_PLAN.md) and [asset sources](docs/ASSET_SOURCES.md)
+
+The free lead magnet has no checkout. Client payment for this build is a separate transaction and has not been verified. Payment and delivery evidence must both precede **18 November 2026, 18:00 GMT**; target handover is 17:30 GMT. Full commit timestamps can be exported with `npm run audit:commits`.
+
+## Original audit and planning reference
+
+The sections below were recorded in the initial commit. They describe the original proposal, not an assertion that every future feature has been built. The current implementation and deployment guide above take precedence.
 
 ## 1. Website audit
 
